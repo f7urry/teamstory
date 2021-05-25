@@ -1,6 +1,7 @@
 <html lang="en">
     @include("layouts.common.styles")
     <body>
+        <div class="body-bg"></div>
         <div class="preloader">
             <div class="lds-ring">
                 <div></div>

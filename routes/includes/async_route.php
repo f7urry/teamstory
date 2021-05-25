@@ -27,9 +27,4 @@ Route::group(["prefix"=>"api"], function(){
     Route::get("/goodsreceipt/list",[App\Http\Controllers\Inventory\GoodsReceiptController::class,"list"]);
     Route::get("/goodsissue/list",[App\Http\Controllers\Inventory\GoodsIssueController::class,"list"]);
     Route::get("/warehouse/list",[App\Http\Controllers\Inventory\WarehouseController::class,"list"]);
-
-    //Vms
-    Route::get("/drivers/list",[App\Http\Controllers\Vms\DriverController::class,"list"]);
-    Route::get("/vehiclebookings/list",[App\Http\Controllers\Vms\VehicleBookingController::class,"list"]);
-    Route::get("/bookingrequest/list",[App\Http\Controllers\Vms\VehicleBookingRequestController::class,"list"]);
 });

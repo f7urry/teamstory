@@ -63,7 +63,7 @@ function $__app() {
                         $(".preloader").hide();
                 } else {
                     confirmDialog({
-                        content: (message == null) ? "Anda yakin menyimpan data?" : message,
+                        content: (message == null) ? "Are you sure to save data?" : message,
                         yes: function() {
                             $(".preloader").show();
                             var submit = $(form).trigger("submit");

@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title","Grup Barang")
+@section("title","Item Group")
 @section("content")
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('/itemgroup')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
@@ -12,7 +12,7 @@
                     <form method="post" class="row" name="formAdd" id="formAdd">
                         {{ csrf_field() }}
                         <div class="form-group col-md-12">
-                            <label>Nama Grup</label>
+                            <label>Group Name</label>
                             <input type="text" name="group_name" class="form-control" id="group_name" />
                         </div>
                     </form>

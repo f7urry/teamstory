@@ -20,7 +20,7 @@ class ItemGroupController extends Controller {
     public function store(Request $request) {
         $p=new ItemGroup($request->except(['_token']));
         $p->save();
-        return redirect(url("/itemgroup/".$p->id))->with("message","Success: Grup Created");
+        return redirect(url("/itemgroup/".$p->id))->with("message","Success: Group Created");
     }
 
     public function show(ItemGroup $itemgroup) {
@@ -34,12 +34,11 @@ class ItemGroupController extends Controller {
     public function update(Request $request, ItemGroup $itemgroup) {
         $p=ItemGroup::find($itemgroup->id);
         $p->update($request->except(["_token"]));
-        return redirect("/itemgroup/".$p->id)->with("message","Success: Grup Updated");
+        return redirect("/itemgroup/".$p->id)->with("message","Success: Group Updated");
     }
 
     public function destroy(ItemGroup $itemgroup) {
         $p=ItemGroup::find($itemgroup->id);
-        $p->hasMany(ProductModel::class)->delete();
         $p->delete();
         return redirect("/itemgroup");
     }

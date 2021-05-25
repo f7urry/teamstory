@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title","Barang")
+@section("title","Item")
 @section("content")
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{url('/item/create')}}"><i class="fa fa-plus"></i> Tambah</a></li>

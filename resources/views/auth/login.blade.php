@@ -1,7 +1,7 @@
 @section("title","Login Panel")
 @include("layouts.common.styles")
 <body>
-    <img src="{{url('/assets/img/bg.png')}}" class="position-fixed h-100 w-100" style="opacity:0.1"/>
+    <div class="body-bg"></div>
     <div class="container">
         <div class="row h-100 d-flex align-items-center justify-content-center">
             <div class="col-lg-4">

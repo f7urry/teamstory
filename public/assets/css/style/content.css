@@ -1,7 +1,12 @@
-body.login {
+.body-bg {
     background: url("../../img/bg.jpg");
     background-position: center;
-    background-size: cover;
+    background-repeat: repeat;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: -1000;
+    opacity: 0.3;
 }
 
 .content-wrapper {

@@ -20,9 +20,3 @@ Route::resource("/goodsissue",App\Http\Controllers\Inventory\GoodsIssueControlle
 Route::resource("/warehouse",App\Http\Controllers\Inventory\WarehouseController::class);
 Route::resource("/ledgersummary",App\Http\Controllers\Inventory\Report\LedgerSummaryController::class);
 Route::resource("/ledgerdetail",App\Http\Controllers\Inventory\Report\LedgerDetailController::class);
-
-//VMS Module
-Route::resource("/drivers",App\Http\Controllers\Vms\DriverController::class);
-Route::resource("/vehicles",App\Http\Controllers\Vms\VehicleController::class);
-Route::resource("/vehiclebookings",App\Http\Controllers\Vms\VehicleBookingController::class);
-Route::resource("/bookingrequest",App\Http\Controllers\Vms\VehicleBookingRequestController::class);
