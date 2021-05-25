@@ -1,0 +1,44 @@
+.btn-default {
+    background: #fff;
+    border-color: #adadad;
+    color: #333;
+}
+
+.btn-default:hover {
+    background: #e6e6e6;
+    color: #333;
+}
+
+.datepicker {
+    padding-left: 0.75rem;
+}
+
+.modal-header {
+    height: 40px !important;
+    padding: 8px !important;
+}
+
+.modal-header .close {
+    padding: 0px !important;
+    margin: 0px 0px 0px auto !important;
+}
+
+.topbar {
+    height: 3rem !important;
+}
+
+.close {
+    line-height: 1rem;
+}
+
+.btn {
+    padding: .375rem .475rem;
+}
+
+.input-group-append .btn {
+    padding: .375rem .75rem;
+}
+
+.navbar {
+    background: #f5c700;
+}

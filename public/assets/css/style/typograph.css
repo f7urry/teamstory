@@ -1,0 +1,29 @@
+@font-face{
+	font-family: 'SourceSansPro';
+	src: url('../../fonts/SourceSansPro-Regular.woff2');
+}
+@font-face{
+	font-family: 'Inter';
+	src: url('../../fonts/inter_regular.woff2');
+}
+@font-face{
+	font-family: 'InterBold';
+	src: url('../../fonts/inter_bold.woff2');
+}
+* {
+	font-family: 'SourceSansPro';
+    /* font-size: 13px; */
+}
+a:hover{
+	text-decoration: unset;
+}
+fieldset.small{
+	font-size: 12px;
+}
+h1{
+    font-size: 2rem;
+    font-weight: bold;
+}
+b{
+    font-size: unset;
+}

@@ -1,0 +1,28 @@
+.datepicker-dropdown {
+    box-shadow: 0px 0px 5px rgb(0 0 0 / 30%);
+}
+
+.table {
+    background: white;
+}
+
+.sb-sidenav-dark .sb-sidenav-menu-heading,
+.sb-sidenav-dark .sb-nav-link-icon,
+.sb-sidenav-dark .sb-sidenav-collapse-arrow,
+.sb-sidenav-dark .nav-link {
+    color: white !important;
+}
+
+.sb-sidenav-light i,
+.sb-sidenav-light svg {
+    color: black;
+}
+
+.sb-sidenav-dark .nav-link.active,
+.sb-sidenav-dark .nav-link.active .sb-nav-link-icon,
+.sb-sidenav-dark .nav-link.active .sb-sidenav-collapse-arrow,
+.sb-sidenav-dark .nav-link:hover,
+.sb-sidenav-dark .nav-link:hover .sb-nav-link-icon,
+.sb-sidenav-dark .nav-link:hover .sb-sidenav-collapse-arrow {
+    color: rgb(231, 214, 61) !important;
+}
