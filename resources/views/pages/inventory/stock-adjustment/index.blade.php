@@ -1,8 +1,8 @@
 @extends("layouts.app")
-@section("title","Item Register")
+@section("title","Stock Adjustment")
 @section("content")
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{url('/itemregisters/create')}}"><i class="fa fa-plus"></i> Tambah</a></li>
+    <li class="breadcrumb-item"><a href="{{url('/stockadjustment/create')}}"><i class="fa fa-plus"></i> New</a></li>
 </ol>
 <div class="row">
     <div class="col-md-12">
@@ -31,7 +31,7 @@
             searching: true,
             processing: true,
             serverSide: true,
-            ajax: `${base_url()}/api/itemregisters/list`,
+            ajax: `${base_url()}/api/stockadjustment/list`,
             columns: [
             {
                 data: 'code',

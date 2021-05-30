@@ -2,6 +2,7 @@
 
 namespace App\Http\Service\Inventory;
 
+use App\DTO\StockDTO;
 use App\Models\Inventory\Report\LedgerDetail;
 use App\Models\Inventory\Report\LedgerSummary;
 use App\Models\Inventory\Stock;
@@ -9,10 +10,31 @@ use App\Models\Inventory\Warehouse;
 use Illuminate\Support\Facades\DB;
 
 class StockService {
+    public function parse(StockDTO $dto){
+        $stock=new Stock();
+        $stock->warehouse_id=$dto->warehouse_id;
+        $stock->barcode=$dto->barcode;
+        $stock->item_id=$dto->item_id;
+        $stock->qty=$dto->qty;
+        $stock->grid_code=$dto->grid_code;
+
+        $ledger=new LedgerDetail();
+        $ledger->date=$dto->date;
+        $ledger->reference_id=$dto->reference_id;
+        $ledger->reference_no=$dto->reference_code;
+        $ledger->reference_type=$dto->reference_type;
+
+        if($stock->qty>0)
+            $this->stockIn($stock,$ledger);
+        else
+            $this->stockOut($stock,$ledger);
+    }
     public function stockIn(Stock $stock,LedgerDetail $ledger){
         $exist=Stock::query();
-        $exist=$exist->where("barcode",$stock->barcode);
         $exist=$exist->where("item_id",$stock->item_id);
+
+        if($stock->barcode!=null)
+            $exist=$exist->where("barcode",$stock->barcode);
         if($stock->grid_code!=null)
             $exist=$exist->where("grid_code",$stock->grid_code);
         if($stock->warehouse_id!=null)
@@ -21,8 +43,10 @@ class StockService {
 
         if ($exist!=null) {
             $exist->qty+=$stock->qty;
-            $exist->grid_code=$stock->grid_code;
             $exist->warehouse_id=$stock->warehouse_id;
+
+            if($stock->grid_code!=null)
+                $exist->grid_code=$stock->grid_code;
             $exist->update();
 
             $stock->qty_in=$stock->qty;
@@ -31,27 +55,33 @@ class StockService {
         }
 
         $ledger->warehouse_id=$stock->warehouse_id;
-        $ledger->barcode=$stock->barcode;
         $ledger->item_id=$stock->item_id;
         $ledger->qty_in=$stock->qty;
-        $ledger->grid_code=$stock->grid_code;
+
+        if($stock->barcode!=null)
+            $ledger->barcode=$stock->barcode;
+        if($stock->grid_code!=null)
+            $ledger->grid_code=$stock->grid_code;
         $this->ledgerAppend($ledger);
     }
     public function stockOut(Stock $stock,LedgerDetail $ledger){
         $exist=Stock::query();
-        $exist=$exist->where("barcode",$stock->barcode);
         $exist=$exist->where("item_id",$stock->item_id);
+        
+        if($stock->barcode!=null)
+            $exist=$exist->where("barcode",$stock->barcode);
         if($stock->grid_code!=null)
             $exist=$exist->where("grid_code",$stock->grid_code);
         if($stock->warehouse_id!=null)
             $exist=$exist->where("warehouse_id",$stock->warehouse_id);
         $exist=$exist->first();
 
-        echo $exist;
         if ($exist!=null) {
             $exist->qty-=$stock->qty;
-            $exist->grid_code=$stock->grid_code;
             $exist->warehouse_id=$stock->warehouse_id;
+
+            if($stock->grid_code!=null)
+                $exist->grid_code=$stock->grid_code;
             $exist->update();
 
             $stock->qty_out=$stock->qty;
@@ -60,20 +90,27 @@ class StockService {
         }
 
         $ledger->warehouse_id=$stock->warehouse_id;
-        $ledger->barcode=$stock->barcode;
         $ledger->item_id=$stock->item_id;
         $ledger->qty_out=$stock->qty;
-        $ledger->grid_code=$stock->grid_code;
+
+        if($stock->barcode!=null)
+            $ledger->barcode=$stock->barcode;
+        if($stock->grid_code!=null)
+            $ledger->grid_code=$stock->grid_code;
         $this->ledgerAppend($ledger);
     }
     private function ledgerAppend($stock){
-        $exist=LedgerSummary::query()
-                ->where("barcode",$stock->barcode)
-                ->where("month",intval(date("m",strtotime($stock->date))))
+        $exist=LedgerSummary::query();
+        if($stock->grid_code!=null)
+            $exist=$exist->where("barcode",$stock->barcode);
+        if($stock->barcode!=null)
+            $exist=$exist->where("grid_code",$stock->grid_code);
+            
+        $exist=$exist->where("month",intval(date("m",strtotime($stock->date))))
                 ->where("year",date("Y",strtotime($stock->date)))
                 ->where("warehouse_id",$stock->warehouse_id)
-                ->where("grid_code",$stock->grid_code)
                 ->where("item_id",$stock->item_id);
+
         $exist=$exist->get()->first();
         if ($exist!=null) {
             $exist->qty_in+=$stock->qty_in;
@@ -81,14 +118,17 @@ class StockService {
             $exist->update();
         }else{
             $ledger=new LedgerSummary();
+            if($stock->barcode!=null)
+                $ledger->barcode=$stock->barcode;
+            if($stock->grid_code!=null)
+                $ledger->grid_code=$stock->grid_code;
+
             $ledger->month=date("m",strtotime($stock->date));
             $ledger->year=date("Y",strtotime($stock->date));
-            $ledger->barcode=$stock->barcode;
             $ledger->item_id=$stock->item_id;
             $ledger->item_name=$stock->item->item_name;
             $ledger->warehouse_id=$stock->warehouse_id;
             $ledger->warehouse_name=Warehouse::find($stock->warehouse_id)->name;
-            $ledger->grid_code=$stock->grid_code;
             $ledger->qty_in=$stock->qty_in;
             $ledger->qty_out=$stock->qty_out;
             $ledger->save();
@@ -97,8 +137,12 @@ class StockService {
     }
     private function ledgerDetailAppend($stock){
         $ledger=new LedgerDetail();
+        if($stock->grid_code!=null)
+            $ledger->grid_code=$stock->grid_code;
+        if($stock->barcode!=null)
+            $ledger->barcode=$stock->barcode;
+
         $ledger->date=$stock->date;
-        $ledger->barcode=$stock->barcode;
         $ledger->reference_id=$stock->reference_id;
         $ledger->reference_no=$stock->reference_no;
         $ledger->reference_type=$stock->reference_type;
@@ -106,7 +150,6 @@ class StockService {
         $ledger->item_name=$stock->item->item_name;
         $ledger->warehouse_id=$stock->warehouse_id;
         $ledger->warehouse_name=Warehouse::find($stock->warehouse_id)->name;
-        $ledger->grid_code=$stock->grid_code;
         $ledger->qty_in=$stock->qty_in;
         $ledger->qty_out=$stock->qty_out;
         $ledger->save();

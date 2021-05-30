@@ -28,10 +28,6 @@
                             </select>
                         </div>
                         <div class="form-group col-md-12">
-                            <label>Grid Code</label>
-                            <input type="text" name="grid_code" class="form-control" id="notes" />
-                        </div>
-                        <div class="form-group col-md-12">
                             <label>Notes</label>
                             <input type="text" name="notes" class="form-control" id="notes" />
                         </div>
@@ -72,7 +68,7 @@
             var val=$(this).val();
             $(this).val("");
             $(this).focus();
-            $.get(`${base_url()}/api/itembarcode/${val}`,function(data){
+            $.get(`${base_url()}/api/stock/barcode/${val}`,function(data){
                 add_item(data.stock);
             });
         }

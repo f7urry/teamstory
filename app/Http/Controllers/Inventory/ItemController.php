@@ -8,6 +8,7 @@ use App\Helper\NumberHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Inventory\Item;
 use App\Models\Inventory\ItemAttribute;
+use App\Models\Inventory\ItemBrand;
 use App\Models\Inventory\ItemGroup;
 use App\Models\Inventory\ItemVariant;
 use App\Models\Inventory\Uom;
@@ -29,10 +30,16 @@ class ItemController extends Controller {
         $map['uoms']=Uom::all();
         $map['attributes']=ItemAttribute::all();
         $map['groups']=ItemGroup::all();
+        $map['brands']=ItemBrand::all();
         return view("pages.inventory.item.create",$map);
     }
     public function store(Request $request) {
         $p=new Item($request->except(['_token']));
+
+        if (isset($request->fileimage)) {
+            $filename = StorageUtil::uploadFile("item", $request->fileimage);
+            $p->item_image = $filename;
+        }
         $p->save();
 
         if(isset($request->is_variant)){
@@ -51,6 +58,7 @@ class ItemController extends Controller {
         $map['item']=$item;
         $map['attributes']=ItemAttribute::all();
         $map['groups']=ItemGroup::all();
+        $map['brands']=ItemBrand::all();
         
         return view("pages.inventory.item.edit", $map);
     }
@@ -58,6 +66,10 @@ class ItemController extends Controller {
     public function update(Request $request, Item $item) {
         $param=$request->except(['_token']);
         $p = Item::find($item->id);
+        if (isset($request->fileimage)) {
+            $filename = StorageUtil::uploadFile("item", $request->fileimage);
+            $param['item_image'] = $filename;
+        }
         $p->update($param);
 
         $list_variants=is_null($request->variants)?[]:$request->variants;

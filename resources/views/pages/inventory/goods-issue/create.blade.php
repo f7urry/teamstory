@@ -27,10 +27,6 @@
                             </select>
                         </div>
                         <div class="form-group col-md-12">
-                            <label>Grid</label>
-                            <input type="text" name="grid_code" class="form-control" id="notes" />
-                        </div>
-                        <div class="form-group col-md-12">
                             <label>Notes</label>
                             <input type="text" name="notes" class="form-control" id="notes" />
                         </div>
@@ -68,7 +64,7 @@
 <script type="text/javascript">
    $("#scan_barcode").on("keyup",function(e){
         if(e.keyCode==13){
-            $.get(`${base_url()}/api/itembarcode/${$(this).val()}`,function(data){
+            $.get(`${base_url()}/api/stock/barcode/${$(this).val()}`,function(data){
                 $("#scan_barcode").val("");
                 $("#scan_barcode").focus();
                 add_item(data.stock);

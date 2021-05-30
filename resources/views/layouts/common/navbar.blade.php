@@ -1,6 +1,6 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark shadow">
     <a class="navbar-brand" href="#">
-        <img src="{{url('/assets/img/logo.png')}}" height="38px" class="bg-white rounded p-2">
+        <img src="{{url('/assets/img/logo.png')}}" height="38px" class="bg-white rounded">
     </a>
     <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fa fa-bars"></i></button>
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">

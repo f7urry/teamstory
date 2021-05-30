@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title","Pelanggan")
+@section("title","Customer")
 @section("content")
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('customer.create')}}" id="btn_save"><i class="fa fa-plus"></i> New</a></li>

@@ -4,15 +4,15 @@ namespace App\Models\Inventory;
 
 use App\Models\Base\Model;
 
-class ItemRegister extends Model{
+class StockAdjustment extends Model{
     protected $guarded=['id'];
-    protected $table = 't_item_register';
+    protected $table = 't_stock_adjustment';
 
     public function warehouse(){
         return $this->belongsTo(Warehouse::class);
     }
-    public function items(){
-        return $this->hasMany(ItemRegisterDetail::class, "item_register_id");
+    public function details(){
+        return $this->hasMany(StockAdjustmentDetail::class, "stock_adjustment_id");
     }
 
 }

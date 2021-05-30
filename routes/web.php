@@ -14,10 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['middleware'=>['auth',RoleListener::class]],function(){
-    include 'includes/pages_route.php';
-    include 'includes/async_route.php';
-    include 'includes/popup_route.php';
-    include 'includes/resource_route.php';
+    include 'web_includes/pages_route.php';
+    include 'web_includes/info_route.php';
+    include 'web_includes/datatable_route.php';
+    include 'web_includes/optselect_route.php';
+    include 'web_includes/popup_route.php';
+    include 'web_includes/resource_route.php';
 });
-include 'includes/tools_route.php';
+include 'web_includes/tools_route.php';
 Auth::routes();

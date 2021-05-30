@@ -12,7 +12,7 @@ class MenuBuilder{
         $builder=new MenuBuilder();
         $builder->accessModules();
         $root="";
-        foreach (ModuleGroup::whereNull("parent_id")->get() as $group)
+        foreach (ModuleGroup::whereNull("parent_id")->orderBy("menu_index","asc")->get() as $group)
            $root=$builder->addMenu($root,$group);
         return $root;
     }

@@ -5,7 +5,10 @@
 .table {
     background: white;
 }
-
+.navbar .btn-link,
+.navbar .nav-link{
+    color: #fff !important;
+}
 .sb-sidenav-dark .sb-sidenav-menu-heading,
 .sb-sidenav-dark .sb-nav-link-icon,
 .sb-sidenav-dark .sb-sidenav-collapse-arrow,
@@ -24,5 +27,5 @@
 .sb-sidenav-dark .nav-link:hover,
 .sb-sidenav-dark .nav-link:hover .sb-nav-link-icon,
 .sb-sidenav-dark .nav-link:hover .sb-sidenav-collapse-arrow {
-    color: rgb(231, 214, 61) !important;
+    color: rgb(8, 164, 255) !important;
 }

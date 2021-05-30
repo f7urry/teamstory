@@ -73,10 +73,10 @@ class GoodsReceiptController extends Controller {
                 $this->stockService->stockIn($stock,$ledger);
             }
             DB::commit();
-            return redirect(url("/goodsreceipt/".$goodsReceipt->id))->with(["message"=>"Success: Data berhasil disimpan"]);
+            return redirect(url("/goodsreceipt/".$goodsReceipt->id))->with(["message"=>"Success: Goods Receipt has been saved"]);
         }
         DB::rollback();
-        return redirect()->back()->with(["error"=>"Process Fail: Data gagal disimpan"]);
+        return redirect()->back()->with(["error"=>"Process Fail: Goods Receipt fail to save"]);
     }
 
     public function show(GoodsReceipt $goodsreceipt)
@@ -93,14 +93,14 @@ class GoodsReceiptController extends Controller {
 
     public function update(Request $request, $id)
     {
-        return redirect(url("/goodsreceipt/".$id))->with(["message"=>"Success: Data berhasil disimpan"]);
+        return redirect(url("/goodsreceipt/".$id))->with(["message"=>"Success: Goods Receipt has been updated"]);
     }
 
     public function destroy(GoodsReceipt $goodsreceipt)
     {
         $goodsreceipt->goodsReceiptItems()->delete();
         $goodsreceipt->delete();
-        return redirect("/goodsreceipt/")->with(["message"=>"Success: Data telah dihapus"]);
+        return redirect("/goodsreceipt/")->with(["message"=>"Success: Goods Receipt has been deleted"]);
     }
     public function print(GoodsReceipt $goodsreceipt)
     {

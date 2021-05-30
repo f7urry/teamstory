@@ -10,8 +10,8 @@ Route::resource("/users",App\Http\Controllers\Core\UserController::class);
 Route::resource("/roles",App\Http\Controllers\Core\RolesController::class);
 
 //INVENTORY Module
-Route::resource("/itemregisters",App\Http\Controllers\Inventory\ItemRegisterController::class);
 Route::resource("/item",App\Http\Controllers\Inventory\ItemController::class);
+Route::resource("/itembrand",App\Http\Controllers\Inventory\ItemBrandController::class);
 Route::resource("/itemgroup",App\Http\Controllers\Inventory\ItemGroupController::class);
 Route::resource("/itemattribute",App\Http\Controllers\Inventory\ItemAttributeController::class);
 Route::resource("/uom",App\Http\Controllers\Inventory\UnitOfMeasureController::class);
@@ -20,3 +20,5 @@ Route::resource("/goodsissue",App\Http\Controllers\Inventory\GoodsIssueControlle
 Route::resource("/warehouse",App\Http\Controllers\Inventory\WarehouseController::class);
 Route::resource("/ledgersummary",App\Http\Controllers\Inventory\Report\LedgerSummaryController::class);
 Route::resource("/ledgerdetail",App\Http\Controllers\Inventory\Report\LedgerDetailController::class);
+Route::resource("/stockadjustment",App\Http\Controllers\Inventory\StockAdjustmentController::class);
+

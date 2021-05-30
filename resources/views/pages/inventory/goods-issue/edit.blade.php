@@ -25,10 +25,6 @@
                             </select>
                         </div>
                         <div class="form-group col-md-12">
-                            <label>Grid Code</label>
-                            <input type="text" name="grid_code" class="form-control" id="notes" value="{{ $goodsIssue->grid_code }}" disabled/>
-                        </div>
-                        <div class="form-group col-md-12">
                             <label>Notes</label>
                             <input type="text" name="notes" class="form-control" id="notes" value="{{ $goodsIssue->notes }}" disabled/>
                         </div>

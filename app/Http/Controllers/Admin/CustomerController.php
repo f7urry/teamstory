@@ -15,7 +15,7 @@ class CustomerController extends Controller {
     }
 
     public function index(Request $request) {
-        return view("pages.customer.index");
+        return view("pages.admin.customer.index");
     }
      public function list($var = null) {
         $qry = Party::query();
@@ -27,7 +27,7 @@ class CustomerController extends Controller {
     }
 
     public function create(Request $request) {
-        return view("pages.customer.add", $this->service->create());
+        return view("pages.admin.customer.add", $this->service->create());
     }
 
     public function store(Request $request) {
@@ -37,7 +37,7 @@ class CustomerController extends Controller {
 
     public function show(Party $customer) {
         $map['party'] = Party::find($customer->id);
-        return view("pages.customer.edit", $map);
+        return view("pages.admin.customer.edit", $map);
     }
     public function edit(Party $customer) {
     }

@@ -2,7 +2,7 @@
 @section("title","Item")
 @section("content")
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{url('/item/create')}}"><i class="fa fa-plus"></i> Tambah</a></li>
+    <li class="breadcrumb-item"><a href="{{url('/item/create')}}"><i class="fa fa-plus"></i> New</a></li>
 </ol>
 
 <div class="card shadow mb-4">
@@ -11,8 +11,8 @@
             <table class="table table-bordered" id="dtable" width="100%" cellspacing="0">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Kode</th>
-                        <th>Nama Barang</th>
+                        <th>SKU</th>
+                        <th>Item Name</th>
                         <th>Alias</th>
                         <th>Description</th>
                         <th>Tipe</th>

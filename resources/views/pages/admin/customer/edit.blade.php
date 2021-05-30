@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title","Pelanggan")
+@section("title","Customer")
 @section("content")
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('customer.index')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
@@ -11,7 +11,9 @@
             <form method="post" class="row" id="formAdd" enctype="multipart/form-data" action="{{url('/customer/'.$party->id)}}">
                 {{csrf_field()}}
                 {{method_field("patch")}}
-                @include("pages.party.edit")
+                <div class="col-md-4">
+                    @include("pages.admin.party.edit")
+                </div>
             </form>
        	</div>
     </div>

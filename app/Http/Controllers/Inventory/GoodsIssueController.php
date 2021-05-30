@@ -74,10 +74,10 @@ class GoodsIssueController extends Controller
                 $this->stockService->stockOut($stock,$ledger);
             }
             DB::commit();
-            return redirect(url("/goodsissue/".$goodsissue->id))->with(["message"=>"Success: Data berhasil disimpan"]);
+            return redirect(url("/goodsissue/".$goodsissue->id))->with(["message"=>"Success: Goods Issue has been saved"]);
         }
         DB::rollback();
-        return redirect()->back()->with(["error"=>"Process Fail: Data gagal disimpan"]);
+        return redirect()->back()->with(["error"=>"Process Fail: Goods Issue fail to save"]);
     }
 
     public function show(GoodsIssue $goodsissue)
@@ -94,14 +94,14 @@ class GoodsIssueController extends Controller
 
     public function update(Request $request, $id)
     {
-        return redirect(url("/goodsissue/".$id))->with(["message"=>"Success: Data berhasil disimpan"]);
+        return redirect(url("/goodsissue/".$id))->with(["message"=>"Success: Goods Issue has been updated"]);
     }
 
     public function destroy(GoodsIssue $goodsissue)
     {
         $goodsissue->goodsIssueItems()->delete();
         $goodsissue->delete();
-        return redirect("/goodsissue/")->with(["message"=>"Success: Data telah dihapus"]);
+        return redirect("/goodsissue/")->with(["message"=>"Success: Goods Issue has been deleted"]);
     }
     public function print(GoodsIssue $goodsissue)
     {

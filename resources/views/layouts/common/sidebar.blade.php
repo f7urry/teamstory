@@ -35,8 +35,5 @@
                 </div>  -->
             </div>
         </div>
-        <div class="sb-sidenav-footer">
-            <div class="small">Copyright &copy; HPYSolution.com</div>
-        </div>
     </nav>
 </div>
