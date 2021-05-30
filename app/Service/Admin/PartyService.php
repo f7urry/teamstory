@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use App\Exceptions\RestException;
+use App\Helper\CodeGenerator;
 use App\Helper\StorageUtil;
+use App\Models\Admin\PartyAddress;
 
 class PartyService {
 
@@ -24,16 +26,41 @@ class PartyService {
     public function store(Request $request) {
         DB::beginTransaction();
         try {
-            $p = new Party($request->except(["_token"]));
+            $p = new Party();
+            $p->code=CodeGenerator::generate("PY");
+            $p->party_role=$request->party_role;
+            $p->party_name=$request->party_name;
+            $p->company_name=$request->company_name;
+            $p->dob=$request->dob;
+            $p->pob=$request->pob;
+            $p->identity_number=$request->identity_number;
+
             if (isset($request->identityimage)) {
-                $filename = StorageUtil::uploadFile("driver_id", $request->identityimage);
+                $filename = StorageUtil::uploadFile("party_id", $request->identityimage);
                 $p->image_id = $filename;
             }
             if (isset($request->photoimage)) {
-                $filename = StorageUtil::uploadFile("driver_photo", $request->photoimage);
+                $filename = StorageUtil::uploadFile("party_image", $request->photoimage);
                 $p->image_party = $filename;
             }
             $p->save();
+
+            $address=new PartyAddress();
+            $address->party_id=$p->id;
+            $address->pic_name=$request->party_name;
+            $address->phone=$request->phone;
+            $address->email=$request->email;
+            $address->city=$request->city;
+            $address->region=$request->region;
+            $address->country=$request->country;
+            $address->zip_code=$request->zip_code;
+            $address->address=$request->address;
+            $address->address_type=PartyAddress::ADDRESS_HOME;
+            $address->save();
+
+            $p->address_id=$address->id;
+            $p->update();
+
             DB::commit();
             return $p;
         } catch (Exception $e) {
@@ -45,18 +72,33 @@ class PartyService {
     public function update(Request $request, Party $customer) {
         $p = Party::find($customer->id);
         DB::transaction(function () use ($request, $customer, $p) {
-            $param = $request->except([
-                "_token"
-            ]);
             if (isset($request->identityimage)) {
-                $filename = StorageUtil::uploadFile("driver_id", $request->identityimage);
+                $filename = StorageUtil::uploadFile("party_id", $request->identityimage);
                 $p->image_id = $filename;
             }
             if (isset($request->photoimage)) {
-                $filename = StorageUtil::uploadFile("driver_photo", $request->photoimage);
+                $filename = StorageUtil::uploadFile("party_image", $request->photoimage);
                 $p->image_party = $filename;
             }
-            $p->update($param);
+            $p->party_name=$request->party_name;
+            $p->company_name=$request->company_name;
+            $p->dob=$request->dob;
+            $p->pob=$request->pob;
+            $p->identity_number=$request->identity_number;
+            $p->update();
+
+            $address=$p->address;
+            $address->party_id=$p->id;
+            $address->pic_name=$request->party_name;
+            $address->phone=$request->phone;
+            $address->email=$request->email;
+            $address->city=$request->city;
+            $address->region=$request->region;
+            $address->country=$request->country;
+            $address->zip_code=$request->zip_code;
+            $address->address=$request->address;
+            $address->address_type=PartyAddress::ADDRESS_HOME;
+            $address->update();
 
             /*
              * if ($customer->user_id!=null) {

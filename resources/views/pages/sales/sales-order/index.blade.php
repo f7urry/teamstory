@@ -1,8 +1,8 @@
 @extends("layouts.app")
-@section("title","Goods Issue")
+@section("title","Sales Order")
 @section("content")
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{url('/goodsissue/create')}}"><i class="fa fa-plus"></i> New</a></li>
+    <li class="breadcrumb-item"><a href="{{url('/salesorder/create')}}"><i class="fa fa-plus"></i> New</a></li>
 </ol>
 <div class="row">
     <div class="col-md-12">
@@ -12,8 +12,6 @@
                     <tr>
                     	<th>Code</th>
                     	<th>Date</th>
-                    	<!-- <th>Ref.Type</th>
-                    	<th>Ref.No</th> -->
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -33,7 +31,7 @@
             searching: true,
             processing: true,
             serverSide: true,
-            ajax: `${base_url()}/api/goodsissue/list`,
+            ajax: `${base_url()}/api/salesorder/list`,
             columns: [
             {
                 data: 'code',
@@ -47,18 +45,6 @@
                 orderable: true,
                 searchable: true,
             },
-            /* {
-                data: 'reference_type',
-                name: 'reference_type',
-                orderable: true,
-                searchable: true,
-            },
-            {
-                data: 'reference_no',
-                name: 'reference_no',
-                orderable: true,
-                searchable: true,
-            }, */
             {
                 data: 'action',
                 orderable: false,

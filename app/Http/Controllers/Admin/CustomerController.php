@@ -17,7 +17,7 @@ class CustomerController extends Controller {
     public function index(Request $request) {
         return view("pages.admin.customer.index");
     }
-     public function list($var = null) {
+    public function list($var = null) {
         $qry = Party::query();
         $qry->where("party_role","CUSTOMER");
         return DatatableHelper::generate($var, $qry->get(), "customer", array(
@@ -27,7 +27,7 @@ class CustomerController extends Controller {
     }
 
     public function create(Request $request) {
-        return view("pages.admin.customer.add", $this->service->create());
+        return view("pages.admin.customer.create", $this->service->create());
     }
 
     public function store(Request $request) {

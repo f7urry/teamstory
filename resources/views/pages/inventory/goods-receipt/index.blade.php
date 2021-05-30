@@ -2,7 +2,7 @@
 @section("title","Goods Receipt")
 @section("content")
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{url('/goodsreceipt/create')}}"><i class="fa fa-plus"></i> Tambah</a></li>
+    <li class="breadcrumb-item"><a href="{{url('/goodsreceipt/create')}}"><i class="fa fa-plus"></i> New</a></li>
 </ol>
 <div class="row">
     <div class="col-md-12">
@@ -11,7 +11,7 @@
                 <thead class='thead-dark'>
                     <tr>
                     	<th>Code</th>
-                    	<th>Tanggal</th>
+                    	<th>Date</th>
                     	<!-- <th>Ref.Type</th>
                     	<th>Ref.No</th> -->
                         <th>Action</th>

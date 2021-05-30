@@ -10,8 +10,4 @@ Route::post("/profile/changepass",[App\Http\Controllers\Tools\ProfileController:
 Route::get('/goodsreceipt/{goodsreceipt}/print', [App\Http\Controllers\Inventory\GoodsReceiptController::class,'print']);
 Route::get('/goodsissue/{goodsissue}/print', [App\Http\Controllers\Inventory\GoodsIssueController::class,'print']);
 
-
-//VMS
-Route::get("/bookingrequest",[App\Http\Controllers\Vms\VehicleBookingController::class,'index_by_role']);
-Route::get("/bookingrequest/create",[App\Http\Controllers\Vms\VehicleBookingController::class,'create_by_role']);
-Route::post("/bookingrequest",[App\Http\Controllers\Vms\VehicleBookingController::class,'store_by_role']);
+Route::get('/customprice/create/{id}', [App\Http\Controllers\Admin\CustomPriceController::class,'create']);

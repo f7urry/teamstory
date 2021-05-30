@@ -8,6 +8,7 @@
         <table class="table table-bordered" id="dtable" width="100%" cellspacing="0">
             <thead class='thead-dark'>
                 <tr>
+                    <th>Code</th>
                     <th>Name</th>
                     <th></th>
                 </tr>
@@ -25,6 +26,12 @@
              serverSide: true,
              ajax: `${base_url()}/api/customer/list`,
              columns: [
+                {
+                    data: 'code',
+                    name: 'code',
+                    orderable: true,
+                    searchable: true,
+                },
                 {
                     data: 'party_name',
                     name: 'party_name',

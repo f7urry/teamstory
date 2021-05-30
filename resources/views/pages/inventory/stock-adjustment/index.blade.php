@@ -11,7 +11,7 @@
                 <thead class='thead-dark'>
                     <tr>
                     	<th>Code</th>
-                    	<th>Tanggal</th>
+                    	<th>Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>

@@ -11,6 +11,22 @@
     <input type="text" name="address" class="form-control"/>
 </div>
 <div class="form-group">
+    <label>City</label>
+    <input type="text" name="city" class="form-control"/>
+</div>
+<div class="form-group">
+    <label>Region</label>
+    <input type="text" name="region" class="form-control"/>
+</div>
+<div class="form-group">
+    <label>Country</label>
+    <input type="text" name="country" class="form-control"/>
+</div>
+<div class="form-group">
+    <label>Zip Code</label>
+    <input type="text" name="zip_code" class="form-control"/>
+</div>
+<div class="form-group">
     <label>Phone</label>
     <input type="text" name="phone" class="form-control"/>
 </div>

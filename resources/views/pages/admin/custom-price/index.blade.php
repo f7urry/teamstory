@@ -1,19 +1,13 @@
-@extends("layouts.app")
-@section("title","Goods Issue")
-@section("content")
-<ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{url('/goodsissue/create')}}"><i class="fa fa-plus"></i> New</a></li>
-</ol>
 <div class="row">
     <div class="col-md-12">
         <div class="table-responsive">
+            <a class="btn btn-primary mb-2" id="btn_add" href="{{url('/customprice/create/'.$party->id)}}"><i class="fa fa-plus"></i> Add Item</a>
             <table class="table table-bordered table-hover table-striped" id="dtable" width="100%" cellspacing="0">
                 <thead class='thead-dark'>
                     <tr>
-                    	<th>Code</th>
-                    	<th>Date</th>
-                    	<!-- <th>Ref.Type</th>
-                    	<th>Ref.No</th> -->
+                    	<th>Item</th>
+                    	<th>Price</th>
+                    	<th>Disc(%)</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -24,7 +18,6 @@
         </div>
     </div>
 </div>
-@endsection
 
 @push("scripts")
 <script type="text/javascript">
@@ -33,32 +26,26 @@
             searching: true,
             processing: true,
             serverSide: true,
-            ajax: `${base_url()}/api/goodsissue/list`,
+            ajax: `${base_url()}/api/customprice/list?id={{$party->id}}`,
             columns: [
             {
-                data: 'code',
-                name: 'code',
+                data: 'item.item_name',
+                name: 'item.item_name',
                 orderable: true,
                 searchable: true,
             },
             {
-                data: 'date',
-                name: 'date',
-                orderable: true,
-                searchable: true,
-            },
-            /* {
-                data: 'reference_type',
-                name: 'reference_type',
+                data: 'price',
+                name: 'price',
                 orderable: true,
                 searchable: true,
             },
             {
-                data: 'reference_no',
-                name: 'reference_no',
+                data: 'discount',
+                name: 'discount',
                 orderable: true,
                 searchable: true,
-            }, */
+            },
             {
                 data: 'action',
                 orderable: false,

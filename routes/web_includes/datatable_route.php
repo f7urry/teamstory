@@ -12,4 +12,9 @@ Route::group(["prefix"=>"api"], function(){
     Route::get("/goodsreceipt/list",[App\Http\Controllers\Inventory\GoodsReceiptController::class,"list"]);
     Route::get("/goodsissue/list",[App\Http\Controllers\Inventory\GoodsIssueController::class,"list"]);
     Route::get("/warehouse/list",[App\Http\Controllers\Inventory\WarehouseController::class,"list"]);
+
+    //Sales
+    Route::get("/customprice/list",[App\Http\Controllers\Admin\CustomPriceController::class,"list"]);
+    Route::get("/receivable/list",[App\Http\Controllers\Accounting\ReceivableController::class,"list"]);
+    Route::get("/salesorder/list",[App\Http\Controllers\Sales\SalesOrderController::class,"list"]);
 });
