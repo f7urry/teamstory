@@ -15,9 +15,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group row">
-                                <label class="col-md-4">Sales Orrder</label>
-                                <span class="col-md-6">: {{$rec->salesorder->code." - ".$rec->salesorder->product->serial_no}}
-                                <a href="{{url('/salesorder/'.$rec->salesorder->id)}}"><i class='fa fa-search'></i></a>
+                                <label class="col-md-4">Sales Order</label>
+                                <span class="col-md-6">: {{$rec->salesorder->code}}
+                                <a href="{{url('/salesorder/'.$rec->salesorder->id)}}"><i class='fa fa-external-link-alt'></i></a>
                                 </span>
                             </div>
                             <div class="form-group row">
@@ -26,15 +26,15 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-4">Address</label>
-                                <span class="col-md-6">: {{$rec->salesorder->party->address}}</span>
+                                <span class="col-md-6">: {{$rec->salesorder->party->address->address}}</span>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-4">Phone</label>
-                                <span class="col-md-6">: {{$rec->salesorder->party->phone}}</span>
+                                <span class="col-md-6">: {{$rec->salesorder->party->address->phone}}</span>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-4">Sales Amount</label>
-                                <span class="col-md-6">: Rp{{number_format($rec->salesorder->sell_price)}}</span>
+                                <span class="col-md-6">: Rp{{number_format($rec->salesorder->amount)}}</span>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-4">Receivable Amount</label>

@@ -6,6 +6,7 @@ use App\Helper\SelectHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\CustomPrice;
 use App\Models\Admin\Party;
+use App\Models\Inventory\Item;
 use App\Models\Inventory\ItemBrand;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,6 @@ class CustomPriceController extends Controller {
             "delete" => true,
         ))->make(true);
     }
-
 
     public function create($id) {
         $map['party']=Party::find($id);
@@ -50,6 +50,14 @@ class CustomPriceController extends Controller {
         $p=CustomPrice::find($customprice->id);
         $p->delete();
         return redirect(strtolower($p->party->party_role)."/".$p->party_id)->with("message","Success: Custom Price has been deleted");
+    }
+     public function get(Party $party,Item $item){
+        $price=CustomPrice::query();
+        $price->with("item");
+        $price->with("party");
+        $price->where("party_id",$party->id);
+        $price->where("item_id",$item->id);
+        return response()->json($price->first());
     }
     public function options(Request $request) {
         $party=CustomPrice::query();

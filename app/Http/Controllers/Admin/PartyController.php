@@ -11,10 +11,14 @@ use Illuminate\Http\Request;
 class PartyController extends Controller {
 
     public function get(Party $party){
-        return response()->json(Party::find($party->id));
+        $party=Party::with("address")->find($party->id);
+        return response()->json($party);
     }
     public function options(Request $request) {
         $party=Party::query();
+        $party->with("address");
+        if($request->role!='')
+            $party->where("party_role",strtoupper($request->role));
         if($request->term=='')
             $party->orderBy("party_name","asc");
         else

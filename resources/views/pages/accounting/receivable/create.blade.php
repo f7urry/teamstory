@@ -87,14 +87,10 @@
     function set_so(id){
         $.get(base_url()+"/api/salesorder/get/"+id,function(data){
             $("#party").val(data.party.party_name);
-            $("#address").val(data.party.address);
-            $("#phone").val(data.party.phone);
+            $("#address").val(data.party.address.address);
+            $("#phone").val(data.party.address.phone);
             $("#unpaid").val(number_format(data.unpaid_amount));
-            $("#sell_price").val(number_format(data.sell_price));
-            $("#tenor_amount").val(number_format((data.sell_price-data.prepayment_amount)/data.tenor_count));
-
-            $("#model").val(data.product.model.name);
-            $("#year").val(data.product.attr.manufacture_year);
+            $("#sell_price").val(number_format(data.amount));
         });
     }
 </script>

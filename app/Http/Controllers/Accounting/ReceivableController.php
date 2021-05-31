@@ -19,9 +19,6 @@ class ReceivableController extends Controller {
     public function list($var = null) {
         $qry = Receivable::query();
         $qry->with("salesorder");
-        $qry->with("salesorder.product");
-        $qry->with("salesorder.product.model");
-        $qry->with("salesorder.product.attr");
         return DatatableHelper::generate($var, $qry->get(), "receivable", array(
             "delete" => true,
             "show" => true,
@@ -41,13 +38,12 @@ class ReceivableController extends Controller {
         $p->code=CodeGenerator::generate("RV");
         $p->type=Receivable::TYPE_MANUAL;
         $p->amount=NumberHelper::toValue($p->amount);
-        $p->current_tenor=$so->payment->count()+1;
         $p->current_unpaid=$so->unpaid_amount-$p->amount;
-        $p->current_payment=$so->paymentAmount+$p->amount;
-        $p->current_status=SalesOrder::UNPAID;
+        $p->current_payment=$so->paidAmount+$p->amount;
+        $p->current_status=SalesOrder::STATUS_UNPAID;
         if($p->current_unpaid<=0){
             $p->current_unpaid=0;
-            $p->current_status=SalesOrder::PAID;
+            $p->current_status=SalesOrder::STATUS_PAID;
         }
         $p->save();
         if($p->id!=null){

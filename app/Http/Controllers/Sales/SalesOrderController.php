@@ -14,6 +14,7 @@ use App\Models\Core\TableType;
 use App\Models\Inventory\Uom;
 use App\Models\Inventory\Warehouse;
 use App\Models\Sales\SalesOrder;
+use App\Models\Sales\SalesOrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -27,56 +28,56 @@ class SalesOrderController extends Controller {
         return DatatableHelper::generate($var, $qry->get(), "salesorder", array("show"=>true))->make(true);
     }
     public function create(){
-        $map['warehouses']=Warehouse::all();
-        return view("pages.sales.sales-order.create",$map);
+        return view("pages.sales.sales-order.create");
     }
     public function store(Request $request) {
         DB::beginTransaction();
-        $adjustment=new StockAdjustment();
-        $adjustment->code=CodeGenerator::generate("SKA");
-        $adjustment->date=$request->date;
-        $adjustment->warehouse_id=$request->warehouse_id;
+        $so=new SalesOrder();
+        $so->code=CodeGenerator::generate("SSO");
+        $so->date=$request->date;
+        $so->due_date=$request->due_date;
+        $so->tax=$request->tax;
+        $so->amount=$request->gtotal;
+        $so->unpaid_amount=$request->gtotal;
+        $so->reference=$request->reference;
+        $so->note=$request->note;
+        $so->party_id=$request->party_id;
+        $so->status=SalesOrder::STATUS_UNPAID;
 
-        if ($adjustment->save()) {
+        if ($so->save()) {
             foreach ($request->item_id as $i=>$item) {
-                $stock=new StockAdjustmentDetail();
-                $stock->qty=$request->quantity[$i];
-                $stock->barcode=$request->barcode[$i];
-                $stock->item_id=$item;
-                $stock->stock_adjustment_id=$adjustment->id;
-                $stock->save();
-
-                $dto=new StockDTO();
-                $dto->warehouse_id=$adjustment->warehouse_id;
-                $dto->barcode=$stock->barcode;
-                $dto->qty=$stock->qty;
-                $dto->item_id=$stock->item_id;
-                $dto->date=$adjustment->date;
-                $dto->reference_id=$adjustment->id;
-                $dto->reference_code=$adjustment->code;
-                $dto->reference_type=TableType::STOCK_ADJUSTMENT;
-                $this->stockService->parse($dto);
+                $item=new SalesOrderItem();
+                $item->qty=$request->quantity[$i];
+                $item->barcode=$request->barcode[$i];
+                $item->item_id=$request->item_id[$i];
+                $item->custom_price_id=$request->custom_price_id[$i];
+                $item->qty=$request->quantity[$i];
+                $item->price=$request->price[$i];
+                $item->discount=$request->discount[$i];
+                $item->total=$request->total[$i];
+                $item->sales_order_id=$so->id;
+                $item->save();
             }
             DB::commit();
         }else{
             DB::rollback();
         }
-        return redirect(url("/stockadjustment/".$adjustment->id));
+        return redirect(url("/salesorder/".$so->id))->with(["message"=>"Success: Sales Order has been saved"]);
     }
-    public function destroy(Stock $itembarcode) {
-        $p = Stock::find($itembarcode->id);
+    public function destroy(SalesOrder $salesorder) {
+        $p = SalesOrder::find($salesorder->id);
         $p->delete();
-        return redirect("/stockadjustment/")->with(["message"=>"Success: Data telah dihapus"]);
+        return redirect("/stockadjustment/")->with(["message"=>"Success: Sales Order has been deleted"]);
     }
-    public function show(StockAdjustment $stockadjustment) {
-        $map['adjustment'] = $stockadjustment;
+    public function show(SalesOrder $salesorder) {
+        $map['so'] = $salesorder;
         return view("pages.sales.sales-order.edit", $map);
     }
     public function update(Request $request, Item $item) {
     }
+
     public function options(Request $request) {
         $qry = DB::table(SalesOrder::tablename()." as s");
-        $qry->join(Item::tablename()." as p","s.product_id","p.id");
         $qry->join(Party::tablename()." as c","s.party_id","c.id");
         if ($request->term == '')
             $qry->orderBy("s.code", "asc");
@@ -89,15 +90,13 @@ class SalesOrderController extends Controller {
         if($request->status!='')
             $qry->where("s.status",$request->status);
         $qry->limit(10);
-        return SelectHelper::generate($qry, "s.id", "c.party_name",true);
+        return SelectHelper::generate($qry, "s.id", "concat(s.code,' - ',c.party_name)",true);
     }
 
     public function get(SalesOrder $salesorder){
         $so=SalesOrder::find($salesorder->id);
         $so->party=$so->party;
-        $so->product=$so->product;
-        $so->product->model=$so->product->model;
-        $so->product->attr=$so->product->attr;
+        $so->party->address=$so->party->address;
         return response()->json($so);
     }
 

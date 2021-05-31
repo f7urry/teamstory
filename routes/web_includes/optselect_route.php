@@ -8,4 +8,5 @@ Route::group(["prefix"=>"api"], function(){
     Route::get("/roles/options",[App\Http\Controllers\Core\RolesController::class,"options"]);
 
     Route::get("/salesorder/options",[App\Http\Controllers\Sales\SalesOrderController::class,"options"]);
+    Route::get("/party/options",[App\Http\Controllers\Admin\PartyController::class,"options"]);
 });
