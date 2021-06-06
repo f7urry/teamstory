@@ -18,7 +18,7 @@ class SalesOrder extends Model{
 
     protected $guarded=['id'];
     protected $table = 't_sales_order';
-    protected $appends = ['paid_amount'];
+    protected $appends = ['paid_amount','amount_discount'];
 
     public function party(){
         return $this->belongsTo(Party::class,"party_id");
@@ -36,6 +36,16 @@ class SalesOrder extends Model{
         $total=0;
         foreach($this->payment as $payment)
             $total+=$payment->amount;
+
+        return $total;
+    }
+    public function getAmountDiscountAttribute(){
+        $total=0;
+        foreach ($this->items as $item) {
+            $amount=$item->price*$item->qty;
+            $amount=($amount*$item->discount)/100;
+            $total+=$amount;
+        }
 
         return $total;
     }

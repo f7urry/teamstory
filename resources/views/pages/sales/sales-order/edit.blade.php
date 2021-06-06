@@ -3,6 +3,7 @@
 @section("content")
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('/salesorder')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
+        <li class="breadcrumb-item"><a href="{{url('/salesorder/'.$so->id.'/print')}}"><i class="fa fa-print"></i> Print</a></li>
     </ol>
     <form method="post" name="formAdd" id="formAdd">
         <div class="row">
@@ -16,6 +17,11 @@
                         </div>
                         <div class="form-group col-md-12">
                             <table>
+                                <tr>
+                                    <td>PIC</td>
+                                    <td>:</td>
+                                    <td id="address">{{$so->shipping_address->pic}}</td>
+                                </tr>
                                 <tr>
                                     <td>Address</td>
                                     <td>:</td>
@@ -77,6 +83,10 @@
                         <div class="form-group col-md-12">
                             <label>Tax(10%)</label>
                             <input type="text" name="tax" class="form-control" id="date" value="{{$so->tax}}" disabled/>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Total Discount</label>
+                            <input type="text" name="subtotal" class="form-control" id="date" value="{{$so->amount_discount}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Grand Total</label>

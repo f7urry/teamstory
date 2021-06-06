@@ -9,6 +9,8 @@ Route::post("/profile/changepass",[App\Http\Controllers\Tools\ProfileController:
 
 Route::get('/goodsreceipt/{goodsreceipt}/print', [App\Http\Controllers\Inventory\GoodsReceiptController::class,'print']);
 Route::get('/goodsissue/{goodsissue}/print', [App\Http\Controllers\Inventory\GoodsIssueController::class,'print']);
+Route::get('/salesorder/{salesorder}/print', [App\Http\Controllers\Sales\SalesOrderController::class,'print']);
 
 Route::get('/customprice/create/{id}', [App\Http\Controllers\Admin\CustomPriceController::class,'create']);
 Route::get('/address/create/{id}', [App\Http\Controllers\Admin\PartyAddressController::class,'create']);
+Route::get('/address/default/{id}', [App\Http\Controllers\Admin\PartyAddressController::class,'setdefault']);

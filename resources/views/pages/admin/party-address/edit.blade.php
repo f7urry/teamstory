@@ -4,6 +4,7 @@
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{url('/address')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
     <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/address/'.$address->id)}}"><i class="fa fa-check"></i> Update</a></li>
+    <li class="breadcrumb-item"><a href="{{url('/address/default/'.$address->id)}}"><i class="fa fa-check"></i> Set Default</a></li>
 </ol>
 <div class="row">
     <div class="col-lg-4">
@@ -12,6 +13,10 @@
                 <form method="post" class="row card-body" name="formAdd" id="formAdd">
                     {{ csrf_field() }}
                     {{ method_field("PATCH")}}
+                    <div class="form-group">
+                        <label>PIC</label>
+                        <input type="text" name="pic_name" class="form-control" value="{{$address->pic_name}}"/>
+                    </div>
                     <div class="form-group">
                         <label>Address</label>
                         <input type="text" name="address" class="form-control" value="{{$address->address}}"/>

@@ -5,6 +5,7 @@
             <table class="table table-bordered table-hover table-striped" id="addressTable" width="100%" cellspacing="0">
                 <thead class='thead-dark'>
                     <tr>
+                    	<th>PIC</th>
                     	<th>Address</th>
                     	<th>Phone</th>
                     	<th>Email</th>
@@ -28,6 +29,12 @@
             serverSide: true,
             ajax: `${base_url()}/api/address/list?id={{$party->id}}`,
             columns: [
+            {
+                data: 'pic_name',
+                name: 'pic_name',
+                orderable: true,
+                searchable: true,
+            },
             {
                 data: 'address',
                 name: 'address',

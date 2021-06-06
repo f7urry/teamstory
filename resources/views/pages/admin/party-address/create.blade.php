@@ -17,6 +17,10 @@
                             <input type="hidden" name="party_id" value="{{$party->id}}"/>
                         </div>
                         <div class="form-group">
+                            <label>PIC</label>
+                            <input type="text" name="pic_name" class="form-control"/>
+                        </div>
+                        <div class="form-group">
                             <label>Address</label>
                             <input type="text" name="address" class="form-control"/>
                         </div>

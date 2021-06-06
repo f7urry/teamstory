@@ -47,6 +47,13 @@ class PartyAddressController extends Controller {
         return redirect(strtolower($party->party_role)."/".$party->id)->with("message","Success: Address has been updated");
     }
 
+     public function setdefault($id) {
+        $p=PartyAddress::find($id);
+        $party=Party::find($p->party_id);
+        $party->address_id=$id;
+        return redirect(strtolower($party->party_role)."/".$party->id)->with("message","Success: Default Address has been updated");
+    }
+
     public function destroy(PartyAddress $address) {
         $p=PartyAddress::find($address->id);
         $party=Party::find($p->party_id);

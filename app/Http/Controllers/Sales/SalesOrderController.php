@@ -78,7 +78,10 @@ class SalesOrderController extends Controller {
     }
     public function update(Request $request, Item $item) {
     }
-
+     public function print(SalesOrder $salesorder) {
+        $map['so'] = SalesOrder::with("party")->with("shipping_address")->find($salesorder->id);
+        return view("pages.sales.sales-order.print", $map);
+    }
     public function options(Request $request) {
         $qry = DB::table(SalesOrder::tablename()." as s");
         $qry->join(Party::tablename()." as c","s.party_id","c.id");
