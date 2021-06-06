@@ -36,8 +36,12 @@
 </div>
 <div class="form-group">
     <label>Birth Info</label>
-    <div class="form-inline">
-        <input type="text" name="pob" class="form-control" placeholder="Place"/>
-        <input type="text" name="dob" class="form-control datepicker" placeholder="Date"/>
+    <div class="form-row">
+        <div class="form-group col-5">
+            <input type="text" name="pob" class="form-control" placeholder="Place"/>
+        </div>
+        <div class="form-group col-7">
+            <input type="text" name="dob" class="form-control datepicker" placeholder="Date"/>
+        </div>
     </div>
 </div>

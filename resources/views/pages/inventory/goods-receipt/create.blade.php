@@ -63,15 +63,13 @@
 @endsection
 @push("scripts")
 <script type="text/javascript">
-    $("#scan_barcode").on("keyup",function(e){
-        if(e.keyCode==13){
-            var val=$(this).val();
+    $_select("#scan_barcode",base_url()+'/api/stock/options',function(){
+        var val=$(this).val();
             $(this).val("");
             $(this).focus();
             $.get(`${base_url()}/api/stock/barcode/${val}`,function(data){
                 add_item(data.stock);
             });
-        }
     });
 
     var index = 0;

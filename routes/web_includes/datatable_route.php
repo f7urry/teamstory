@@ -5,6 +5,7 @@ Route::group(["prefix"=>"api"], function(){
     //Admin
     Route::get("/customer/list",[App\Http\Controllers\Admin\CustomerController::class,"list"]);
     Route::get("/supplier/list",[App\Http\Controllers\Admin\SupplierController::class,"list"]);
+    Route::get("/address/list",[App\Http\Controllers\Admin\PartyAddressController::class,"list"]);
     
     //Inventory
     Route::get("/item/list",[App\Http\Controllers\Inventory\ItemController::class,"list"]);

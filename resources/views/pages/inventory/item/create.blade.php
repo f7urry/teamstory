@@ -11,7 +11,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>SKU</label>
                         <input type="text" class="form-control" name="code"/>
@@ -52,6 +52,8 @@
                             @endforeach
                         </select>
                     </div>
+                </div>
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>Expired Date</label>
                         <input type="text" class="form-control datepicker" name="expired_date"/>
@@ -60,15 +62,17 @@
                         <label>Price</label>
                         <input type="text" class="form-control" name="sell_price"/>
                     </div>
-                </div>
-                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Minimum Stock</label>
+                        <input type="text" class="form-control" name="minimum_stock"/>
+                    </div>
                     <fieldset class="">
                         <label>Image</label>
                         <br/>
                         <input type="file" name="fileimage"/>
                     </fieldset>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <fieldset>
                         <legend>
                               <input class="" type="checkbox" name="is_variant" value="1" id="defaultCheck1"> Has Variant

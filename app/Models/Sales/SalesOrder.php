@@ -5,6 +5,7 @@ namespace App\Models\Sales;
 use App\Models\Base\Model;
 use App\Models\Admin\Party;
 use App\Models\Accounting\Receivable;
+use App\Models\Admin\PartyAddress;
 use App\Models\Inventory\Item;
 
 class SalesOrder extends Model{
@@ -27,6 +28,9 @@ class SalesOrder extends Model{
     }
     public function payment(){
         return $this->hasMany(Receivable::class);
+    }
+    public function shipping_address(){
+        return $this->belongsTo(PartyAddress::class,"shipping_address_id");
     }
     public function getPaidAmountAttribute(){
         $total=0;

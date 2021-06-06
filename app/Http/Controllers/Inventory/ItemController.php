@@ -103,7 +103,7 @@ class ItemController extends Controller {
         $qry->where("item_type","GOODS");
         $qry->where("code", "like", "%$request->term%");
         $qry->limit(10);
-        return SelectHelper::generate($qry, "id", "code");
+        return SelectHelper::generate($qry, "id", 'concat(code," - ",item_name)',true);
     }
 
     public function get(Item $item){

@@ -35,6 +35,10 @@ class StockController extends Controller {
     }
 
     public function options(Request $request) {
+        $qry = Stock::with("item")->join("m_item","t_stock.item_id","=","m_item.id");
+        $qry->where("barcode", "like", "%$request->term%");
+        $qry->limit(10);
+        return SelectHelper::generate($qry, "t_stock.barcode", 'concat(barcode," / ",code," / ",item_name)',true);
     }
     public function get($fieldname,$param){
         $map['stock']=Stock::where($fieldname,$param)->with("item")->first();

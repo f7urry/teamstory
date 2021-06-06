@@ -20,6 +20,7 @@ use App\Models\Inventory\Stock;
 use App\Models\Inventory\Uom;
 use App\Models\Inventory\Warehouse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class StockAdjustmentController extends Controller {
@@ -45,6 +46,12 @@ class StockAdjustmentController extends Controller {
         $adjustment->code=CodeGenerator::generate("SKA");
         $adjustment->date=$request->date;
         $adjustment->warehouse_id=$request->warehouse_id;
+        $adjustment->created_by=Auth::user()->id;
+        
+        if (isset($request->file_doc)) {
+            $filename = StorageUtil::uploadFile("stock_adjustment", $request->file_doc);
+            $adjustment->file_doc = $filename;
+        }
 
         if ($adjustment->save()) {
             foreach ($request->item_id as $i=>$item) {

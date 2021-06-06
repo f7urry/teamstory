@@ -10,13 +10,31 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
+                        <div class="form-group col-md-12">
+                            <label>Customer</label>
+                            <select name="party_id" id="party_id" class="form-control"></select>
+                        </div>
+                    </div>
+                </div><br/>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group col-md-12">
+                            <label>Shipping Address</label>
+                            <select name="shipping_address" id="shipping_address" class="form-control"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
                         {{ csrf_field() }}
                         <div class="form-group col-md-12">
-                            <label>Date</label>
+                            <label>Invoice Date</label>
                             <input type="text" name="date" class="form-control datepicker" id="date" value="{{date('Y-m-d')}}" />
                         </div>
                         <div class="form-group col-md-12">
-                            <label>Due Date</label>
+                            <label>Invoice Due Date</label>
                             <input type="text" name="due_date" class="form-control datepicker" id="due_date" value="{{date('Y-m-d')}}" />
                         </div>
                         <div class="form-group col-md-12">
@@ -34,39 +52,13 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group col-md-12">
-                            <label>Customer</label>
-                            <select name="party_id" id="party_id" class="form-control"></select>
+                            <label>Currency</label>
+                            <input type="text" name="currency" class="form-control" id="currency" value="IDR" readonly/>
                         </div>
                         <div class="form-group col-md-12">
-                            <table>
-                                <tr>
-                                    <td>PIC</td>
-                                    <td>:</td>
-                                    <td id="pic"></td>
-                                </tr>
-                                <tr>
-                                    <td>Address</td>
-                                    <td>:</td>
-                                    <td id="address"></td>
-                                </tr>
-                                <tr>
-                                    <td>Phone</td>
-                                    <td>:</td>
-                                    <td id="phone"></td>
-                                </tr>
-                                <tr>
-                                    <td>Email</td>
-                                    <td>:</td>
-                                    <td id="email"></td>
-                                </tr>
-                            </table>
+                            <label>Shipping Cost</label>
+                            <input type="text" class="form-control" name="shipping_cost" id="shipping_cost" value="0" />
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
                         <div class="form-group col-md-12">
                             <label>Subtotal</label>
                             <input type="text" class="form-control" name="subtotal" id="subtotal" value="0" readonly />
@@ -89,22 +81,28 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group col-md-12 table-responsive">
-                            <input type="text" placeholder="Scan Barcode Here" id="scan_barcode" class="form-control col-md-3"/>
-                            <table class="table table-bordered mt-2" id="dtable">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th width="15%">Barcode</th>
-                                        <th width="25%">Item</th>
-                                        <th>Quantity</th>
-                                        <th>Price</th>
-                                        <th>Discount</th>
-                                        <th>Total</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <select name="scan_barcode" id="scan_barcode" class="form-control"></select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <table class="table table-bordered mt-2" id="dtable">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th width="25%">Item</th>
+                                            <th>Quantity</th>
+                                            <th>Free Qty</th>
+                                            <th>Price</th>
+                                            <th>Discount</th>
+                                            <th>Total</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -114,20 +112,19 @@
 @endsection
 @push("scripts")
 <script type="text/javascript">
-   $("#scan_barcode").on("keyup",function(e){
-        if(e.keyCode==13){
-            $.get(`${base_url()}/api/stock/barcode/${$(this).val()}`,function(data){
-                $("#scan_barcode").val("");
-                $("#scan_barcode").focus();
-                if(data.stock.qty>0)
-                    add_item(data.stock);
-                else
-                    alert("Stock Not Found/Barcode doesnt not exist");
-            });
-        }
+    $_select("#scan_barcode",base_url()+'/api/item/options',function(){
+        $.get(`${base_url()}/api/item/get/${$(this).val()}`,function(data){
+            $("#scan_barcode").empty();
+            $("#scan_barcode").focus();
+            add_item(data);
+        });
     });
     $_select("#party_id",base_url()+'/api/party/options?role=customer',function(){
         set_party($(this).val());
+        $_select("#shipping_address",base_url()+'/api/address/options?party='+$(this).val());
+    });
+    $("#shipping_cost").on("keyup",function(e){
+        calc();
     });
 
     function calc(){
@@ -147,6 +144,8 @@
             
             gtotal+=t;
         }
+        var shipping=$("#shipping_cost").val(); 
+        gtotal+=parseInt(shipping);
         $("#subtotal").val(gtotal);
         $("#tax").val(gtotal*0.1);
         $("#gtotal").val(gtotal+(gtotal*0.1));
@@ -163,71 +162,73 @@
 
     var index = 0;
     function add_item(item){
-        $.get(`${base_url()}/api/customprice/get/${$("#party_id").val()}/${item.item.id}`,function(data){
-            var el='';
-            if (data.price!=null) {
-                el=`
-                <tr>
-                    <td>
-                        ${item.barcode}
-                    </td>
-                    <td>
-                        <input type="hidden" name="custom_price_id[]" value="${data.id}"/>
-                        <input type="hidden" name="item_id[]" value="${item.item.id}"/>
-                        <input type="hidden" name="barcode[]" value="${item.barcode}"/>
-                        <span id="item${index}">${item.item.item_name}</span>
-                    </td>
-                    <td>
-                        <input type="number" name="quantity[]" class="calc quantity form-control col-md-12" value="0"/>
-                    </td>
-                    <td>
-                        <input type="number" name="price[]" class="calc price form-control col-md-12" value="${data.price}" readonly/>
-                    </td>
-                    <td>
-                        <input type="number" name="discount[]" class="calc discount form-control col-md-12" value="${data.discount}" readonly/>
-                    </td>
-                    <td>
-                        <input type="number" name="total[]" class="total form-control col-md-12" value="0" readonly/>
-                    </td>
-                    <td>
-                        <button type="button" class='btn btn-danger btn-remove-row'><i class='fa fa-times'></i></button>
-                    </td>
-                </tr>`;
-            }else{
-                el=`
-                <tr>
-                    <td>
-                        ${item.barcode}
-                    </td>
-                    <td>
-                        <input type="hidden" name="custom_price_id[]" value="0"/>
-                        <input type="hidden" name="item_id[]" value="${item.item.id}"/>
-                        <input type="hidden" name="barcode[]" value="${item.barcode}"/>
-                        <span id="item${index}">${item.item.item_name}</span>
-                    </td>
-                    <td>
-                        <input type="number" name="quantity[]" class="calc quantity form-control col-md-12" value="0"/>
-                    </td>
-                    <td>
-                        <input type="number" name="price[]" class="calc price form-control col-md-12" value="0"/>
-                    </td>
-                    <td>
-                        <input type="number" name="discount[]" class="calc discount form-control col-md-12" value="0"/>
-                    </td>
-                    <td>
-                        <input type="number" name="total[]" class="total form-control col-md-12" value="0" readonly/>
-                    </td>
-                    <td>
-                        <button type="button" class='btn btn-danger btn-remove-row'><i class='fa fa-times'></i></button>
-                    </td>
-                </tr>`;
-            }
-            $("#dtable tbody").append(el);
-            index++;
-            $_ui();
-            $(".calc").off();
-            $(".calc").on("keyup",function(){calc()});
-        });
+        if($("#party_id").val()==null){
+            alert("Customer can't empty");
+        }else{
+            $.get(`${base_url()}/api/customprice/get/${$("#party_id").val()}/${item.id}`,function(data){
+                var el='';
+                if (data.price!=null) {
+                    el=`
+                    <tr>
+                        <td>
+                            <input type="hidden" name="custom_price_id[]" value="${data.id}"/>
+                            <input type="hidden" name="item_id[]" value="${item.id}"/>
+                            <span id="item${index}">${item.code} - ${item.item_name}</span>
+                        </td>
+                        <td>
+                            <input type="number" name="quantity[]" class="calc quantity form-control col-md-12" value="0"/>
+                        </td>
+                        <td>
+                            <input type="number" name="free_qty[]" class="calc form-control col-md-12" value="0"/>
+                        </td>
+                        <td>
+                            <input type="number" name="price[]" class="calc price form-control col-md-12" value="${data.price}" readonly/>
+                        </td>
+                        <td>
+                            <input type="number" name="discount[]" class="calc discount form-control col-md-12" value="${data.discount}" readonly/>
+                        </td>
+                        <td>
+                            <input type="number" name="total[]" class="total form-control col-md-12" value="0" readonly/>
+                        </td>
+                        <td>
+                            <button type="button" class='btn btn-danger btn-remove-row'><i class='fa fa-times'></i></button>
+                        </td>
+                    </tr>`;
+                }else{
+                    el=`
+                    <tr>
+                        <td>
+                            <input type="hidden" name="custom_price_id[]" value="0"/>
+                            <input type="hidden" name="item_id[]" value="${item.id}"/>
+                            <span id="item${index}">${item.code} - ${item.item_name}</span>
+                        </td>
+                        <td>
+                            <input type="number" name="quantity[]" class="calc quantity form-control col-md-12" value="0"/>
+                        </td>
+                        <td>
+                            <input type="number" name="free_qty[]" class="calc form-control col-md-12" value="0"/>
+                        </td>
+                        <td>
+                            <input type="number" name="price[]" class="calc price form-control col-md-12" value="0"/>
+                        </td>
+                        <td>
+                            <input type="number" name="discount[]" class="calc discount form-control col-md-12" value="0"/>
+                        </td>
+                        <td>
+                            <input type="number" name="total[]" class="total form-control col-md-12" value="0" readonly/>
+                        </td>
+                        <td>
+                            <button type="button" class='btn btn-danger btn-remove-row'><i class='fa fa-times'></i></button>
+                        </td>
+                    </tr>`;
+                }
+                $("#dtable tbody").append(el);
+                index++;
+                $(".calc").off();
+                $(".calc").on("keyup",function(){calc()});
+                $_ui();
+            });
+        }
     }
 </script>
 @endpush

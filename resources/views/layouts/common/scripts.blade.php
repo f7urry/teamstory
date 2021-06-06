@@ -3,8 +3,8 @@
 <script src="{{url('/assets/plugins/jquery-number/jquery.number.js')}}"></script>
 <script src="{{url('/assets/plugins/jquery-form/jquery-form.min.js')}}"></script>
 <script src="{{url('/assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
-<script src="{{url('/assets/plugins/gijgo/js/gijgo.js')}}"></script>
 <script src="{{url('/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{url('/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')}}"></script>
 <script src="{{url('/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{url('/assets/plugins/chart.js/Chart.min.js')}}"></script>
 <script src="{{url('/assets/plugins/sparklines/sparkline.js')}}"></script>

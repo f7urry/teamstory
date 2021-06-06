@@ -11,3 +11,4 @@ Route::get('/goodsreceipt/{goodsreceipt}/print', [App\Http\Controllers\Inventory
 Route::get('/goodsissue/{goodsissue}/print', [App\Http\Controllers\Inventory\GoodsIssueController::class,'print']);
 
 Route::get('/customprice/create/{id}', [App\Http\Controllers\Admin\CustomPriceController::class,'create']);
+Route::get('/address/create/{id}', [App\Http\Controllers\Admin\PartyAddressController::class,'create']);

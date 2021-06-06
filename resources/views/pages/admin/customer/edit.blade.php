@@ -13,6 +13,7 @@
             <div class="card-header">
                 <ul class="nav nav-pills" id="pills-tab" role="tablist">
                     <li class="nav-item flex-sm-fill text-sm-center"><a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-customer">Customer Information</a></li>
+                    <li class="nav-item flex-sm-fill text-sm-center"><a class="nav-link" id="pills-detail-tab" data-toggle="pill" href="#pills-address">Address</a></li>
                     <li class="nav-item flex-sm-fill text-sm-center"><a class="nav-link" id="pills-detail-tab" data-toggle="pill" href="#pills-price">Item Price</a></li>
                 </ul>
             </div>
@@ -20,6 +21,9 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade" id="pills-price">
                         @include("pages.admin.custom-price.index")
+                    </div>
+                    <div class="tab-pane fade" id="pills-address">
+                        @include("pages.admin.party-address.index")
                     </div>
                     <div class="tab-pane fade show active" id="pills-customer">
                         <div class="row">

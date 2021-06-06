@@ -14,7 +14,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>SKU</label>
                         <input type="text" class="form-control" name="code" value="{{$item->code}}"/>
@@ -55,6 +55,8 @@
                             @endforeach
                         </select>
                     </div>
+                </div>
+                <div class="col-3">
                     <div class="form-group">
                         <label>Expired date</label>
                         <input type="text" class="form-control datepicker" name="expired_date" value="{{$item->expired_date}}"/>
@@ -63,8 +65,10 @@
                         <label>Price</label>
                         <input type="text" class="form-control" name="sell_price" value="{{$item->sell_price}}"/>
                     </div>
-                </div>
-                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Minimum Stock</label>
+                        <input type="text" class="form-control" name="minimum_stock" value="{{$item->minimum_stock}}"/>
+                    </div>
                     <fieldset class="">
                         <a href="{{url('/file/view?f='.$item->item_image)}}" class="lightbox-image" rel="1">
                             <img src="{{url('/file/view?f='.$item->item_image)}}" width="256px" class="img-thumbnail"/>

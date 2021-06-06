@@ -11,7 +11,7 @@
     <link type="text/css" rel="stylesheet" href="{{url('/assets/plugins/bootstrap/css/bootstrap.min.css')}}"/>
     <link type="text/css" rel="stylesheet" href="{{url('/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}"/>
     <link type="text/css" rel="stylesheet" href="{{url('/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-    <link type="text/css" rel="stylesheet" href="{{url('/assets/plugins/gijgo/css/gijgo.min.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{url('/assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')}}">
     <link type="text/css" rel="stylesheet" href="{{url('/assets/plugins/jqvmap/jqvmap.min.css')}}">
     <link type="text/css" rel="stylesheet" href="{{url('/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <link type="text/css" rel="stylesheet" href="{{url('/assets/plugins/summernote/summernote-bs4.css')}}">

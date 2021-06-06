@@ -6,7 +6,7 @@
     </ol>
     <form method="post" name="formAdd" id="formAdd">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-4">
                 <div class="card">
                     <div class="card-body">
                         {{ csrf_field() }}
@@ -18,6 +18,15 @@
                             <label>Warehouse</label>
                             <input type="text" name="warehouse" class="form-control" id="date" value="{{$adjustment->warehouse->name}}" disabled/>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-body">
+                        <fieldset class="">
+                            <a href="{{url('/file/view?f='.$adjustment->file_doc)}}">View Document</a>
+                        </fieldset>
                     </div>
                 </div>
             </div>

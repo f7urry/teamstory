@@ -1,22 +1,41 @@
 function $_datepicker(clsname) {
-
     clsname = (clsname == null) ? ".datepicker" : clsname;
+    $(clsname).off();
     $.each($(clsname), function(i, e) {
-        $(e).datepicker({
-            format: "yyyy-mm-dd",
-            uiLibrary: 'bootstrap4',
-            footer: true
+        $(e).datetimepicker({
+            icons: {
+                time: 'fa fa-clock',
+                date: 'fa fa-calendar',
+                up: 'fa fa-chevron-up',
+                down: 'fa fa-chevron-down',
+                previous: 'fa fa-chevron-left',
+                next: 'fa fa-chevron-right',
+                today: 'fa fa-crosshairs',
+                clear: 'fa fa-trash',
+                close: 'fa fa-times'
+            },
+            format: 'YYYY-MM-DD'
         });
     });
 }
 
 function $_datetimepicker(clsname) {
     clsname = (clsname == null) ? ".datetimepicker" : clsname;
+    $(clsname).off();
     $.each($(clsname), function(i, e) {
+        $(e).off();
         $(e).datetimepicker({
-            format: "yyyy-mm-dd HH:MM",
-            uiLibrary: 'bootstrap4',
-            footer: true
+            icons: {
+                time: 'fa fa-clock',
+                date: 'fa fa-calendar',
+                up: 'fa fa-chevron-up',
+                down: 'fa fa-chevron-down',
+                previous: 'fa fa-chevron-left',
+                next: 'fa fa-chevron-right',
+                today: 'fa fa-crosshairs',
+                clear: 'fa fa-trash',
+                close: 'fa fa-times'
+            },
         });
     });
 }

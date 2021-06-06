@@ -43,12 +43,15 @@ class SalesOrderController extends Controller {
         $so->note=$request->note;
         $so->party_id=$request->party_id;
         $so->status=SalesOrder::STATUS_UNPAID;
+        $so->currency=$request->currency;
+        $so->shipping_cost=$request->shipping_cost;
+        $so->shipping_address_id=$request->shipping_address;
 
         if ($so->save()) {
             foreach ($request->item_id as $i=>$item) {
                 $item=new SalesOrderItem();
                 $item->qty=$request->quantity[$i];
-                $item->barcode=$request->barcode[$i];
+                $item->free_qty=$request->free_qty[$i];
                 $item->item_id=$request->item_id[$i];
                 $item->custom_price_id=$request->custom_price_id[$i];
                 $item->qty=$request->quantity[$i];

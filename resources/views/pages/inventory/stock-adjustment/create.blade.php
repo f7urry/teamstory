@@ -5,9 +5,9 @@
         <li class="breadcrumb-item"><a href="{{url('/stockadjustment')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
         <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/stockadjustment')}}"><i class="fa fa-check"></i> Save</a></li>
     </ol>
-    <form method="post" name="formAdd" id="formAdd">
+    <form method="post" name="formAdd" id="formAdd" enctype="multipart/form-data">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-4">
                 <div class="card">
                     <div class="card-body">
                         {{ csrf_field() }}
@@ -24,6 +24,17 @@
                                 @endforeach
                             </select>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-body">
+                        <fieldset class="">
+                            <label>Document</label>
+                            <br/>
+                            <input type="file" name="file_doc"/>
+                        </fieldset>
                     </div>
                 </div>
             </div>

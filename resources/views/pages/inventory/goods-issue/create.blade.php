@@ -40,7 +40,11 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group col-md-12 table-responsive">
-                            <input type="text" placeholder="Scan Barcode Here" id="scan_barcode" class="form-control col-md-3"/>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <select name="scan_barcode" id="scan_barcode" class="form-control"></select>
+                                </div>
+                            </div>
                             <table class="table table-bordered mt-2" id="dtable">
                                 <thead class="thead-dark">
                                     <tr>
@@ -62,15 +66,15 @@
 @endsection
 @push("scripts")
 <script type="text/javascript">
-   $("#scan_barcode").on("keyup",function(e){
-        if(e.keyCode==13){
-            $.get(`${base_url()}/api/stock/barcode/${$(this).val()}`,function(data){
-                $("#scan_barcode").val("");
-                $("#scan_barcode").focus();
+   $_select("#scan_barcode",base_url()+'/api/stock/options',function(){
+        var val=$(this).val();
+            $(this).empty();
+            $(this).focus();
+            $.get(`${base_url()}/api/stock/barcode/${val}`,function(data){
                 add_item(data.stock);
             });
-        }
     });
+
 
     var index = 0;
     function add_item(item){

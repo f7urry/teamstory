@@ -2,6 +2,7 @@
 
 namespace App\Helper;
 use App\Models\Core\ModuleGroup;
+use App\Models\Core\RoleAccessPermission;
 use Illuminate\Support\Facades\Auth;
 
 class MenuBuilder{
@@ -12,9 +13,21 @@ class MenuBuilder{
         $builder=new MenuBuilder();
         $builder->accessModules();
         $root="";
+        $root=$builder->addRootMenu($root);
         foreach (ModuleGroup::whereNull("parent_id")->orderBy("menu_index","asc")->get() as $group)
            $root=$builder->addMenu($root,$group);
         return $root;
+    }
+    public function addRootMenu($root){
+        $menu="";
+        foreach ($this->menus as $module) {
+            if(array_key_exists($module->id,$this->menus) && $module->group_id==null){
+                $menu.="<a class='nav-link' href='".url('/'.$module->path)."'>";
+                $menu.="<div class='sb-nav-link-icon'><i class='fa $module->fa_icon'></i></div><span>$module->name</span>";
+                $menu.="</a>";
+            }
+        }
+        return $menu;
     }
     public function addMenu($root,$group){
         if (array_key_exists($group->id, $this->menusGroup)) {
@@ -60,13 +73,16 @@ class MenuBuilder{
         $menusGroup=[];
         $user=Auth::user();
         foreach ($user->roles as $role) {
-            foreach ($role->roleaccess->permissions as $permit) {
+            $permission=RoleAccessPermission::where("role_access_id",$role->roleaccess->id)->join("sys_module","sys_module.id","=","sys_role_access_permission.module_id")->orderBy("sys_module.menu_index")->get();
+            foreach ($permission as $permit) {
                 if ($permit->module->is_menu==1) {
                     $menus[$permit->module->id]=$permit->module;
                     $menusGroup[$permit->module->group_id]=$permit->module;
                 }
             }
         }
+        $this->menus=$menus;
+        $this->menusGroup=$menusGroup;
         $this->menus=$menus;
         $this->menusGroup=$menusGroup;
     }

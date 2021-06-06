@@ -4,6 +4,7 @@
 Route::resource("/customer",App\Http\Controllers\Admin\CustomerController::class);
 Route::resource("/supplier",App\Http\Controllers\Admin\SupplierController::class);
 Route::resource("/party",App\Http\Controllers\Admin\PartyController::class);
+Route::resource("/address",App\Http\Controllers\Admin\PartyAddressController::class);
 
 //CORE Module
 Route::resource("/users",App\Http\Controllers\Core\UserController::class);

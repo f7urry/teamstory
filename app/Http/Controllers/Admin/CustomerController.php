@@ -31,8 +31,8 @@ class CustomerController extends Controller {
     }
 
     public function store(Request $request) {
-        $this->service->store($request);
-        return redirect(url("/customer"));
+        $customer=$this->service->store($request);
+        return redirect(url("/customer/".$customer->id))->with(["message"=>"Success: Customer has been saved"]);
     }
 
     public function show(Party $customer) {
@@ -43,8 +43,8 @@ class CustomerController extends Controller {
     }
 
     public function update(Request $request, Party $customer) {
-        $this->service->update($request, $customer);
-        return redirect(url("/customer"));
+        $customer=$this->service->update($request, $customer);
+        return redirect(url("/customer/".$customer->id))->with(["message"=>"Success: Customer has been updated"]);
     }
 
     public function destroy(Party $customer) {
