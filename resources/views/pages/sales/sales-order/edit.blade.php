@@ -46,6 +46,10 @@
                 <div class="card">
                     <div class="card-body">
                         {{ csrf_field() }}
+                         <div class="form-group col-md-12">
+                            <label>Invoice No</label>
+                            <input type="text" name="code" class="form-control" id="code" value="{{$so->code}}" disabled/>
+                        </div>
                         <div class="form-group col-md-12">
                             <label>Invoice Date</label>
                             <input type="text" name="date" class="form-control" id="date" value="{{$so->date}}" disabled/>
