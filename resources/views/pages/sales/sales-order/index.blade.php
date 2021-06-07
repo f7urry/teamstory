@@ -1,9 +1,11 @@
 @extends("layouts.app")
 @section("title","Sales Order")
 @section("content")
+@if(Gate::check('is_create'))
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{url('/salesorder/create')}}"><i class="fa fa-plus"></i> New</a></li>
+        <li class="breadcrumb-item"><a href="{{url('/salesorder/create')}}"><i class="fa fa-plus"></i> New</a></li>
 </ol>
+@endif
 <div class="row">
     <div class="col-md-12">
         <div class="table-responsive">
