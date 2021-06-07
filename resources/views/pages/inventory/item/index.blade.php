@@ -11,11 +11,14 @@
             <table class="table table-bordered" id="dtable" width="100%" cellspacing="0">
                 <thead class="thead-dark">
                     <tr>
+                        <th>Image</th>
                         <th>SKU</th>
                         <th>Item Name</th>
                         <th>Alias</th>
                         <th>Description</th>
                         <th>Tipe</th>
+                        <th>Minimum</th>
+                        <th>Stock</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -36,6 +39,13 @@
             serverSide: true,
             ajax: `${base_url()}/api/item/list`,
             columns: [
+            {
+                data: 'item_image',
+                name: 'item_image',
+                render: function (data, type, row, meta){
+                    return `<a href="{{url('/file/view?f=')}}${row.item_image}" class="lightbox-image" rel="1"><img src="{{url('/file/view?f=')}}${row.item_image}" width="64px" class="img-thumbnail"/></a>`;
+                }
+            },
             {
                 data: 'code',
                 name: 'code',
@@ -73,6 +83,18 @@
                     else
                         return "Single";
                 }
+            },
+             {
+                data: 'minimum_stock',
+                name: 'minimum_stock',
+                orderable: true,
+                searchable: true,
+            },
+             {
+                data: 'current_stock',
+                name: 'current_stock',
+                orderable: true,
+                searchable: true,
             },
             {
                 data: 'action',

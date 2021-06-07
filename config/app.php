@@ -229,6 +229,8 @@ return [
         
         "MenuBuilder" => App\Helper\MenuBuilder::class,
         'DateHelper'=>App\Helper\DateHelper::class,
+        'NumberHelper'=>App\Helper\NumberHelper::class,
+        'NumberHelperID'=>App\Helper\NumberHelperID::class,
         
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,

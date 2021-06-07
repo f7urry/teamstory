@@ -92,7 +92,9 @@
                         </tbody>
                         <tfooter>
                             <tr>
-                                <td colspan="6" rowspan="3">Said</td>
+                                <td colspan="6" rowspan="3">Said<br/>
+                                    {{ucwords(NumberHelperID::terbilang($so->amount))}}
+                                </td>
                                 <td>Total Discount</td>
                                 <td align="right">{{number_format($so->amount_discount)}}</td>
                             </tr>
