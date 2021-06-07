@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware'=>['auth',RoleListener::class]],function(){
     include 'web_includes/pages_route.php';
-    include 'web_includes/info_route.php';
+    include 'web_includes/endpoint_route.php';
     include 'web_includes/datatable_route.php';
     include 'web_includes/select_route.php';
     include 'web_includes/popup_route.php';

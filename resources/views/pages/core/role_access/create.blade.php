@@ -20,7 +20,7 @@
                             </div>
                             <div class="form-group">
                                 <label>{{ __('Access Type') }}</label>
-                                <input id="access_type" type="number" class="form-control" name="access_type"/>
+                                <input id="access_type" type="number" class="form-control" name="access_type" value="20"/>
                             </div>
                         </div>
                     </div>

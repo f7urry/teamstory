@@ -14,3 +14,4 @@ Route::get('/salesorder/{salesorder}/print', [App\Http\Controllers\Sales\SalesOr
 Route::get('/customprice/create/{id}', [App\Http\Controllers\Admin\CustomPriceController::class,'create']);
 Route::get('/address/create/{id}', [App\Http\Controllers\Admin\PartyAddressController::class,'create']);
 Route::get('/address/default/{id}', [App\Http\Controllers\Admin\PartyAddressController::class,'setdefault']);
+

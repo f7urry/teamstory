@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Sales Quotation</div>
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Purchase Order</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800" id="purchaseorder">0</div>
                             </div>
                             <div class="col-auto">
@@ -69,7 +69,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Penjualan</h6>
@@ -77,23 +77,6 @@
             <div class="card-body">
                 <div class="chart-area">
                     <canvas id="sales_chart"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Best Customer</h6>
-            </div>
-            <div class="card-body">
-                <div class="chart-area">
-                    <table class="table">
-                        <tr>
-                            <td>Customer1</td>
-                            <td>Rp0</td>
-                        </tr>
-                    </table>
                 </div>
             </div>
         </div>

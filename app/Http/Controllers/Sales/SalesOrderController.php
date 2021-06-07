@@ -105,5 +105,4 @@ class SalesOrderController extends Controller {
         $so->party->address=$so->party->address;
         return response()->json($so);
     }
-
 }
