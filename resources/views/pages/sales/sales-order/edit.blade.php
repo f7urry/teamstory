@@ -11,33 +11,31 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group col-md-12">
-                            <label>Customer</label>
-                            <input type="text" class="form-control" id="customer_name" value="{{$so->party->party_name}}" disabled/>
                             <input type="hidden" name="party_id" id="customer_id" value="{{$so->party_id}}"/>
                         </div>
                         <div class="form-group col-md-12">
-                            <table>
-                                <tr>
-                                    <td>PIC</td>
-                                    <td>:</td>
-                                    <td id="address">{{$so->shipping_address->pic}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Address</td>
-                                    <td>:</td>
-                                    <td id="address">{{$so->shipping_address->address}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Phone</td>
-                                    <td>:</td>
-                                    <td id="phone">{{$so->shipping_address->phone}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Email</td>
-                                    <td>:</td>
-                                    <td id="email">{{$so->shipping_address->email}}</td>
-                                </tr>
-                            </table>
+                            <b>Sold To:</b><br/>
+                            {{$so->party->party_name}}<br/>
+                            {{$so->party->address->address}}
+                            {{$so->party->address->city}},
+                            {{$so->party->address->region}},
+                            {{$so->party->address->province}},
+                            {{$so->party->address->country}},
+                            {{$so->party->address->zipcode}}<br/>
+                            {{$so->party->address->phone}}<br/>
+                            {{$so->party->address->email}}<br/>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <b>Delivery To:</b><br/>
+                            {{$so->shipping_address->pic_name}}<br/>
+                            {{$so->shipping_address->address}}
+                            {{$so->shipping_address->city}},
+                            {{$so->shipping_address->region}},
+                            {{$so->shipping_address->province}},
+                            {{$so->shipping_address->country}},
+                            {{$so->shipping_address->zipcode}}<br/>
+                            {{$so->shipping_address->phone}}<br/>
+                            {{$so->shipping_address->email}}<br/>
                         </div>
                     </div>
                 </div>
