@@ -27,6 +27,10 @@
                             </select>
                         </div>
                         <div class="form-group col-md-12">
+                            <label>Referensi</label>
+                            <input type="text" name="reference_note" class="form-control" id="reference_note" />
+                        </div>
+                        <div class="form-group col-md-12">
                             <label>Notes</label>
                             <input type="text" name="notes" class="form-control" id="notes" />
                         </div>

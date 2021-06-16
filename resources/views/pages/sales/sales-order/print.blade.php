@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="{{url('/assets/img/logo.png')}}" height="68px" class="bg-white rounded">
+                    <img src="{{url('/assets/app/img/logo.png')}}" height="68px" class="bg-white rounded">
                 </div>
                 <div class="col-md-6">
                     <table width="100%" class="table table-bordered">

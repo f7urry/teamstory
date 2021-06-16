@@ -19,6 +19,6 @@
     </div>
 </body>
 @push("scripts")
-<script type="text/javascript" src="{{url('/assets/js/print.js')}}"></script>
+<script type="text/javascript" src="{{url('/assets/app/js/print.js')}}"></script>
 @endpush
 @include("layouts.common.scripts")

@@ -5,8 +5,8 @@
                 <!-- <div class="sb-sidenav-menu-heading">Core</div> -->
                 <div class="sb-sidenav-menu-heading">MENU</div>
                 <a class="nav-link" href="{{url('/home')}}">
-                    <div class="sb-nav-link-icon"><i class="fa fa-tachometer-alt"></i></div>
-                    Dashboard
+                    <div class="sb-nav-link-icon"><i class="fa fa-home"></i></div>
+                    Home
                 </a>
                 {!!MenuBuilder::generate()!!}
                 <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
