@@ -11,13 +11,6 @@ a.nav-link.dropdown-toggle{
     content:unset;
 }
 
-.table {
-    background: white;
-}
-.navbar .btn-link,
-.navbar .nav-link{
-    color: #fff !important;
-}
 .sb-topnav .navbar-brand{
     width:auto;
 }
@@ -41,7 +34,4 @@ a.nav-link.dropdown-toggle{
 .sb-sidenav-dark .nav-link:hover .sb-nav-link-icon,
 .sb-sidenav-dark .nav-link:hover .sb-sidenav-collapse-arrow {
     color: rgb(8, 164, 255) !important;
-}
-.modal-content{
-    border:0px !important;
 }

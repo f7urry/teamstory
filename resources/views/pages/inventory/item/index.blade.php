@@ -14,10 +14,10 @@
                         <th>Image</th>
                         <th>SKU</th>
                         <th>Item Name</th>
-                        <th>Alias</th>
-                        <th>Description</th>
+                        <th>Uom</th>
+                        <th>Group</th>
                         <th>Tipe</th>
-                        <th>Minimum</th>
+                        <th>Price</th>
                         <th>Stock</th>
                         <th></th>
                     </tr>
@@ -33,11 +33,15 @@
 @push("scripts")
 <script type="text/javascript">
     $(document).ready(function(){
-    	 var dTable=$("#dtable").DataTable({
+        var url=`${base_url()}/api/item/list?`;
+        if("{{request()->input('group')}}"!=null){
+            url+="group={{request()->input('group')}}";
+        }
+    	var dTable=$("#dtable").DataTable({
             searching: true,
             processing: true,
             serverSide: true,
-            ajax: `${base_url()}/api/item/list`,
+            ajax: url,
             columns: [
             {
                 data: 'item_image',
@@ -59,14 +63,14 @@
                 searchable: true,
             },
              {
-                data: 'item_alias',
-                name: 'item_alias',
+                data: 'uom.name',
+                name: 'uom.name',
                 orderable: true,
                 searchable: true,
             },
             {
-                data: 'description',
-                name: 'description',
+                data: 'group.group_name',
+                name: 'group.group_name',
                 orderable: true,
                 searchable: true,
             },
@@ -84,17 +88,20 @@
                         return "Single";
                 }
             },
-             {
-                data: 'minimum_stock',
-                name: 'minimum_stock',
+            {
+                className: 'text-right',
+                data: 'sell_price',
+                name: 'sell_price',
                 orderable: true,
                 searchable: true,
             },
-             {
-                data: 'current_stock',
-                name: 'current_stock',
+            {
+                className: 'text-right',
                 orderable: true,
                 searchable: true,
+                render: function (data, type, row, meta) {
+                    return row['current_stock']+"<br/><br/><small>Minimum: "+row['minimum_stock']+"</small>";
+                }
             },
             {
                 data: 'action',

@@ -20,8 +20,12 @@ class ItemController extends Controller {
         return view("pages.inventory.item.index");
     }
     
-    public function list($var = null) {
+    public function list($var = null,Request $request) {
         $qry = Item::query();
+        $qry->with("uom");
+        $qry->with("group");
+        if($request->group!=null)
+            $qry->where("item_group_id", $request->group);
         $qry->where("item_type","GOODS");
         return DatatableHelper::generate($var, $qry->get(), "item", array("show"=>true,"delete"=>true))->make(true);
     }

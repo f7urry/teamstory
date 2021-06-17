@@ -1,3 +1,19 @@
+.btn-secondary{
+    color: #fff;
+    background-color: #005bbd;
+    border-color: #005bbd;
+}
+.btn-secondary:hover{
+    color: #fff;
+    background-color: #024a98;
+    border-color: #024a98;
+}
+.btn-secondary:active,.btn-secondary:focus{
+    color: #fff !important;
+    background-color: #024a98 !important;
+    border-color: #024a98 !important;
+    box-shadow:0 0 0 0.2rem #024a9880 !important;
+}
 .btn-default {
     background: #fff;
     border-color: #adadad;
@@ -41,4 +57,14 @@
 
 .navbar {
     background: #0054d2;
+}
+.modal-content{
+    border:0px !important;
+}
+.table {
+    background: white;
+}
+.navbar .btn-link,
+.navbar .nav-link{
+    color: #fff !important;
 }

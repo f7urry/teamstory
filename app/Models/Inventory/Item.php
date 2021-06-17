@@ -15,6 +15,9 @@ class Item extends Model{
     public function uom(){
         return $this->belongsTo(Uom::class,"uom_id");
     }
+    public function group(){
+        return $this->belongsTo(ItemGroup::class,"item_group_id");
+    }
     public function stock(){
         return $this->hasMany(Stock::class,"item_id");
     }

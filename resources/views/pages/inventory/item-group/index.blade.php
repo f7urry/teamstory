@@ -11,6 +11,7 @@
                 <thead class='thead-dark'>
                     <tr>
                     	<th>Group Name</th>
+                        <th>Total Item</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -19,8 +20,10 @@
                         @foreach($list_data as $p)
                         <tr>
                         	<td>{{$p->group_name}}</td>
+                        	<td>{{$p->items->count()}}</td>
                             <td>
                                 <a class='btn btn-info' href="{{url('/itemgroup/'.$p->id)}}"><i class="fa fa-eye"></i></a>
+                                <a class='btn btn-secondary' href="{{url('/item?group='.$p->id)}}"><i class="fa fa-search"></i></a>
                                 <a class='btn btn-danger btn-delete' href="#" data-href="{{url('/itemgroup/'.$p->id)}}" data-message="Dou you want delete {{$p->group_name}}?"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>

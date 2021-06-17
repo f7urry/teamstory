@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label>Group</label>
-                        <select name="item_group_id" class="form-control">
+                        <select name="item_group_id" class="form-control" required>
                             @foreach($groups as $val)
                                 <option value="{{$val->id}}">{{$val->group_name}}</option>
                             @endforeach
