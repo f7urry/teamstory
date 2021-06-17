@@ -19,6 +19,7 @@ class CustomerController extends Controller {
     }
     public function list($var = null) {
         $qry = Party::query();
+        $qry->with("address");
         $qry->where("party_role","CUSTOMER");
         return DatatableHelper::generate($var, $qry->get(), "customer", array(
             "delete" => true,

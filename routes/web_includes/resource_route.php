@@ -5,6 +5,8 @@ Route::resource("/customer",App\Http\Controllers\Admin\CustomerController::class
 Route::resource("/supplier",App\Http\Controllers\Admin\SupplierController::class);
 Route::resource("/party",App\Http\Controllers\Admin\PartyController::class);
 Route::resource("/address",App\Http\Controllers\Admin\PartyAddressController::class);
+Route::resource("/province",App\Http\Controllers\Admin\ProvinceController::class);
+Route::resource("/city",App\Http\Controllers\Admin\CityController::class);
 
 //CORE Module
 Route::resource("/users",App\Http\Controllers\Core\UserController::class);

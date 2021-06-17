@@ -2,7 +2,7 @@
 namespace App\Models\Base;
 
 abstract class Model extends \Illuminate\Database\Eloquent\Model {
-
+    //protected $fillable=['*'];
     public static function tablename() {
         return (new static())->table;
     }

@@ -30,7 +30,7 @@
         <div class="card mt-2">
             <div class="card-header bg-dark text-white">Module List</div>
             <div class="card-body">
-                <button class="btn btn-primary" type="button" id="btn_add_role"><i class="fa fa-plus"></i>&nbsp;Add Module</button>
+                <button class="btn btn-primary btn_add_role" type="button"><i class="fa fa-plus"></i>&nbsp;Add Module</button>
                 <table class="table table-border border mt-2" id="table_role">
                     <thead class="thead-light">
                         <tr>
@@ -63,6 +63,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                <button class="btn btn-primary btn_add_role" type="button"><i class="fa fa-plus"></i>&nbsp;Add Module</button>
             </div>
         </div>
     </div>
@@ -76,7 +77,7 @@
         $(function(){
             var url=base_url()+"/api/modules/options";
             var roleIdx="{{$idx}}";
-            $("#btn_add_role").on("click",function(){
+            $(".btn_add_role").on("click",function(){
                 var e=`
                 <tr id='role_${roleIdx}'>
                     <td>

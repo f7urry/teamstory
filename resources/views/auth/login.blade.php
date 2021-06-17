@@ -7,7 +7,7 @@
             <div class="col-lg-4">
                 <div class="card rounded shadow">
                     <div class="card-header text-center">
-                        <img src="{{url('/assets/img/logo.png')}}" width="120px" />
+                        <img src="{{url('/assets/app/img/logo.png')}}" width="120px" />
                     </div>
                     <div class="card-body">
                         <form class="form-horizontal" method="POST" action="{{ route('login') }}">

@@ -11,4 +11,6 @@ Route::group(["prefix"=>"api"], function(){
     Route::get("/salesorder/options",[App\Http\Controllers\Sales\SalesOrderController::class,"options"]);
     Route::get("/party/options",[App\Http\Controllers\Admin\PartyController::class,"options"]);
     Route::get("/address/options",[App\Http\Controllers\Admin\PartyAddressController::class,"options"]);
+    Route::get("/province/options",[App\Http\Controllers\Admin\ProvinceController::class,"options"]);
+    Route::get("/city/options",[App\Http\Controllers\Admin\CityController::class,"options"]);
 });

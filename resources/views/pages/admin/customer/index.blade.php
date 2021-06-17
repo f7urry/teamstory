@@ -10,6 +10,8 @@
                 <tr>
                     <th>Code</th>
                     <th>Name</th>
+                    <th>Phone/Mobile</th>
+                    <th>Email</th>
                     <th></th>
                 </tr>
             </thead>
@@ -35,6 +37,18 @@
                 {
                     data: 'party_name',
                     name: 'party_name',
+                    orderable: true,
+                    searchable: true,
+                },
+                {
+                    data: 'address.phone',
+                    name: 'address.phone',
+                    orderable: true,
+                    searchable: true,
+                },
+                {
+                    data: 'address.email',
+                    name: 'address.email',
                     orderable: true,
                     searchable: true,
                 },
