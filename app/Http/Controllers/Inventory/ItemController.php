@@ -111,7 +111,8 @@ class ItemController extends Controller {
     }
 
     public function get(Item $item){
-        $p=Item::find($item->id);
+        $p=Item::with("uom");
+        $p=$p->find($item->id);
         $p->brand=$p->brand;
         $p->attr=$p->attr;
         $p->model=$p->model;

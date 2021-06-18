@@ -41,17 +41,19 @@
                             <table class="table table-bordered mt-2" id="dtable">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th width="25%">Barcode</th>
-                                        <th>Item Name</th>
+                                        <th width="25%">Item</th>
                                         <th>Quantity</th>
+                                        <th>Uom</th>
+                                        <th>Barcode</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($goodsIssue->goodsIssueItems as $item)
-                                        <tr>
-                                            <td><input type="text" name="barcode[]" class="form-control" value="{{ $item->barcode }}" disabled/></td>
-                                            <td><input type="text" name="item[]" class="form-control" value="{{ $item->item->item_name }}" disabled/></td>
-                                            <td><input type="text" name="quantity[]" class="form-control" value="{{ $item->quantity }}" disabled/></td>
+                                         <tr>
+                                            <td>{{$item->item->code}} - {{$item->item->item_name}}</td>
+                                            <td>{{$item->quantity}}</td>
+                                            <td>{{$item->uom->name}}</td>
+                                            <td>{{$item->barcode}}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>Notes</label>
-                            <input type="text" name="notes" class="form-control" id="notes" value="{{ $goodsReceipt->notes }}" disabled/>
+                            <input type="text" name="notes" class="form-control" id="notes" value="{{ $goodsReceipt->notes }}"/>
                         </div>
                     </div>
                 </div>
@@ -45,17 +45,21 @@
                             <table class="table table-bordered mt-2" id="dtable">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th width="25%">Barcode</th>
-                                        <th>Item Name</th>
-                                        <th>Item Qty</th>
+                                        <th width="25%">Item</th>
+                                        <th>Quantity</th>
+                                        <th>Uom</th>
+                                        <th>Barcode</th>
+                                        <th>Batch</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($goodsReceipt->goodsReceiptItems as $item)
                                         <tr>
-                                            <td><input type="text" name="barcode[]" class="form-control" value="{{ $item->barcode }}" disabled/></td>
-                                            <td><input type="text" name="item[]" class="form-control" value="{{ $item->item->item_name }}" disabled/></td>
-                                            <td><input type="text" name="quantity[]" class="form-control" value="{{ $item->quantity }}" disabled/></td>
+                                            <td>{{$item->item->code}} - {{$item->item->item_name}}</td>
+                                            <td>{{$item->quantity}}</td>
+                                            <td>{{$item->uom->name}}</td>
+                                            <td>{{$item->barcode}}</td>
+                                            <td>{{$item->batch_number}}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

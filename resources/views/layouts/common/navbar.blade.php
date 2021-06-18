@@ -17,8 +17,7 @@
                 <span class="mr-2 d-lg-inline text-white"><i class="fa fa-bell"></i></span> 
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a href="{{url('/profile')}}" class='dropdown-item'><i class='fa fa-user'></i> Profile</a>
-                <a href="#" class='dropdown-item' onclick="event.preventDefault();document.logoutform.submit();"><i class='fa fa-power-off'></i> Logout</a>
+                <a href="{{url('/profile')}}" class='dropdown-item'>No Notification Yet</a>
             </div>
         </li>
         <li class="nav-item dropdown">

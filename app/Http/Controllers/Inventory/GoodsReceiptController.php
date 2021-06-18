@@ -17,12 +17,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class GoodsReceiptController extends Controller {
-
     public function __construct() {
         $this->stockService=new StockService();
     }
-    public function index()
-    {
+    public function index() {
         return view("pages.inventory.goods-receipt.index");
     }
 
@@ -31,32 +29,31 @@ class GoodsReceiptController extends Controller {
         return DatatableHelper::generate($var, $qry->get(), "goodsreceipt", array("show"=>true,"delete"=>true))->make(true);
     }
 
-    public function create()
-    {
+    public function create() {
         $map['uoms']=Uom::all();
-        $map['items']=Item::where("is_variant","!=",1)->get();
+        $map['items']=Item::where("is_variant", "!=", 1)->get();
         $map['warehouses']=Warehouse::all();
         return view("pages.inventory.goods-receipt.create", $map);
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         DB::beginTransaction();
         $goodsReceipt = GoodsReceipt::create($request->all());
         $goodsReceipt->code=CodeGenerator::generate("GR");
-        if(isset($request->quantity) && count($request->quantity) > 0){
+        if (isset($request->quantity) && count($request->quantity) > 0) {
             $goodsReceipt->goodsReceiptItems()->createMany(
-                collect($request->quantity)->map(function($quantity, $key) {
+                collect($request->quantity)->map(function ($quantity, $key) {
                     return [
                         'item_id' => request('item_id')[$key],
                         'quantity' => $quantity,
                         'uom_id' => request('uom_id')[$key],
                         'barcode' => request('barcode')[$key],
+                        'batch_number'=>request("batch_number")[$key]
                     ];
                 })->toArray()
             );
         }
-        if($goodsReceipt->save()){
+        if ($goodsReceipt->save()) {
             foreach ($goodsReceipt->goodsReceiptItems as $receiptItem) {
                 $stock=new Stock();
                 $stock->warehouse_id=$goodsReceipt->warehouse_id;
@@ -70,7 +67,7 @@ class GoodsReceiptController extends Controller {
                 $ledger->reference_id=$goodsReceipt->id;
                 $ledger->reference_no=$goodsReceipt->code;
                 $ledger->reference_type=TableType::GOODS_RECEIPT;
-                $this->stockService->stockIn($stock,$ledger);
+                $this->stockService->stockIn($stock, $ledger);
             }
             DB::commit();
             return redirect(url("/goodsreceipt/".$goodsReceipt->id))->with(["message"=>"Success: Goods Receipt has been saved"]);
@@ -79,31 +76,28 @@ class GoodsReceiptController extends Controller {
         return redirect()->back()->with(["error"=>"Process Fail: Goods Receipt fail to save"]);
     }
 
-    public function show(GoodsReceipt $goodsreceipt)
-    {
+    public function show(GoodsReceipt $goodsreceipt) {
         $map['goodsReceipt'] = $goodsreceipt;
         return view("pages.inventory.goods-receipt.edit", $map);
     }
 
-    public function edit(GoodsReceipt $goodsreceipt)
-    {
+    public function edit(GoodsReceipt $goodsreceipt) {
         $map['goodsReceipt'] = $goodsreceipt;
         return view("pages.inventory.goods-receipt.edit", $map);
     }
 
-    public function update(Request $request, $id)
-    {
-        return redirect(url("/goodsreceipt/".$id))->with(["message"=>"Success: Goods Receipt has been updated"]);
+    public function update(Request $request, GoodsReceipt $goodsreceipt) {
+        $goodsreceipt=GoodsReceipt::find($goodsreceipt->id);
+        $goodsreceipt->update($request->except(["_token"]));
+        return redirect(url("/goodsreceipt/".$goodsreceipt->id))->with(["message"=>"Success: Goods Receipt has been updated"]);
     }
 
-    public function destroy(GoodsReceipt $goodsreceipt)
-    {
+    public function destroy(GoodsReceipt $goodsreceipt) {
         $goodsreceipt->goodsReceiptItems()->delete();
         $goodsreceipt->delete();
         return redirect("/goodsreceipt/")->with(["message"=>"Success: Goods Receipt has been deleted"]);
     }
-    public function print(GoodsReceipt $goodsreceipt)
-    {
+    public function print(GoodsReceipt $goodsreceipt) {
         $map['goodsReceipt'] = $goodsreceipt;
         return view("pages.inventory.goods-receipt.print", $map);
     }

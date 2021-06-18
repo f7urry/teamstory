@@ -43,7 +43,10 @@
 <script type="text/javascript">
     $(function(){
         $_select("#item",`${base_url()}/api/item/options?stock=1`,function(){
-            set_product($(this).val());
+            var prod=$(this).val();
+            $.get(`${base_url()}/api/item/get/${prod}`,function(data){
+                $("#price").val(data.sell_price);
+            });
         });
     });
 </script>

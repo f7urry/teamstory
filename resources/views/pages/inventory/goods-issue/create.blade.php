@@ -52,9 +52,11 @@
                             <table class="table table-bordered mt-2" id="dtable">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th width="25%">Barcode</th>
-                                        <th>Item</th>
+                                        <th width="25%">Item</th>
+                                        <th>Stock</th>
                                         <th>Quantity</th>
+                                        <th>Uom</th>
+                                        <th>Barcode</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -70,13 +72,13 @@
 @endsection
 @push("scripts")
 <script type="text/javascript">
-   $_select("#scan_barcode",base_url()+'/api/stock/options',function(){
+    $_select("#scan_barcode",base_url()+'/api/item/options',function(){
         var val=$(this).val();
-            $(this).empty();
-            $(this).focus();
-            $.get(`${base_url()}/api/stock/barcode/${val}`,function(data){
-                add_item(data.stock);
-            });
+        $(this).empty();
+        $(this).focus();
+        $.get(`${base_url()}/api/item/get/${val}`,function(data){
+            add_item(data);
+        });
     });
 
 
@@ -85,16 +87,21 @@
         var el=`
             <tr>
                 <td>
-                    ${item.barcode}
+                    <input type="hidden" name="uom_id[]" class="form-control" value="${item.uom_id}"/>
+                    <input type="hidden" name="item_id[]" class="form-control" value="${item.id}"/>
+                    <span id="item${index}">${item.code} - ${item.item_name}</span>
                 </td>
                 <td>
-                    <input type="hidden" name="uom_id[]" class="form-control" value="${item.item.uom_id}"/>
-                    <input type="hidden" name="barcode[]" class="form-control" value="${item.barcode}"/>
-                    <input type="hidden" name="item_id[]" class="form-control" value="${item.item.id}"/>
-                    <span id="item${index}">${item.item.item_name}</span>
+                    ${item.current_stock}
                 </td>
                 <td>
                     <input type="number" name="quantity[]" class="form-control col-md-4" value="0"/>
+                </td>
+                <td>
+                    ${item.uom.name}
+                </td>
+                <td>
+                    <input type="text" name="barcode[]" class="form-control"/>
                 </td>
                 <td>
                     <button type="button" class='btn btn-danger btn-remove-row'><i class='fa fa-times'></i></button>

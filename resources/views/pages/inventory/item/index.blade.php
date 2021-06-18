@@ -94,13 +94,16 @@
                 name: 'sell_price',
                 orderable: true,
                 searchable: true,
+                render: function (data, type, row, meta) {
+                    return number_format(data);
+                }
             },
             {
                 className: 'text-right',
                 orderable: true,
                 searchable: true,
                 render: function (data, type, row, meta) {
-                    return row['current_stock']+"<br/><br/><small>Minimum: "+row['minimum_stock']+"</small>";
+                    return number_format(row['current_stock'])+"<br/><br/><small>Minimum: "+number_format(row['minimum_stock'])+"</small>";
                 }
             },
             {
