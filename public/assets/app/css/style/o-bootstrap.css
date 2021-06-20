@@ -55,16 +55,9 @@
     padding: .375rem .75rem;
 }
 
-.navbar {
-    background: #0054d2;
-}
 .modal-content{
     border:0px !important;
 }
 .table {
     background: white;
-}
-.navbar .btn-link,
-.navbar .nav-link{
-    color: #fff !important;
 }

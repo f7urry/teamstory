@@ -12,8 +12,13 @@
             <table class="table table-bordered table-hover table-striped" id="dtable" width="100%" cellspacing="0">
                 <thead class='thead-dark'>
                     <tr>
-                    	<th>Code</th>
                     	<th>Date</th>
+                    	<th>Code</th>
+                    	<th>Customer</th>
+                    	<th>Amount</th>
+                    	<th>Status</th>
+                    	<th>Invoice</th>
+                    	<th>Payment Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -36,14 +41,44 @@
             ajax: `${base_url()}/api/salesorder/list`,
             columns: [
             {
+                data: 'date',
+                name: 'date',
+                orderable: true,
+                searchable: true,
+            },
+            {
                 data: 'code',
                 name: 'code',
                 orderable: true,
                 searchable: true,
             },
             {
-                data: 'date',
-                name: 'date',
+                data: 'party.party_name',
+                name: 'party.party_name',
+                orderable: true,
+                searchable: true,
+            },
+            {
+                data: 'amount',
+                name: 'amount',
+                orderable: true,
+                searchable: true,
+            },
+            {
+                data: 'status',
+                name: 'status',
+                orderable: true,
+                searchable: true,
+            },
+            {
+                data: 'invoice_code',
+                name: 'invoice_code',
+                orderable: true,
+                searchable: true,
+            },
+            {
+                data: 'status',
+                name: 'status',
                 orderable: true,
                 searchable: true,
             },

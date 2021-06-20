@@ -25,6 +25,7 @@ class SalesOrderController extends Controller {
     }
      public function list($var = null) {
         $qry = SalesOrder::query();
+        $qry->with("party");
         return DatatableHelper::generate($var, $qry->get(), "salesorder", array("show"=>true))->make(true);
     }
     public function create(){
@@ -34,6 +35,7 @@ class SalesOrderController extends Controller {
         DB::beginTransaction();
         $so=new SalesOrder();
         $so->code=CodeGenerator::generate("SSO");
+        $so->invoice_code=CodeGenerator::generate("INV");
         $so->date=$request->date;
         $so->due_date=$request->due_date;
         $so->tax=$request->tax;
@@ -43,6 +45,7 @@ class SalesOrderController extends Controller {
         $so->note=$request->note;
         $so->party_id=$request->party_id;
         $so->status=SalesOrder::STATUS_UNPAID;
+        $so->sales_status=SalesOrder::STATUS_IN_PROCESS;
         $so->currency=$request->currency;
         $so->shipping_cost=$request->shipping_cost;
         $so->shipping_address_id=$request->shipping_address;
@@ -61,6 +64,8 @@ class SalesOrderController extends Controller {
                 $item->sales_order_id=$so->id;
                 $item->save();
             }
+            $issued=new GoodsIssue();
+            
             DB::commit();
         }else{
             DB::rollback();

@@ -15,7 +15,6 @@
 
 * {
     font-family: 'SourceSansPro';
-    font-size: 0.90rem;
 }
 
 a:hover {
@@ -33,4 +32,7 @@ h1 {
 
 b {
     font-size: unset;
+}
+.nav-link .fa{
+    font-size: 18px;
 }

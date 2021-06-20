@@ -1,13 +1,9 @@
 <div id="layoutSidenav_nav">
-    <nav class="sb-sidenav accordion sb-sidenav-dark text-white" id="sidenavAccordion">
+    <nav class="sb-sidenav accordion sb-sidenav-light text-dark bg-white border-right" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <!-- <div class="sb-sidenav-menu-heading">Core</div> -->
                 <div class="sb-sidenav-menu-heading">MENU</div>
-                <a class="nav-link" href="{{url('/home')}}">
-                    <div class="sb-nav-link-icon"><i class="fa fa-home"></i></div>
-                    Home
-                </a>
                 {!!MenuBuilder::generate()!!}
                 <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>

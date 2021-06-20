@@ -18,8 +18,10 @@ a.nav-link.dropdown-toggle{
 .sb-sidenav-dark .sb-sidenav-menu-heading,
 .sb-sidenav-dark .sb-nav-link-icon,
 .sb-sidenav-dark .sb-sidenav-collapse-arrow,
-.sb-sidenav-dark .nav-link {
-    color: white !important;
+.sb-sidenav-dark .nav-link,
+.navbar-dark .btn-link,
+.navbar-dark .nav-link{
+    color: #fff !important;
 }
 
 .sb-sidenav-light i,

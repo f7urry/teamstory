@@ -18,4 +18,5 @@ Route::group(["prefix"=>"api"], function(){
     Route::get("/customprice/list",[App\Http\Controllers\Admin\CustomPriceController::class,"list"]);
     Route::get("/receivable/list",[App\Http\Controllers\Accounting\ReceivableController::class,"list"]);
     Route::get("/salesorder/list",[App\Http\Controllers\Sales\SalesOrderController::class,"list"]);
+    Route::get("/explore/list",[App\Http\Controllers\Sales\ConsumerProductController::class,"list"]);
 });

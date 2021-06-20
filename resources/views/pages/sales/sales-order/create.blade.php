@@ -209,7 +209,7 @@
                             <input type="number" name="free_qty[]" class="calc form-control col-md-12" value="0"/>
                         </td>
                         <td>
-                            <input type="number" name="price[]" class="calc price form-control col-md-12" value="0"/>
+                            <input type="number" name="price[]" class="calc price form-control col-md-12" value="${item.sell_price}"/>
                         </td>
                         <td>
                             <input type="number" name="discount[]" class="calc discount form-control col-md-12" value="0"/>

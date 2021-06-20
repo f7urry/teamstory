@@ -11,7 +11,11 @@ use App\Models\Inventory\Item;
 class SalesOrder extends Model{
     public const STATUS_PAID="PAID";
     public const STATUS_UNPAID="UNPAID";
+    
+    public const STATUS_IN_PROCESS="IN_PROCESS";
+    public const STATUS_COMPLETE="COMPLETE";
     public const STATUS_CANCEL="CANCEL";
+
 
     public const TYPE_CASH="CASH";
     public const TYPE_CREDIT="CREDIT";
