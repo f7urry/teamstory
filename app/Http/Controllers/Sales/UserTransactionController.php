@@ -28,7 +28,7 @@ class UserTransactionController extends Controller {
         $qry = SalesOrder::query();
         $qry->with("party");
         $qry->where("created_by", Auth::user()->id);
-        return DatatableHelper::generate($var, $qry->get(), "usertransaction", array())->make(true);
+        return DatatableHelper::generate($var, $qry->get(), "usertransaction", array("show"=>true))->make(true);
     }
     public function create(){
         return view("pages.sales.sales-order.create");
