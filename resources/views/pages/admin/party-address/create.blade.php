@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title","Custom Price")
+@section("title","New Address")
 @section("content")
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('/'.strtolower($party->party_role).'/'.$party->id)}}"><i class="fa fa-arrow-left"></i> Back</a></li>
@@ -25,16 +25,12 @@
                             <input type="text" name="address" class="form-control"/>
                         </div>
                         <div class="form-group">
+                            <label>Province</label>
+                            <select name="province_id" id="province" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
                             <label>City</label>
-                            <input type="text" name="city" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <label>Region</label>
-                            <input type="text" name="region" class="form-control"/>
-                        </div>
-                        <div class="form-group">
-                            <label>Country</label>
-                            <input type="text" name="country" class="form-control"/>
+                            <select name="city_id" id="city" class="form-control"></select>
                         </div>
                         <div class="form-group">
                             <label>Zip Code</label>
@@ -60,6 +56,10 @@
     $(function(){
         $_select("#item",`${base_url()}/api/item/options?stock=1`,function(){
             set_product($(this).val());
+        });
+        $_select("#province",`${base_url()}/api/province/options`,function(){
+            $("#city").empty();
+            $_select("#city",`${base_url()}/api/city/options?province=${$(this).val()}`);
         });
     });
 </script>

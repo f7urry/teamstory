@@ -106,6 +106,9 @@ function $__app() {
     });
 }
 
+/**
+* use data-width instead width attribute
+*/
 function $_select(id, url, cb) {
     $(id).select2({
         placeholder: '',
@@ -113,6 +116,7 @@ function $_select(id, url, cb) {
         delay: 5000,
         theme: 'bootstrap4',
         width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        height: $(this).data('height') ? $(this).data('height') : $(this).hasClass('h-100') ? '100%' : 'style',
         ajax: {
             url: url,
             dataType: 'json',

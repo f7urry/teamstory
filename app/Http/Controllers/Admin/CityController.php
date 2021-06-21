@@ -48,12 +48,16 @@ class CityController extends Controller {
         if($request->province!=null)
             $geo->where("parent_id", $request->province);
         if ($request->term=='') {
-            $geo->orderBy("name", "asc");
+            $geo->orderBy("location", "asc");
         } else {
-            $geo->where("name", "like", "%$request->term%");
+            $geo->where("location", "like", "%$request->term%");
         }
 
         $geo->limit(10);
-        return SelectHelper::generate($geo, "id", "name");
+        return SelectHelper::generate($geo, "id", "location");
+    }
+    public function get(Geographic $city){
+        $p=Geographic::find($city->id);
+        return response()->json($p);
     }
 }

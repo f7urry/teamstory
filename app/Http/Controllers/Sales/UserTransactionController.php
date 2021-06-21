@@ -16,17 +16,19 @@ use App\Models\Inventory\Warehouse;
 use App\Models\Sales\SalesOrder;
 use App\Models\Sales\SalesOrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class SalesOrderController extends Controller {
+class UserTransactionController extends Controller {
 
     public function index() {
-        return view("pages.sales.sales-order.index");
+        return view("pages.sales.user-transaction.index");
     }
      public function list($var = null) {
         $qry = SalesOrder::query();
         $qry->with("party");
-        return DatatableHelper::generate($var, $qry->get(), "salesorder", array("show"=>true))->make(true);
+        $qry->where("created_by", Auth::user()->id);
+        return DatatableHelper::generate($var, $qry->get(), "usertransaction", array())->make(true);
     }
     public function create(){
         return view("pages.sales.sales-order.create");
@@ -66,8 +68,6 @@ class SalesOrderController extends Controller {
                 $item->created_by=Auth::user()->id;
                 $item->save();
             }
-            $issued=new GoodsIssue();
-            
             DB::commit();
         }else{
             DB::rollback();
@@ -79,9 +79,9 @@ class SalesOrderController extends Controller {
         $p->delete();
         return redirect("/stockadjustment/")->with(["message"=>"Success: Sales Order has been deleted"]);
     }
-    public function show(SalesOrder $salesorder) {
-        $map['so'] = $salesorder;
-        return view("pages.sales.sales-order.edit", $map);
+    public function show(SalesOrder $usertransaction) {
+        $map['so'] = $usertransaction;
+        return view("pages.sales.user-transaction.edit", $map);
     }
     public function update(Request $request, Item $item) {
     }

@@ -1,11 +1,6 @@
 @extends("layouts.app")
-@section("title","Sales Order")
+@section("title","My Transaction")
 @section("content")
-@if(Gate::check('is_create'))
-<ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{url('/salesorder/create')}}"><i class="fa fa-plus"></i> New</a></li>
-</ol>
-@endif
 <div class="row">
     <div class="col-md-12">
         <div class="table-responsive">
@@ -38,7 +33,7 @@
             searching: true,
             processing: true,
             serverSide: true,
-            ajax: `${base_url()}/api/salesorder/list`,
+            ajax: `${base_url()}/api/usertransaction/list`,
             columns: [
             {
                 data: 'date',
@@ -65,8 +60,8 @@
                 searchable: true,
             },
             {
-                data: 'sales_status',
-                name: 'sales_status',
+                data: 'status',
+                name: 'status',
                 orderable: true,
                 searchable: true,
             },

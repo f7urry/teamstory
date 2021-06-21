@@ -11,6 +11,7 @@ Route::get('/goodsreceipt/{goodsreceipt}/print', [App\Http\Controllers\Inventory
 Route::get('/goodsissue/{goodsissue}/print', [App\Http\Controllers\Inventory\GoodsIssueController::class,'print']);
 Route::get('/salesorder/{salesorder}/print', [App\Http\Controllers\Sales\SalesOrderController::class,'print']);
 Route::get('/explore', [App\Http\Controllers\Sales\ConsumerProductController::class,'index']);
+Route::post('/cart/checkout', [App\Http\Controllers\Sales\CartController::class,'checkout']);
 
 Route::get('/customprice/create/{id}', [App\Http\Controllers\Admin\CustomPriceController::class,'create']);
 Route::get('/address/create/{id}', [App\Http\Controllers\Admin\PartyAddressController::class,'create']);

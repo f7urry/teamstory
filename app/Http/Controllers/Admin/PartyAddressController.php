@@ -9,6 +9,7 @@ use App\Models\Admin\PartyAddress;
 use App\Models\Purchase\PurchaseOrder;
 use App\Models\Sales\SalesOrder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PartyAddressController extends Controller {
     public function list($var = null,Request $request) {
@@ -62,8 +63,15 @@ class PartyAddressController extends Controller {
     }
     public function options(Request $request) {
         $party=PartyAddress::query();
-        $party->where("party_id",$request->party);
+        if($request->mine!=null)
+            $party->where("party_id",Party::where("user_id",Auth::user()->id)->first()->id);
+        else
+            $party->where("party_id",$request->party);
         $party->limit(15);
-        return SelectHelper::generate($party,"id",'concat(pic_name,",",address,",",city)',true);
+        return SelectHelper::generate($party,"id",'concat(pic_name,",",address)',true);
+    }
+    public function get(PartyAddress $address){
+        $address=PartyAddress::with("city")->with("province")->find($address->id);
+        return response()->json($address);
     }
 }

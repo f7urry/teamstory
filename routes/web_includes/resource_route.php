@@ -26,6 +26,8 @@ Route::resource("/ledgerdetail",App\Http\Controllers\Inventory\Report\LedgerDeta
 Route::resource("/stockadjustment",App\Http\Controllers\Inventory\StockAdjustmentController::class);
 
 //SALES Module
+Route::resource("/usertransaction",App\Http\Controllers\Sales\UserTransactionController::class);
+Route::resource("/cart",App\Http\Controllers\Sales\CartController::class);
 Route::resource("/customprice",App\Http\Controllers\Admin\CustomPriceController::class);
 Route::resource("/salesorder",App\Http\Controllers\Sales\SalesOrderController::class);
 Route::resource("/receivable",App\Http\Controllers\Accounting\ReceivableController::class);

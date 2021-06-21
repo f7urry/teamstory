@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title","Product List")
+@section("title","Cart")
 @section("content")
 <div class="row" id="product-row">
     @foreach($data as $d)
@@ -22,11 +22,15 @@
                     <span class="col-4"></span>
                 </div>
                 <div class="row mt-1">
-                    <span class="col-12"><a class="btn btn-block btn-success btn-sm" href="#"><i class="fa fa-plus"></i> Add to Cart</a></span>
+                    <span class="col-12">
+                    <a 
+                        data-id="{{$d->id}}" 
+                        data-price='{{$d->sell_price}}' 
+                        class="btn btn-block btn-success btn-sm btn-atc" href="#"><i class="fa fa-plus"></i> Add to Cart</a></span>
                 </div>
             </div>
         </div>
-        </div>
+    </div>
     @endforeach
     {{ $data->links() }}
 </div>
@@ -42,4 +46,21 @@
         font-size: 10px;
     }
 </style>
+@endpush
+
+@push("scripts")
+<script type="text/javascript">
+    $(function(){
+        $(".btn-atc").click(function(){
+            var data={
+                _token: csrf_token(),
+                item_id: $(this).attr("data-id"),
+                price: $(this).attr("data-price")
+            };
+            $.post(base_url()+"/cart",data,function(resp){
+                alert(resp.message);
+            });
+        });
+    });
+</script>
 @endpush

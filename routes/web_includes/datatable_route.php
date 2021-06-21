@@ -19,4 +19,5 @@ Route::group(["prefix"=>"api"], function(){
     Route::get("/receivable/list",[App\Http\Controllers\Accounting\ReceivableController::class,"list"]);
     Route::get("/salesorder/list",[App\Http\Controllers\Sales\SalesOrderController::class,"list"]);
     Route::get("/explore/list",[App\Http\Controllers\Sales\ConsumerProductController::class,"list"]);
+    Route::get("/usertransaction/list",[App\Http\Controllers\Sales\UserTransactionController::class,"list"]);
 });

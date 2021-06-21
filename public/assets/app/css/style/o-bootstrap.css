@@ -1,14 +1,14 @@
-.btn-secondary{
+.btn-tool{
     color: #fff;
     background-color: #005bbd;
     border-color: #005bbd;
 }
-.btn-secondary:hover{
+.btn-tool:hover{
     color: #fff;
     background-color: #024a98;
     border-color: #024a98;
 }
-.btn-secondary:active,.btn-secondary:focus{
+.btn-tool:active,.btn-tool:focus{
     color: #fff !important;
     background-color: #024a98 !important;
     border-color: #024a98 !important;
