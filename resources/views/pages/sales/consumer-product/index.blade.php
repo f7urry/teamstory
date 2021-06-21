@@ -1,18 +1,18 @@
 @extends("layouts.app")
 @section("title","Explore")
 @section("content")
-<ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <div class="row">
-            <div class="col-md-12 input-group">
-                <input type="text" name="search" class="form-control" placeholder="type here to search product" id="filter-box"/>
+<div class="breadcrumb">
+    <div class="row">
+        <div class="col-md-12">
+            <div class=" input-group">
+                <input type="text" name="search" class="form-control" placeholder="search product here" id="filter-box"/>
                 <div class="input-group-append">
                     <button class="btn btn-primary" id="btn-filter"><i class="fa fa-search"></i></button>
                 </div>
             </div>
         </div>
-    </li>
-</ol>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
         <div class="row" id="product-row"></div>

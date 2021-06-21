@@ -20,7 +20,7 @@ class ConsumerProductController extends Controller {
         if($request->filter!=null)
             $qry=$qry->where("item_name", "LIKE", "%".$request->filter."%");
         $qry=$qry->where("item_type","GOODS");
-        $qry=$qry->paginate(4);
+        $qry=$qry->paginate(5);
         return response()->json($qry);
     }
 }

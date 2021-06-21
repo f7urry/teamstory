@@ -25,7 +25,7 @@ fieldset legend {
 }
 
 ::placeholder {
-    color: #ffeeee !important;
+    color: #aaa !important;
     font-style: italic;
 }
 
