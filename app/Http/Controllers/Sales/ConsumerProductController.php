@@ -8,23 +8,19 @@ use Illuminate\Http\Request;
 
 class ConsumerProductController extends Controller {
     public function index() {
-        $qry = Item::query();
-        $qry=$qry->with("uom");
-        $qry=$qry->with("group");
-        $qry=$qry->where("item_type","GOODS");
-        $qry=$qry->paginate(10);
-        $map['data']=$qry;
-        return view("pages.sales.consumer-product.index",$map);
+        return view("pages.sales.consumer-product.index");
     }
 
-    public function list($var = null,Request $request) {
+    public function list(Request $request) {
         $qry = Item::query();
         $qry=$qry->with("uom");
         $qry=$qry->with("group");
         if($request->group!=null)
             $qry=$qry->where("item_group_id", $request->group);
+        if($request->filter!=null)
+            $qry=$qry->where("item_name", "LIKE", "%".$request->filter."%");
         $qry=$qry->where("item_type","GOODS");
-        $qry=$qry->paginate(10);
+        $qry=$qry->paginate(4);
         return response()->json($qry);
     }
 }
