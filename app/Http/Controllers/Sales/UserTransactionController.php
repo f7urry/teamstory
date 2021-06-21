@@ -33,47 +33,6 @@ class UserTransactionController extends Controller {
     public function create(){
         return view("pages.sales.sales-order.create");
     }
-    public function store(Request $request) {
-        DB::beginTransaction();
-        $so=new SalesOrder();
-        $so->code=CodeGenerator::generate("SSO");
-        $so->invoice_code=CodeGenerator::generate("INV");
-        $so->date=$request->date;
-        $so->due_date=$request->due_date;
-        $so->tax=$request->tax;
-        $so->amount=$request->gtotal;
-        $so->unpaid_amount=$request->gtotal;
-        $so->reference=$request->reference;
-        $so->note=$request->note;
-        $so->party_id=$request->party_id;
-        $so->status=SalesOrder::STATUS_UNPAID;
-        $so->sales_status=SalesOrder::STATUS_IN_PROCESS;
-        $so->currency=$request->currency;
-        $so->shipping_cost=$request->shipping_cost;
-        $so->shipping_address_id=$request->shipping_address;
-        $so->created_by=Auth::user()->id;
-
-        if ($so->save()) {
-            foreach ($request->item_id as $i=>$item) {
-                $item=new SalesOrderItem();
-                $item->qty=$request->quantity[$i];
-                $item->free_qty=$request->free_qty[$i];
-                $item->item_id=$request->item_id[$i];
-                $item->custom_price_id=$request->custom_price_id[$i];
-                $item->qty=$request->quantity[$i];
-                $item->price=$request->price[$i];
-                $item->discount=$request->discount[$i];
-                $item->total=$request->total[$i];
-                $item->sales_order_id=$so->id;
-                $item->created_by=Auth::user()->id;
-                $item->save();
-            }
-            DB::commit();
-        }else{
-            DB::rollback();
-        }
-        return redirect(url("/salesorder/".$so->id))->with(["message"=>"Success: Sales Order has been saved"]);
-    }
     public function destroy(SalesOrder $salesorder) {
         $p = SalesOrder::find($salesorder->id);
         $p->delete();

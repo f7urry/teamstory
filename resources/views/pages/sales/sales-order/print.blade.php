@@ -24,7 +24,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>{{$so->code}}</td>
+                            <td>{{$so->invoice_code}}</td>
                             <td>{{$so->date}}</td>
                             <td>{{$so->due_date}}</td>
                             <td>{{$so->currency}}</td>
@@ -39,11 +39,10 @@
                     SOLD TO:<br/>
                     {{$so->party->party_name}}
                     {{$so->party->address->address}}
-                    {{$so->party->address->city}},
-                    {{$so->party->address->region}},
-                    {{$so->party->address->province}},
-                    {{$so->party->address->country}},
-                    {{$so->party->address->zipcode}}<br/>
+                    {{$so->party->address->city->location}},
+                    {{$so->party->address->province->location}},
+                    {{$so->party->address->province->parent->location}},
+                    {{$so->party->address->zip_code}}<br/>
                     {{$so->party->address->phone}}<br/>
                     {{$so->party->address->email}}<br/>
                 </div>
@@ -52,11 +51,10 @@
                     DELIVERY TO:<br/>
                     {{$so->shipping_address->pic_name}}<br/>
                     {{$so->shipping_address->address}}
-                    {{$so->shipping_address->city}},
-                    {{$so->shipping_address->region}},
-                    {{$so->shipping_address->province}},
-                    {{$so->shipping_address->country}},
-                    {{$so->shipping_address->zipcode}}<br/>
+                    {{$so->shipping_address->city->location}},
+                    {{$so->shipping_address->province->location}},
+                    {{$so->shipping_address->province->parent->location}},
+                    {{$so->shipping_address->zip_code}}<br/>
                     {{$so->shipping_address->phone}}<br/>
                     {{$so->shipping_address->email}}<br/>
                 </div>

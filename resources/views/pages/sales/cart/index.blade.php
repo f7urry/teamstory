@@ -35,14 +35,9 @@
         <div class="col-4">
             <div class="card">
                 <div class="card-body">
-                    <span class="font-weight-bold">Summary<hr/></span>
-                    <div class="row">
-                        <div class="col-6">
-                            <span class="font-weight-bold">Shipping To</span>
-                        </div>
-                        <div class="col-6">
-                            <select name="shipping_address" id="shipping_address" class="form-control" data-height="true"></select>
-                            <span id="address" style="font-size:12px"></span>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <button class="btn btn-block btn-secondary" id="btn-checkout" type="submit" disabled>Make Order</button>
                         </div>
                     </div>
                     <div class="row">
@@ -54,9 +49,13 @@
                             <input type="hidden" name="gtotal" value="{{$sum}}"/>
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-12">
-                            <button class="btn btn-block btn-secondary" id="btn-checkout" type="submit" disabled>Make Order</button>
+                    <div class="row">
+                        <div class="col-6">
+                            <span class="font-weight-bold">Shipping To</span>
+                        </div>
+                        <div class="col-6">
+                            <select name="shipping_address" id="shipping_address" class="form-control" data-height="true"></select>
+                            <span id="address" style="font-size:12px"></span>
                         </div>
                     </div>
                 </div>

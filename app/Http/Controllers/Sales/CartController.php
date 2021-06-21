@@ -66,6 +66,7 @@ class CartController extends Controller {
         $so->status=SalesOrder::STATUS_UNPAID;
         $so->sales_status=SalesOrder::STATUS_WAITING;
         $so->currency="IDR";
+        $so->shipping_address_id=$request->shipping_address;
 
         if ($so->save()) {
             foreach ($request->cart_id as $i=>$cart) {
