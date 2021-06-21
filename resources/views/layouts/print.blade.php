@@ -1,6 +1,6 @@
 @include("layouts.common.styles")
 <body>
-    <div class="print-remove row navbar">
+    <div class="print-remove row navbar bg-primary">
         <div class="col-md-12 pt-2">
             <div class="btn-toolbar justify-content-center" role="toolbar">
                 <div class='btn-group ml-2' role="group">

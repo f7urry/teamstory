@@ -59,6 +59,7 @@ class CartController extends Controller {
         $so->date=date("Y-m-d");
         $so->due_date=date("Y-m-d");
         $so->amount=$request->gtotal;
+        $so->tax=$so->amount*0.1;
         $so->unpaid_amount=$request->gtotal;
         $so->reference=$request->reference;
         $so->note=$request->note;

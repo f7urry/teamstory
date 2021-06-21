@@ -4,8 +4,15 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('/salesorder')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
         <li class="breadcrumb-item"><a href="{{url('/salesorder/'.$so->id.'/print')}}"><i class="fa fa-print"></i> Print</a></li>
+        <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/salesorder')}}"><i class="fa fa-check"></i> Update</a></li>
+        <li class="breadcrumb-item"><a href="{{url('/receivable/create?ref='.$so->id)}}"><i class="fa fa-money-bill"></i> Make Payment</a></li>
+        @if($so->status=="WAITING")
+            <li class="breadcrumb-item"><a href="{{url('/salesorder/'.$so->id.'/process')}}"><i class="fa fa-arrow-alt-circle-right"></i> Process</a></li>
+        @endif
     </ol>
     <form method="post" name="formAdd" id="formAdd">
+        {{ csrf_field() }}
+        {{method_field('patch')}}
         <div class="row">
              <div class="col-md-3">
                 <div class="card">
@@ -41,7 +48,6 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
-                        {{ csrf_field() }}
                          <div class="form-group col-md-12">
                             <label>Invoice No</label>
                             <input type="text" name="code" class="form-control" id="code" value="{{$so->code}}" disabled/>
@@ -74,7 +80,7 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>Shipping Cost</label>
-                            <input type="text" name="shipping_cost" class="form-control" id="shipping_cost" value="{{$so->shipping_cost}}" disabled/>
+                            <input type="text" name="shipping_cost" class="form-control" id="shipping_cost" value="{{$so->shipping_cost}}" {{$so->sales_status=="WAITING"?"disabled":""}}/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Subtotal</label>

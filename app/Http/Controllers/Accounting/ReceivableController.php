@@ -25,8 +25,12 @@ class ReceivableController extends Controller {
         ))->make(true);
     }
 
-    public function create() {
-        return view("pages.accounting.receivable.create");
+    public function create(Request $request) {
+        if($request->ref!=null){
+            $so=SalesOrder::find($request->ref);
+            $map["ref"]=$so;
+        }
+        return view("pages.accounting.receivable.create",$map);
     }
 
     public function store(Request $request) {

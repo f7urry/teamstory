@@ -20,7 +20,11 @@
                             <div class="form-group">
                                 <label>Sales Order</label>
                                 <div class="input-group">
-                                    <select name="sales_order_id" id="salesorder"></select>
+                                    <select name="sales_order_id" id="salesorder">
+                                        @if($ref!=null)
+                                            <option value="{{$ref->id}}">{{$ref->code}}</option>
+                                        @endif
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -83,6 +87,9 @@
             var id=$(this).val();
             set_so(id);
         });
+        @if($ref!=null)
+            set_so("{{$ref->id}}");
+        @endif
     });
     function set_so(id){
         $.get(base_url()+"/api/salesorder/get/"+id,function(data){

@@ -11,11 +11,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Service\Inventory\StockService;
 use App\Models\Admin\Party;
 use App\Models\Core\TableType;
+use App\Models\Inventory\GoodsIssue;
+use App\Models\Inventory\GoodsIssueItem;
+use App\Models\Inventory\Report\LedgerDetail;
+use App\Models\Inventory\Stock;
 use App\Models\Inventory\Uom;
 use App\Models\Inventory\Warehouse;
 use App\Models\Sales\SalesOrder;
 use App\Models\Sales\SalesOrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SalesOrderController extends Controller {
@@ -66,8 +71,39 @@ class SalesOrderController extends Controller {
                 $item->created_by=Auth::user()->id;
                 $item->save();
             }
+
             $issued=new GoodsIssue();
-            
+            $issued->code=CodeGenerator::generate("GI");
+            $issued->date=$request->date;
+            $issued->warehouse_id=1;
+            $issued->reference_type="SALES ORDER";
+            $issued->reference_no=$so->code;
+            $issued->save();
+            foreach($so->items as $soi){
+                $issuedItem=new GoodsIssueItem();
+                $issuedItem->quantity=$soi->qty;
+                $issuedItem->item_id=$soi->item_id;
+                $issuedItem->uom_id=$soi->item->uom_id;
+                $issuedItem->goods_issue_id=$issued->id;
+                $issuedItem->save();
+            }
+            $stockService=new StockService();
+            foreach ($issued->goodsIssueItems as $issueItem) {
+                $stock=new Stock();
+                $stock->warehouse_id=$issued->warehouse_id;
+                $stock->barcode=$issueItem->barcode;
+                $stock->item_id=$issueItem->item_id;
+                $stock->qty=$issueItem->quantity;
+                $stock->grid_code=$issued->grid_code;
+
+                $ledger=new LedgerDetail();
+                $ledger->date=$issued->date;
+                $ledger->reference_id=$issued->id;
+                $ledger->reference_no=$issued->code;
+                $ledger->reference_type=TableType::GOODS_ISSUE;
+                $stockService->stockOut($stock,$ledger);
+            }
+
             DB::commit();
         }else{
             DB::rollback();
@@ -77,7 +113,7 @@ class SalesOrderController extends Controller {
     public function destroy(SalesOrder $salesorder) {
         $p = SalesOrder::find($salesorder->id);
         $p->delete();
-        return redirect("/stockadjustment/")->with(["message"=>"Success: Sales Order has been deleted"]);
+        return redirect("/salesorder/")->with(["message"=>"Success: Sales Order has been deleted"]);
     }
     public function show(SalesOrder $salesorder) {
         $map['so'] = $salesorder;
@@ -85,9 +121,15 @@ class SalesOrderController extends Controller {
     }
     public function update(Request $request, Item $item) {
     }
-     public function print(SalesOrder $salesorder) {
+    public function print(SalesOrder $salesorder) {
         $map['so'] = SalesOrder::with("party")->with("shipping_address")->find($salesorder->id);
         return view("pages.sales.sales-order.print", $map);
+    }
+    public function process(SalesOrder $salesorder) {
+        $salesorder=SalesOrder::find($salesorder->id);
+        $salesorder->sales_status=SalesOrder::STATUS_IN_PROCESS;
+        $salesorder->update();
+        return redirect(url("/salesorder/".$salesorder->id));
     }
     public function options(Request $request) {
         $qry = DB::table(SalesOrder::tablename()." as s");

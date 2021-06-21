@@ -7,11 +7,11 @@
             <table align="right" width="100%" class="table table-borderless table-sm">
                 <tr>
                     <td width="64px">
-                        <img src="{{url('/assets/img/brand.png')}}" style="width: 64px"/>
+                        <img src="{{url('/assets/app/img/logo.png')}}" style="width: 128px"/>
                     </td>
                     <td>
-                        <p style="font-size: 15px">PT.Sansan Saudara Textile Jaya</p>
-                        <p style="font-size: 10px;">Jalan Cibaligo No.33, Leuwigajah, Cibeureum, Kec. Cimahi Sel.,<br/> Kota Cimahi, Jawa Barat 40535</p>
+                        <p style="font-size: 15px"></p>
+                        <p style="font-size: 10px;"></p>
                     </td>
                     <td align="right">
                         <h1>Goods Issue</h1>
