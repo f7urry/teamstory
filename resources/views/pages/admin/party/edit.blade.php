@@ -15,16 +15,12 @@
     <input type="text" name="address" class="form-control" value="{{$party->address->address}}" disabled/>
 </div>
 <div class="form-group">
+    <label>Province</label>
+    <input type="text" name="country" class="form-control" value="{{$party->address->province->location}}" disabled/>
+</div>
+<div class="form-group">
     <label>City</label>
-    <input type="text" name="city" class="form-control" value="{{$party->address->city}}" disabled/>
-</div>
-<div class="form-group">
-    <label>Region</label>
-    <input type="text" name="region" class="form-control" value="{{$party->address->region}}" disabled/>
-</div>
-<div class="form-group">
-    <label>Country</label>
-    <input type="text" name="country" class="form-control" value="{{$party->address->country}}" disabled/>
+    <input type="text" name="city" class="form-control" value="{{$party->address->city->location}}" disabled/>
 </div>
 <div class="form-group">
     <label>Zip Code</label>
@@ -38,7 +34,7 @@
     <label>Email</label>
     <input type="text" name="email" class="form-control" value="{{$party->address->email}}" disabled/>
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
     <label>Birth Info</label>
     <div class="form-row">
         <div class="form-group col-6">
@@ -48,4 +44,4 @@
             <input type="text" name="dob" class="form-control datepicker" placeholder="Date" value="{{$party->dob}}"/>
         </div>
     </div>
-</div>
+</div> -->

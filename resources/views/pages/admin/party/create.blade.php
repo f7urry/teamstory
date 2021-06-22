@@ -15,16 +15,12 @@
     <input type="text" name="address" class="form-control"/>
 </div>
 <div class="form-group">
+    <label>Province</label>
+    <select name="province_id" id="province" class="form-control"></select>
+</div>
+<div class="form-group">
     <label>City</label>
-    <input type="text" name="city" class="form-control"/>
-</div>
-<div class="form-group">
-    <label>Region</label>
-    <input type="text" name="region" class="form-control"/>
-</div>
-<div class="form-group">
-    <label>Country</label>
-    <input type="text" name="country" class="form-control"/>
+    <select name="city_id" id="city" class="form-control"></select>
 </div>
 <div class="form-group">
     <label>Zip Code</label>
@@ -49,3 +45,16 @@
         </div>
     </div>
 </div> -->
+@push("scripts")
+<script type="text/javascript">
+    $(function(){
+        $_select("#item",`${base_url()}/api/item/options?stock=1`,function(){
+            set_product($(this).val());
+        });
+        $_select("#province",`${base_url()}/api/province/options`,function(){
+            $("#city").empty();
+            $_select("#city",`${base_url()}/api/city/options?province=${$(this).val()}`);
+        });
+    });
+</script>
+@endpush

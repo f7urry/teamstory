@@ -50,9 +50,8 @@ class PartyService {
             $address->pic_name=$request->pic_name;
             $address->phone=$request->phone;
             $address->email=$request->email;
-            $address->city=$request->city;
-            $address->region=$request->region;
-            $address->country=$request->country;
+            $address->city_id=$request->city_id;
+            $address->province_id=$request->province_id;
             $address->zip_code=$request->zip_code;
             $address->address=$request->address;
             $address->address_type=PartyAddress::ADDRESS_HOME;
