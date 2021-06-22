@@ -4,6 +4,9 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('/usertransaction')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
         <li class="breadcrumb-item"><a href="{{url('/usertransaction/'.$so->id.'/print')}}"><i class="fa fa-print"></i> Print</a></li>
+        @if($so->status=="PAID")
+            <li class="breadcrumb-item"><a href="{{url('/usertransaction/'.$so->id.'/done')}}"><i class="fa fa-check"></i> Done</a></li>
+        @endif
     </ol>
     <form method="post" name="formAdd" id="formAdd">
         <div class="row">
@@ -42,9 +45,13 @@
                 <div class="card">
                     <div class="card-body">
                         {{ csrf_field() }}
-                         <div class="form-group col-md-12">
-                            <label>Invoice No</label>
+                        <div class="form-group col-md-12">
+                            <label>Sales No</label>
                             <input type="text" name="code" class="form-control" id="code" value="{{$so->code}}" disabled/>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Invoice No</label>
+                            <input type="text" name="code" class="form-control" id="code" value="{{$so->invoice_code}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Invoice Date</label>
@@ -98,6 +105,10 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
+                        <div class="form-group col-md-12">
+                            <label>Sales Status</label>
+                            <input type="text" name="status" class="form-control" id="date" value="{{$so->sales_status}}" disabled/>
+                        </div>
                         <div class="form-group col-md-12">
                             <label>Status</label>
                             <input type="text" name="status" class="form-control" id="date" value="{{$so->status}}" disabled/>

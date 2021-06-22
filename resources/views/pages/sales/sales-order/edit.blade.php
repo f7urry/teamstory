@@ -6,7 +6,7 @@
         <li class="breadcrumb-item"><a href="{{url('/salesorder/'.$so->id.'/print')}}"><i class="fa fa-print"></i> Print</a></li>
         <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/salesorder')}}"><i class="fa fa-check"></i> Update</a></li>
         <li class="breadcrumb-item"><a href="{{url('/receivable/create?ref='.$so->id)}}"><i class="fa fa-money-bill"></i> Make Payment</a></li>
-        @if($so->status=="WAITING")
+        @if($so->sales_status=="WAITING")
             <li class="breadcrumb-item"><a href="{{url('/salesorder/'.$so->id.'/process')}}"><i class="fa fa-arrow-alt-circle-right"></i> Process</a></li>
         @endif
     </ol>
@@ -48,9 +48,13 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
-                         <div class="form-group col-md-12">
-                            <label>Invoice No</label>
+                        <div class="form-group col-md-12">
+                            <label>Sales No</label>
                             <input type="text" name="code" class="form-control" id="code" value="{{$so->code}}" disabled/>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Invoice No</label>
+                            <input type="text" name="code" class="form-control" id="code" value="{{$so->invoice_code}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Invoice Date</label>
@@ -104,6 +108,10 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
+                        <div class="form-group col-md-12">
+                            <label>Sales Status</label>
+                            <input type="text" name="status" class="form-control" id="date" value="{{$so->sales_status}}" disabled/>
+                        </div>
                         <div class="form-group col-md-12">
                             <label>Status</label>
                             <input type="text" name="status" class="form-control" id="date" value="{{$so->status}}" disabled/>

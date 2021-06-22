@@ -4,35 +4,43 @@
 <form action="{{url('/cart/checkout')}}" name="form" method="post">
     {{csrf_field()}}
     <div class="row">
-        <div class="col-8 h-100">
+        <div class="col-md-6 h-100">
             <div class="card">
                 <div class="card-body">
                 @php($sum=0)
                 @foreach($data as $d)
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-md-3">
                             <input type="checkbox" name="cart_id[]" value="{{$d->id}}" class="mr-2 cart_id"/>
                             <a href="{{url('/file/view?f=').$d->item->item_image}}" class="lightbox-image" rel="1">
                                 <img src="{{url('/file/view?f=').$d->item->item_image}}" width="128px" class="img-thumbnail"/>
                             </a>
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-4">
                             {{$d->item->item_name}}<br/>
                             IDR {{number_format($d->price)}}
                             @php($sum+=$d->price*$d->qty)
                         </div>
-                        <div class="col-3">
-                            x {{$d->qty}}
+                        <div class="col-md-3 form-inline">
+                            <div class="input-group">
+                                <span class="mr-2">x</span>
+                                <input type="number" value="{{$d->qty}}" class="form-control col-lg-4 qty"/>
+                                <input type="hidden" value="{{$d->price}}" class="price"/>
+                                <div class="input-group-append">
+                                    <button class="btn-primary btn btn-calc" type="button">Update</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <a data-id="{{$d->id}}" class="btn btn-danger btn-sm btn-rfc" href="#"><i class="fa fa-trash"></i></a>
+                        <div class="col-md-2 form-inline">
+                            <a data-id="{{$d->id}}" class="btn btn-link text-danger btn-sm btn-rfc" href="#"><i class="fa fa-trash"></i></a>
                         </div>
                     </div>
                 @endforeach
                 </div>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-3">
@@ -46,7 +54,7 @@
                         </div>
                         <div class="col-6">
                             <span id="total">IDR {{number_format($sum)}}</span>
-                            <input type="hidden" name="gtotal" value="{{$sum}}"/>
+                            <input type="hidden" name="gtotal" id="gtotal" value="{{$sum}}"/>
                         </div>
                     </div>
                     <div class="row">
@@ -106,6 +114,19 @@
             $.post(base_url()+"/cart/"+id,data,function(resp){
                 location.reload();
             });
+        });
+        $(".btn-calc").on("click",function(){
+            var qty=$(".qty");
+            var price=$(".price");
+            var total=0;
+            for(var i=0;i<qty.length;i++){
+                var q=qty.eq(i).val();
+                var p=price.eq(i).val();
+                total+=q*p;
+                console.log(total);
+            }
+            $("#gtotal").val(total);
+            $("#total").text(number_format(total));
         });
     });
 </script>

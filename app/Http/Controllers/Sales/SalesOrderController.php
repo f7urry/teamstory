@@ -129,6 +129,37 @@ class SalesOrderController extends Controller {
         $salesorder=SalesOrder::find($salesorder->id);
         $salesorder->sales_status=SalesOrder::STATUS_IN_PROCESS;
         $salesorder->update();
+        $issued=new GoodsIssue();
+        $issued->code=CodeGenerator::generate("GI");
+        $issued->date=$salesorder->date;
+        $issued->warehouse_id=1;
+        $issued->reference_type="SALES ORDER";
+        $issued->reference_no=$salesorder->code;
+        $issued->save();
+        foreach($salesorder->items as $soi){
+            $issuedItem=new GoodsIssueItem();
+            $issuedItem->quantity=$soi->qty;
+            $issuedItem->item_id=$soi->item_id;
+            $issuedItem->uom_id=$soi->item->uom_id;
+            $issuedItem->goods_issue_id=$issued->id;
+            $issuedItem->save();
+        }
+        $stockService=new StockService();
+        foreach ($issued->goodsIssueItems as $issueItem) {
+            $stock=new Stock();
+            $stock->warehouse_id=$issued->warehouse_id;
+            $stock->barcode=$issueItem->barcode;
+            $stock->item_id=$issueItem->item_id;
+            $stock->qty=$issueItem->quantity;
+            $stock->grid_code=$issued->grid_code;
+
+            $ledger=new LedgerDetail();
+            $ledger->date=$issued->date;
+            $ledger->reference_id=$issued->id;
+            $ledger->reference_no=$issued->code;
+            $ledger->reference_type=TableType::GOODS_ISSUE;
+            $stockService->stockOut($stock,$ledger);
+        }
         return redirect(url("/salesorder/".$salesorder->id));
     }
     public function options(Request $request) {

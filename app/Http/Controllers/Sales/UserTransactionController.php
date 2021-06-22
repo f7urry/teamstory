@@ -36,7 +36,7 @@ class UserTransactionController extends Controller {
     public function destroy(SalesOrder $salesorder) {
         $p = SalesOrder::find($salesorder->id);
         $p->delete();
-        return redirect("/stockadjustment/")->with(["message"=>"Success: Sales Order has been deleted"]);
+        return redirect("/usertransaction")->with(["message"=>"Success: Sales Order has been deleted"]);
     }
     public function show(SalesOrder $usertransaction) {
         $map['so'] = $usertransaction;
@@ -47,6 +47,12 @@ class UserTransactionController extends Controller {
      public function print(SalesOrder $salesorder) {
         $map['so'] = SalesOrder::with("party")->with("shipping_address")->find($salesorder->id);
         return view("pages.sales.sales-order.print", $map);
+    }
+    public function process_done(SalesOrder $salesorder) {
+        $salesorder=SalesOrder::find($salesorder->id);
+        $salesorder->sales_status=SalesOrder::STATUS_COMPLETE;
+        $salesorder->update();
+        return redirect("/usertransaction");
     }
     public function options(Request $request) {
         $qry = DB::table(SalesOrder::tablename()." as s");
