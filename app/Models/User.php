@@ -89,7 +89,7 @@ class User extends Authenticatable {
                     break;
             }
         }else
-             $row->is_read=1;
+            $row->is_read=1;
         return $row;
     }
 }

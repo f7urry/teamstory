@@ -5,8 +5,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-6">
-                    <img src="{{url('/assets/app/img/logo.png')}}" height="68px" class="bg-white rounded">
+                <div class="col-md-6" style="font-size: 10px;">
+                    <img src="{{url('/assets/app/img/logo.png')}}" height="48px" class="bg-white rounded"><br/>
+                    PT.INESIA NUSANTARA SEMESTA<br/>
+                    ASKRIDA TOWER LT.4 R.401 A<br/>
+                    JL.PRAMUKA RAYA KAV.151 RT.009 RW.005<br/>
+                    UTAN KAYU UTARA, MATRAMAN JAKARTA TIMUR DKI JAKARTA
                 </div>
                 <div class="col-md-6">
                     <table width="100%" class="table table-bordered">

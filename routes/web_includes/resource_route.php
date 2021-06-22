@@ -7,6 +7,7 @@ Route::resource("/party",App\Http\Controllers\Admin\PartyController::class);
 Route::resource("/address",App\Http\Controllers\Admin\PartyAddressController::class);
 Route::resource("/province",App\Http\Controllers\Admin\ProvinceController::class);
 Route::resource("/city",App\Http\Controllers\Admin\CityController::class);
+Route::resource("/profileaddress",App\Http\Controllers\Admin\ProfileAddressController::class);
 
 //CORE Module
 Route::resource("/users",App\Http\Controllers\Core\UserController::class);

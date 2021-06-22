@@ -73,7 +73,11 @@ class MenuBuilder{
         $menusGroup=[];
         $user=Auth::user();
         foreach ($user->roles as $role) {
-            $permission=RoleAccessPermission::where("role_access_id",$role->roleaccess->id)->join("sys_module","sys_module.id","=","sys_role_access_permission.module_id")->orderBy("sys_module.menu_index")->get();
+            $permission=RoleAccessPermission::where("role_access_id",$role->roleaccess->id)
+                        ->join("sys_module","sys_module.id","=","sys_role_access_permission.module_id")
+                        ->orderBy("sys_module.menu_index")
+                        ->get();
+                        
             foreach ($permission as $permit) {
                 if ($permit->module->is_menu==1) {
                     $menus[$permit->module->id]=$permit->module;

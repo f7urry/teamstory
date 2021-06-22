@@ -17,4 +17,5 @@ Route::post('/cart/checkout', [App\Http\Controllers\Sales\CartController::class,
 Route::get('/customprice/create/{id}', [App\Http\Controllers\Admin\CustomPriceController::class,'create']);
 Route::get('/address/create/{id}', [App\Http\Controllers\Admin\PartyAddressController::class,'create']);
 Route::get('/address/default/{id}', [App\Http\Controllers\Admin\PartyAddressController::class,'setdefault']);
+Route::get('/profileaddress/default/{id}', [App\Http\Controllers\Admin\ProfileAddressController::class,'setdefault']);
 

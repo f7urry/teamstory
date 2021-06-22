@@ -68,6 +68,7 @@ class CartController extends Controller {
         $so->sales_status=SalesOrder::STATUS_WAITING;
         $so->currency="IDR";
         $so->shipping_address_id=$request->shipping_address;
+        $so->created_by=Auth::user()->id;
 
         if ($so->save()) {
             foreach ($request->cart_id as $i=>$cart) {
@@ -79,6 +80,7 @@ class CartController extends Controller {
                 $item->discount=$cart->discount;
                 $item->total=$cart->amount;
                 $item->sales_order_id=$so->id;
+                $item->created_by=Auth::user()->id;
                 $item->save();
 
                 $cart->delete();

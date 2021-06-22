@@ -50,16 +50,6 @@
 @push("scripts")
 <script type="text/javascript">
     $(function(){
-        $(".btn-atc").click(function(){
-            var data={
-                _token: csrf_token(),
-                item_id: $(this).attr("data-id"),
-                price: $(this).attr("data-price")
-            };
-            $.post(base_url()+"/cart",data,function(resp){
-                alert(resp.message);
-            });
-        });
         $("#btn-filter").on('click',function(){
             filter_table(base_url()+"/api/explore/list?page=1");
         });
@@ -120,6 +110,16 @@
                     `;
                     $("#product-row").append(e);
                 }
+                $(".btn-atc").click(function(){
+                    var data={
+                        _token: csrf_token(),
+                        item_id: $(this).attr("data-id"),
+                        price: $(this).attr("data-price")
+                    };
+                    $.post(base_url()+"/cart",data,function(resp){
+                        alert(resp.message);
+                    });
+                });
             });
         }
     });
