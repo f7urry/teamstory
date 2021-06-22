@@ -24,7 +24,7 @@
                         <div class="col-md-3 form-inline">
                             <div class="input-group">
                                 <span class="mr-2">x</span>
-                                <input type="number" value="{{$d->qty}}" class="form-control col-lg-4 qty"/>
+                                <input type="number" value="{{$d->qty}}" name="qty[]" class="form-control col-lg-4 qty"/>
                                 <input type="hidden" value="{{$d->price}}" class="price"/>
                                 <div class="input-group-append">
                                     <button class="btn-primary btn btn-calc" type="button">Update</button>

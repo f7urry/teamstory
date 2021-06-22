@@ -4,15 +4,17 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('/salesorder')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
         <li class="breadcrumb-item"><a href="{{url('/salesorder/'.$so->id.'/print')}}"><i class="fa fa-print"></i> Print</a></li>
-        <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/salesorder')}}"><i class="fa fa-check"></i> Update</a></li>
-        <li class="breadcrumb-item"><a href="{{url('/receivable/create?ref='.$so->id)}}"><i class="fa fa-money-bill"></i> Make Payment</a></li>
+        <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/salesorder/'.$so->id)}}"><i class="fa fa-check"></i> Update</a></li>
+        @if($so->sales_status=="IN_PROCESS" && $so->status=="UNPAID")
+            <li class="breadcrumb-item"><a href="{{url('/receivable/create?ref='.$so->id)}}"><i class="fa fa-money-bill"></i> Make Payment</a></li>
+        @endif
         @if($so->sales_status=="WAITING")
             <li class="breadcrumb-item"><a href="{{url('/salesorder/'.$so->id.'/process')}}"><i class="fa fa-arrow-alt-circle-right"></i> Process</a></li>
         @endif
     </ol>
     <form method="post" name="formAdd" id="formAdd">
         {{ csrf_field() }}
-        {{method_field('patch')}}
+        {{method_field('PATCH')}}
         <div class="row">
              <div class="col-md-3">
                 <div class="card">
@@ -100,7 +102,7 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>Grand Total</label>
-                            <input type="text" name="gtotal" class="form-control" id="date" value="{{$so->amount}}" disabled/>
+                            <input type="text" name="gtotal" class="form-control" id="date" value="{{$so->amount+$so->tax}}" disabled/>
                         </div>
                     </div>
                 </div>
@@ -147,11 +149,34 @@
                                 <tbody>
                                     @foreach($so->items as $detail)
                                         <tr>
-                                            <td>{{$detail->item->code}} - {{$detail->item->item_name}}</td>
+                                            <td>
+                                                @if($so->sales_status=="WAITING")
+                                                    <input type="hidden" name="soi[]" value="{{$detail->id}}"/>
+                                                @endif
+                                                {{$detail->item->code}} - {{$detail->item->item_name}}
+                                            </td>
                                             <td>{{$detail->qty}}</td>
-                                            <td>{{$detail->free_qty}}</td>
-                                            <td>{{$detail->price}}</td>
-                                            <td>{{$detail->discount}}</td>
+                                            <td>
+                                                @if($so->sales_status=="WAITING")
+                                                    <input type="text" name="free_qty[]" value="{{$detail->free_qty}}" class="form-control"/>
+                                                @else
+                                                    {{$detail->free_qty}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                 @if($so->sales_status=="WAITING")
+                                                    <input type="text" name="price[]" value="{{$detail->price}}" class="form-control"/>
+                                                @else
+                                                   {{$detail->price}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                 @if($so->sales_status=="WAITING")
+                                                    <input type="text" name="discount[]" value="{{$detail->discount}}" class="form-control"/>
+                                                @else
+                                                   {{$detail->discount}}
+                                                @endif
+                                            </td>
                                             <td>{{$detail->total}}</td>
                                         </tr>
                                     @endforeach

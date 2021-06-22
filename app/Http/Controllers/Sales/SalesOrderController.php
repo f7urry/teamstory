@@ -45,7 +45,7 @@ class SalesOrderController extends Controller {
         $so->due_date=$request->due_date;
         $so->tax=$request->tax;
         $so->amount=$request->gtotal;
-        $so->unpaid_amount=$request->gtotal;
+        $so->unpaid_amount=$request->gtotal+$request->tax;
         $so->reference=$request->reference;
         $so->note=$request->note;
         $so->party_id=$request->party_id;
@@ -119,7 +119,25 @@ class SalesOrderController extends Controller {
         $map['so'] = $salesorder;
         return view("pages.sales.sales-order.edit", $map);
     }
-    public function update(Request $request, Item $item) {
+    public function update(Request $request, SalesOrder $salesorder) {
+        $salesorder=SalesOrder::find($salesorder->id);
+        $gtotal=0;
+        foreach($request->soi as $i=>$soi){
+            $soi=SalesOrderItem::find($soi);
+            $soi->free_qty=$request->free_qty[$i];
+            $soi->discount=$request->discount[$i];
+            
+            $total=($soi->price*$soi->qty);
+            $soi->total=$total-($total*$soi->discount/100);
+            $soi->update();
+            
+            $gtotal+=$soi->total;
+        }
+        $salesorder->amount=$gtotal;
+        $salesorder->tax=$gtotal*10/100;
+        $salesorder->unpaid_amount=$gtotal+$salesorder->tax;
+        $salesorder->update();
+        return redirect("/salesorder/".$salesorder->id)->with(["message"=>"Success: Sales Order has been updated"]);
     }
     public function print(SalesOrder $salesorder) {
         $map['so'] = SalesOrder::with("party")->with("shipping_address")->find($salesorder->id);

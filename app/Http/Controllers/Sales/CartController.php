@@ -60,7 +60,7 @@ class CartController extends Controller {
         $so->due_date=date("Y-m-d");
         $so->amount=$request->gtotal;
         $so->tax=$so->amount*0.1;
-        $so->unpaid_amount=$request->gtotal;
+        $so->unpaid_amount=$request->gtotal+$so->tax;
         $so->reference=$request->reference;
         $so->note=$request->note;
         $so->party_id=Party::where("user_id", Auth::user()->id)->first()->id;
@@ -75,7 +75,7 @@ class CartController extends Controller {
                 $cart=SalesCart::find($cart);
                 $item=new SalesOrderItem();
                 $item->item_id=$cart->item_id;
-                $item->qty=$cart->qty;
+                $item->qty=$request->qty[$i];
                 $item->price=$cart->price;
                 $item->discount=$cart->discount;
                 $item->total=$cart->amount;
@@ -89,6 +89,6 @@ class CartController extends Controller {
         }else{
             DB::rollback();
         }
-        return redirect(url("/usertransaction"))->with(["message"=>"Success: Your order has been received"]);
+        return redirect(url("/usertransaction/".$so->id))->with(["message"=>"Success: Your order has been received"]);
     }
 }
