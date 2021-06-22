@@ -14,6 +14,20 @@
                 <div class="col-md-4">
                     @include("pages.admin.party.create")
                 </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Username/Email Login</label>
+                        <input type="text" name="username" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Re-Type Password</label>
+                        <input type="password" name="re_password" class="form-control"/>
+                    </div>
+                </div>
             </form>
        	</div>
     </div>

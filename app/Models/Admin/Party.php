@@ -3,6 +3,7 @@
 namespace App\Models\Admin;
 
 use App\Models\Base\Model;
+use App\Models\User;
 
 class Party extends Model{
     protected $guarded=['id'];
@@ -10,5 +11,8 @@ class Party extends Model{
     
     public function address(){
         return $this->hasOne(PartyAddress::class,"party_id");
+    }
+    public function user(){
+        return $this->belongsTo(User::class, "user_id");
     }
 }

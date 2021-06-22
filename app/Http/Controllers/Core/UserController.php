@@ -83,13 +83,11 @@ class UserController extends Controller {
     public function destroy(User $user)
     {
         if ($user->delete()) {
-            $message = 'User Has Successfully Been Deleted!';
-            flash($message)->error();
-            return redirect()->route('users.index');
+            foreach($user->roles as $roles)
+                $roles->delete();
+            return redirect()->route('users.index')->with(["message"=>'User Has Successfully Been Deleted!']);
         }
-        $message = 'Something Wrong!';
-        flash($message)->error();
-        return redirect()->back();
+        return redirect()->back()->with(["message"=>'Something Wrong!']);
     }
     public function soft_delete(Request $request, User $user)
     {

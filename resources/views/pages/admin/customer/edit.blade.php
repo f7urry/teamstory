@@ -15,6 +15,7 @@
                     <li class="nav-item flex-sm-fill text-sm-center"><a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-customer">Customer Information</a></li>
                     <li class="nav-item flex-sm-fill text-sm-center"><a class="nav-link" id="pills-detail-tab" data-toggle="pill" href="#pills-address">Address</a></li>
                     <li class="nav-item flex-sm-fill text-sm-center"><a class="nav-link" id="pills-detail-tab" data-toggle="pill" href="#pills-price">Item Price</a></li>
+                    <!-- <li class="nav-item flex-sm-fill text-sm-center"><a class="nav-link" id="pills-detail-tab" data-toggle="pill" href="#pills-account">Account</a></li> -->
                 </ul>
             </div>
             <div class="card-body">
@@ -32,6 +33,9 @@
                             </div>
                         </div>
                     </div>
+                    <!-- <div class="tab-pane fade" id="pills-account">
+                        @include("pages.admin.party.edit-account")
+                    </div> -->
                 </div>
             </div>
         </div>

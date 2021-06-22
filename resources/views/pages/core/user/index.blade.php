@@ -26,7 +26,7 @@
                                 <td>{{$d->email}}</td>
                                 <td>
                                     <a href="{{url('/users/'.$d->id)}}" class='btn btn-primary mr-2'><i class='fa fa-pen'></i></a>
-                                    <a href="{{url('/users/'.$d->id.'/delete')}}" class='btn btn-danger'><i class='fa fa-trash'></i></a>
+                                    <a href="#" data-href="{{url('/users/'.$d->id)}}" class='btn-delete btn btn-danger'><i class='fa fa-trash'></i></a>
                                 </td>
                             </tr>
                             @endforeach

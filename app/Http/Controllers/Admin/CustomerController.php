@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 use App\Service\Admin\PartyService;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Party;
+use App\Service\Core\UserService;
+use stdClass;
 
 class CustomerController extends Controller {
 
     public function __construct() {
         $this->service = new PartyService();
+        $this->userService = new UserService();
     }
 
     public function index(Request $request) {
@@ -33,6 +36,12 @@ class CustomerController extends Controller {
 
     public function store(Request $request) {
         $customer=$this->service->store($request);
+        $user=new stdClass();
+        $request->name=$request->party_name;
+        
+        $user=$this->userService->create($request);
+        $customer->user_id=$user->id;
+        $customer->update();
         return redirect(url("/customer/".$customer->id))->with(["message"=>"Success: Customer has been saved"]);
     }
 
