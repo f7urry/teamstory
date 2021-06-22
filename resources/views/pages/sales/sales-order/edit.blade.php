@@ -4,7 +4,9 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('/salesorder')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
         <li class="breadcrumb-item"><a href="{{url('/salesorder/'.$so->id.'/print')}}"><i class="fa fa-print"></i> Print</a></li>
-        <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/salesorder/'.$so->id)}}"><i class="fa fa-check"></i> Update</a></li>
+        @if($so->sales_status=="WAITING")
+            <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/salesorder/'.$so->id)}}"><i class="fa fa-check"></i> Update</a></li>
+        @endif
         @if($so->sales_status=="IN_PROCESS" && $so->status=="UNPAID")
             <li class="breadcrumb-item"><a href="{{url('/receivable/create?ref='.$so->id)}}"><i class="fa fa-money-bill"></i> Make Payment</a></li>
         @endif
