@@ -27,7 +27,7 @@ class UserTransactionController extends Controller {
      public function list($var = null) {
         $qry = SalesOrder::query();
         $qry->with("party");
-        $qry->where("created_by", Auth::user()->id);
+        $qry->where("party_id", Party::where("user_id",Auth::user()->id)->first()->id);
         return DatatableHelper::generate($var, $qry->get(), "usertransaction", array("show"=>true))->make(true);
     }
     public function create(){
