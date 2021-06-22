@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title","Sales Order")
+@section("title","Transaction")
 @section("content")
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('/usertransaction')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
