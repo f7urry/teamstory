@@ -60,8 +60,8 @@
                 searchable: true,
             },
             {
-                data: 'status',
-                name: 'status',
+                data: 'sales_status',
+                name: 'sales_status',
                 orderable: true,
                 searchable: true,
             },
