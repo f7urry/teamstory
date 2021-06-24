@@ -10,4 +10,9 @@ Route::group(["prefix"=>"api"], function(){
     Route::get("/salesorder/get/{salesorder}",[App\Http\Controllers\Sales\SalesOrderController::class,"get"]);
 
     Route::get("/salesorder/yearlyamount",[App\Http\Controllers\Sales\Report\SalesOrderController::class,"yearlyAmount"]);
+    Route::get("/salesorder/quotationcount",[App\Http\Controllers\Sales\Report\SalesOrderController::class,"quotation_count"]);
+    Route::get("/salesorder/invoicecount",[App\Http\Controllers\Sales\Report\SalesOrderController::class,"invoice_count"]);
+    Route::get("/salesorder/monthlyinvoice",[App\Http\Controllers\Sales\Report\SalesOrderController::class,"monthly_invoice"]);
+    Route::get("/salesorder/unpaidinvoice",[App\Http\Controllers\Sales\Report\SalesOrderController::class,"unpaid_invoice"]);
+    Route::get("/salesorder/bestcustomer",[App\Http\Controllers\Sales\Report\SalesOrderController::class,"best_customer"]);
 });

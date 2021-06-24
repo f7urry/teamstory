@@ -11,7 +11,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Sales Quotation</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="purchaseorder">0</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="quotationcount">0</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-briefcase fa-2x text-gray-300"></i>
@@ -26,7 +26,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Today Invoices</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="maintenanceorder">0</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="invoicecount">0</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-file-alt fa-2x text-gray-300"></i>
@@ -41,7 +41,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">This Month Invoices</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="salesorder">0</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="monthlyinvoice">0</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-copy fa-2x text-gray-300"></i>
@@ -56,7 +56,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Unpaid Invoice</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="receivable">0</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="unpaidinvoice">0</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -88,11 +88,7 @@
             </div>
             <div class="card-body">
                 <div class="chart-area">
-                    <table class="table">
-                        <tr>
-                            <td>Customer1</td>
-                            <td>Rp0</td>
-                        </tr>
+                    <table class="table table-sm table-borderless" id="best_customer">
                     </table>
                 </div>
             </div>
@@ -106,6 +102,29 @@
 $(document).ready(function(){
     $.get(base_url()+"/api/salesorder/yearlyamount",function(data){
         build_chart("sales_chart",data.amount);
+    });
+    $.get(base_url()+"/api/salesorder/quotationcount",function(data){
+        $("#quotationcount").text(number_format(data.amount));
+    });
+    $.get(base_url()+"/api/salesorder/invoicecount",function(data){
+        $("#invoicecount").text(number_format(data.amount));
+    });
+    $.get(base_url()+"/api/salesorder/monthlyinvoice",function(data){
+        $("#monthlyinvoice").text(number_format(data.amount));
+    });
+    $.get(base_url()+"/api/salesorder/unpaidinvoice",function(data){
+        $("#unpaidinvoice").text(number_format(data.amount));
+    });
+    $.get(base_url()+"/api/salesorder/bestcustomer",function(resp){
+        for(var i=0;i<resp.data.length;i++){
+            var e=`
+                <tr>
+                    <td>${resp.data[i].party_name}</td>
+                    <td>${resp.data[i].amount}</td>
+                </tr>
+            `;
+            $("#best_customer").append(e);
+        }
     });
 });
 function build_chart(id,amount){
