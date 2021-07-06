@@ -10,7 +10,8 @@
                     PT.INESIA NUSANTARA SEMESTA<br/>
                     ASKRIDA TOWER LT.4 R.401 A<br/>
                     JL.PRAMUKA RAYA KAV.151 RT.009 RW.005<br/>
-                    UTAN KAYU UTARA, MATRAMAN JAKARTA TIMUR DKI JAKARTA
+                    UTAN KAYU UTARA, MATRAMAN JAKARTA TIMUR DKI JAKARTA<br/>
+                    Tel. 0817-0817-767
                 </div>
                 <div class="col-md-6">
                     <table width="100%" class="table table-bordered">
@@ -81,7 +82,7 @@
                         <tbody>
                             @foreach($so->items as $i=>$detail)
                                 <tr>
-                                    <td>{{$i++}}</td>
+                                    <td>{{$i+1}}</td>
                                     <td>{{$detail->item->code}}</td>
                                     <td>{{$detail->item->item_name}}</td>
                                     <td>{{$detail->qty}}</td>
