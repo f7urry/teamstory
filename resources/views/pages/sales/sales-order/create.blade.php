@@ -29,6 +29,7 @@
                 <div class="card">
                     <div class="card-body">
                         {{ csrf_field() }}
+                        
                         <div class="form-group col-md-12">
                             <label>Invoice Date</label>
                             <input type="text" name="date" class="form-control datepicker" id="date" value="{{date('Y-m-d')}}" />

@@ -9,6 +9,7 @@
                     <img src="{{url('/assets/app/img/logo.png')}}" height="68px" class="bg-white rounded">
                 </div>
                 <div class="col-md-6">
+                
                     <table width="100%" class="table table-bordered">
                         <thead>
                             <tr>

@@ -38,6 +38,7 @@
             searching: true,
             processing: true,
             serverSide: true,
+            order:[[1,"DESC"]],
             ajax: `${base_url()}/api/salesorder/list`,
             columns: [
             {
@@ -69,6 +70,10 @@
                 name: 'sales_status',
                 orderable: true,
                 searchable: true,
+                render: function(data){
+                    return data.replace("_", " ");
+                    
+                }
             },
             {
                 data: 'invoice_code',

@@ -107,7 +107,7 @@
                     <div class="card-body">
                         <div class="form-group col-md-12">
                             <label>Sales Status</label>
-                            <input type="text" name="status" class="form-control" id="date" value="{{$so->sales_status}}" disabled/>
+                            <input type="text" name="status" class="form-control" id="date" value="{{str_replace('_',' ',$so->sales_status)}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Status</label>

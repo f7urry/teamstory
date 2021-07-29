@@ -52,6 +52,7 @@ class ReceivableController extends Controller {
         $p->save();
         if($p->id!=null){
             $so->unpaid_amount=$p->current_unpaid;
+            $so->sales_status=SalesOrder::STATUS_ON_DELIVERY;
             $so->status=$p->current_status;
             $so->update();
             DB::commit();
@@ -86,7 +87,7 @@ class ReceivableController extends Controller {
 
         $so=SalesOrder::find($m->sales_order_id);
         $so->unpaid_amount+=$m->amount;
-        $so->status=SalesOrder::UNPAID;
+        $so->status=SalesOrder::STATUS_UNPAID;
         $so->update();
         return redirect("/receivable");
     }
