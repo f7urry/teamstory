@@ -1,7 +1,6 @@
 <div class="row">
     <div class="col-md-12">
         <div class="table-responsive">
-            
             <a class="btn btn-primary mb-2" id="btn_add" href="{{url('/address/create/'.$party->id)}}"><i class="fa fa-plus"></i> Add Address</a>
             <table class="table table-bordered table-hover table-striped" id="addressTable" width="100%" cellspacing="0">
                 <thead class='thead-dark'>

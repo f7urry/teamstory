@@ -39,12 +39,18 @@
                 name: 'price',
                 orderable: true,
                 searchable: true,
+                render: function(data){
+                    return number_format(data);
+                }
             },
             {
                 data: 'discount',
                 name: 'discount',
                 orderable: true,
                 searchable: true,
+                render: function(data){
+                    return number_format(data);
+                }
             },
             {
                 data: 'action',

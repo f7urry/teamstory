@@ -64,6 +64,9 @@
                 name: 'amount',
                 orderable: true,
                 searchable: true,
+                render: function(data){
+                    return number_format(data);
+                }
             },
             {
                 data: 'sales_status',

@@ -43,30 +43,30 @@ class SalesOrderController extends Controller {
         $so->invoice_code=CodeGenerator::generate("INV");
         $so->date=$request->date;
         $so->due_date=$request->due_date;
-        $so->tax=$request->tax;
-        $so->amount=$request->gtotal;
-        $so->unpaid_amount=$request->gtotal+$request->tax;
+        $so->tax=NumberHelper::toValue($request->tax);
+        $so->amount=NumberHelper::toValue($request->gtotal);
+        $so->unpaid_amount=NumberHelper::toValue($request->gtotal)+NumberHelper::toValue($request->tax);
         $so->reference=$request->reference;
         $so->note=$request->note;
         $so->party_id=$request->party_id;
         $so->status=SalesOrder::STATUS_UNPAID;
         $so->sales_status=SalesOrder::STATUS_IN_PROCESS;
         $so->currency=$request->currency;
-        $so->shipping_cost=$request->shipping_cost;
+        $so->shipping_cost=NumberHelper::toValue($request->shipping_cost);
         $so->shipping_address_id=$request->shipping_address;
         $so->created_by=Auth::user()->id;
 
         if ($so->save()) {
             foreach ($request->item_id as $i=>$item) {
                 $item=new SalesOrderItem();
-                $item->qty=$request->quantity[$i];
+                $item->qty=NumberHelper::toValue($request->quantity[$i]);
                 $item->free_qty=$request->free_qty[$i];
                 $item->item_id=$request->item_id[$i];
-                $item->custom_price_id=$request->custom_price_id[$i];
-                $item->qty=$request->quantity[$i];
-                $item->price=$request->price[$i];
-                $item->discount=$request->discount[$i];
-                $item->total=$request->total[$i];
+                $item->custom_price_id=NumberHelper::toValue($request->custom_price_id[$i]);
+                $item->qty=NumberHelper::toValue($request->quantity[$i]);
+                $item->price=NumberHelper::toValue($request->price[$i]);
+                $item->discount=NumberHelper::toValue($request->discount[$i]);
+                $item->total=NumberHelper::toValue($request->total[$i]);
                 $item->sales_order_id=$so->id;
                 $item->created_by=Auth::user()->id;
                 $item->save();
@@ -124,8 +124,8 @@ class SalesOrderController extends Controller {
         $gtotal=0;
         foreach($request->soi as $i=>$soi){
             $soi=SalesOrderItem::find($soi);
-            $soi->free_qty=$request->free_qty[$i];
-            $soi->discount=$request->discount[$i];
+            $soi->free_qty=NumberHelper::toValue($request->free_qty[$i]);
+            $soi->discount=NumberHelper::toValue($request->discount[$i]);
             
             $total=($soi->price*$soi->qty);
             $soi->total=$total-($total*$soi->discount/100);
@@ -135,7 +135,7 @@ class SalesOrderController extends Controller {
         }
         $salesorder->amount=$gtotal;
         $salesorder->tax=$gtotal*10/100;
-        $salesorder->unpaid_amount=$gtotal+$salesorder->tax;
+        $salesorder->unpaid_amount=NumberHelper::toValue($gtotal)+NumberHelper::toValue($salesorder->tax);
         $salesorder->update();
         return redirect("/salesorder/".$salesorder->id)->with(["message"=>"Success: Sales Order has been updated"]);
     }

@@ -88,23 +88,23 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>Shipping Cost</label>
-                            <input type="text" name="shipping_cost" class="form-control" id="shipping_cost" value="{{$so->shipping_cost}}" {{$so->sales_status=="WAITING"?"disabled":""}}/>
+                            <input type="text" name="shipping_cost" class="form-control" id="shipping_cost" value="{{number_format($so->shipping_cost)}}" {{$so->sales_status=="WAITING"?"disabled":""}}/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Subtotal</label>
-                            <input type="text" name="subtotal" class="form-control" id="date" value="{{$so->amount-$so->tax}}" disabled/>
+                            <input type="text" name="subtotal" class="form-control" id="date" value="{{number_format($so->amount-$so->tax)}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Tax(10%)</label>
-                            <input type="text" name="tax" class="form-control" id="date" value="{{$so->tax}}" disabled/>
+                            <input type="text" name="tax" class="form-control" id="date" value="{{number_format($so->tax)}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Total Discount</label>
-                            <input type="text" name="subtotal" class="form-control" id="date" value="{{$so->amount_discount}}" disabled/>
+                            <input type="text" name="subtotal" class="form-control" id="date" value="{{number_format($so->amount_discount)}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Grand Total</label>
-                            <input type="text" name="gtotal" class="form-control" id="date" value="{{$so->amount+$so->tax}}" disabled/>
+                            <input type="text" name="gtotal" class="form-control" id="date" value="{{number_format($so->amount+$so->tax)}}" disabled/>
                         </div>
                     </div>
                 </div>
@@ -122,11 +122,11 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>Unpaid</label>
-                            <input type="text" name="unpaid_amount" class="form-control" id="date" value="{{$so->unpaid_amount}}" disabled/>
+                            <input type="text" name="unpaid_amount" class="form-control" id="date" value="{{number_format($so->unpaid_amount)}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Paid</label>
-                            <input type="text" name="paid_amount" class="form-control" id="date" value="{{$so->paid_amount}}" disabled/>
+                            <input type="text" name="paid_amount" class="form-control" id="date" value="{{number_format($so->paid_amount)}}" disabled/>
                         </div>
                     </div>
                 </div>
@@ -167,19 +167,19 @@
                                             </td>
                                             <td>
                                                  @if($so->sales_status=="WAITING")
-                                                    <input type="text" name="price[]" value="{{$detail->price}}" class="form-control"/>
+                                                    <input type="text" name="price[]" value="{{number_format($detail->price)}}" class="form-control"/>
                                                 @else
-                                                   {{$detail->price}}
+                                                   {{number_format($detail->price)}}
                                                 @endif
                                             </td>
                                             <td>
                                                  @if($so->sales_status=="WAITING")
-                                                    <input type="text" name="discount[]" value="{{$detail->discount}}" class="form-control"/>
+                                                    <input type="text" name="discount[]" value="{{number_format($detail->discount)}}" class="form-control"/>
                                                 @else
-                                                   {{$detail->discount}}
+                                                   {{number_format($detail->discount)}}
                                                 @endif
                                             </td>
-                                            <td>{{$detail->total}}</td>
+                                            <td>{{number_format($detail->total)}}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

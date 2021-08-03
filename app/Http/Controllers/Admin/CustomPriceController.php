@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Helper\DatatableHelper;
+use App\Helper\NumberHelper;
 use App\Helper\SelectHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\CustomPrice;
@@ -28,6 +29,8 @@ class CustomPriceController extends Controller {
 
     public function store(Request $request) {
         $p=new CustomPrice($request->except(['_token']));
+        $p->discount=NumberHelper::toValue($p->discount);
+        $p->price=NumberHelper::toValue($p->price);
         $p->save();
         return redirect(strtolower($p->party->party_role)."/".$p->party_id)->with("message","Success: Custom Price has been saved");
     }

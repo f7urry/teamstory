@@ -58,7 +58,7 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>Shipping Cost</label>
-                            <input type="text" class="form-control" name="shipping_cost" id="shipping_cost" value="0" />
+                            <input type="text" class="form-control number" name="shipping_cost" id="shipping_cost" value="0" />
                         </div>
                         <div class="form-group col-md-12">
                             <label>Subtotal</label>
@@ -136,20 +136,21 @@
         
         var gtotal=0;
         for(var i=0;i<qty.length;i++){
-            var q=qty.eq(i).val();
-            var p=price.eq(i).val();
-            var d=discount.eq(i).val();
+            var q=number_value(qty.eq(i).val());
+            var p=number_value(price.eq(i).val());
+            var d=number_value(discount.eq(i).val());
             var t=q*p;
             t=t-(t*d/100);
-            total.eq(i).val(t);
+            console.log(q+":"+p+":"+d+":"+t);
+            total.eq(i).val(number_format(t));
             
             gtotal+=t;
         }
         var shipping=$("#shipping_cost").val(); 
-        gtotal+=parseInt(shipping);
-        $("#subtotal").val(gtotal);
-        $("#tax").val(gtotal*0.1);
-        $("#gtotal").val(gtotal+(gtotal*0.1));
+        gtotal+=parseInt(number_value(shipping));
+        $("#subtotal").val(number_format(gtotal));
+        $("#tax").val(number_format(gtotal*0.1));
+        $("#gtotal").val(number_format(gtotal+(gtotal*0.1)));
     }
     function set_party(id){
     	$.get(`${base_url()}/api/party/get/${id}`,function(data){
@@ -177,19 +178,19 @@
                             <span id="item${index}">${item.code} - ${item.item_name}</span>
                         </td>
                         <td>
-                            <input type="number" name="quantity[]" class="calc quantity form-control col-md-12" value="0"/>
+                            <input type="text" name="quantity[]" class="calc quantity form-control col-md-12 number" value="0"/>
                         </td>
                         <td>
-                            <input type="number" name="free_qty[]" class="calc form-control col-md-12" value="0"/>
+                            <input type="text" name="free_qty[]" class="calc form-control col-md-12 number" value="0"/>
                         </td>
                         <td>
-                            <input type="number" name="price[]" class="calc price form-control col-md-12" value="${data.price}" readonly/>
+                            <input type="text" name="price[]" class="calc price form-control col-md-12 number" value="${data.price}" readonly/>
                         </td>
                         <td>
-                            <input type="number" name="discount[]" class="calc discount form-control col-md-12" value="${data.discount}" readonly/>
+                            <input type="text" name="discount[]" class="calc discount form-control col-md-12 number" value="${data.discount}" readonly/>
                         </td>
                         <td>
-                            <input type="number" name="total[]" class="total form-control col-md-12" value="0" readonly/>
+                            <input type="text" name="total[]" class="total form-control col-md-12 number" value="0" readonly/>
                         </td>
                         <td>
                             <button type="button" class='btn btn-danger btn-remove-row'><i class='fa fa-times'></i></button>
@@ -204,19 +205,19 @@
                             <span id="item${index}">${item.code} - ${item.item_name}</span>
                         </td>
                         <td>
-                            <input type="number" name="quantity[]" class="calc quantity form-control col-md-12" value="0"/>
+                            <input type="text" name="quantity[]" class="calc quantity form-control col-md-12 number" value="0"/>
                         </td>
                         <td>
-                            <input type="number" name="free_qty[]" class="calc form-control col-md-12" value="0"/>
+                            <input type="text" name="free_qty[]" class="calc form-control col-md-12 number" value="0"/>
                         </td>
                         <td>
-                            <input type="number" name="price[]" class="calc price form-control col-md-12" value="${item.sell_price}"/>
+                            <input type="text" name="price[]" class="calc price form-control col-md-12 number" value="${item.sell_price}"/>
                         </td>
                         <td>
-                            <input type="number" name="discount[]" class="calc discount form-control col-md-12" value="0"/>
+                            <input type="text" name="discount[]" class="calc discount form-control col-md-12 number" value="0"/>
                         </td>
                         <td>
-                            <input type="number" name="total[]" class="total form-control col-md-12" value="0" readonly/>
+                            <input type="text" name="total[]" class="total form-control col-md-12 number" value="0" readonly/>
                         </td>
                         <td>
                             <button type="button" class='btn btn-danger btn-remove-row'><i class='fa fa-times'></i></button>

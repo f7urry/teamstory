@@ -22,11 +22,11 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>Price</label>
-                            <input type="number" name="price" class="form-control" id="price" />
+                            <input type="text" name="price" class="form-control number" id="price" />
                         </div>
                         <div class="form-group col-md-12">
-                            <label>Discount</label>
-                            <input type="number" name="discount" class="form-control" id="discount" />
+                            <label>Discount(%)</label>
+                            <input type="text" name="discount" class="form-control number" id="discount" />
                         </div>
                         <div class="form-group col-md-12">
                             <label>Note</label>
