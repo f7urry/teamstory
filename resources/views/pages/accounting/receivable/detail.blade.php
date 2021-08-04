@@ -34,7 +34,7 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-4">Sales Amount</label>
-                                <span class="col-md-6">: Rp{{number_format($rec->salesorder->amount)}}</span>
+                                <span class="col-md-6">: Rp{{number_format($rec->salesorder->amount+$rec->salesorder->tax)}}</span>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-4">Receivable Amount</label>

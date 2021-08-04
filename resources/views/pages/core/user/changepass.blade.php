@@ -2,7 +2,7 @@
 @section("title","Change Password")
 @section('content')
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{url('/users/'.$user->id)}}"><i class="fa fa-arrow-left"></i> Kembali</a></li>
+    <li class="breadcrumb-item"><a href="{{url('/users/'.$user->id)}}"><i class="fa fa-arrow-left"></i> Back</a></li>
     <li class="breadcrumb-item"><a href="#" id="btn-update"><i class="fa fa-check"></i> Update</a></li>
 </ol>
 <div class="row">

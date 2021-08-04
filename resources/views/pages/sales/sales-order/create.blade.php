@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <div class="form-group col-md-12">
                             <label>Shipping Address</label>
-                            <select name="shipping_address" id="shipping_address" class="form-control"></select>
+                            <select name="shipping_address" id="shipping_address" class="form-control" required></select>
                         </div>
                     </div>
                 </div>
@@ -166,6 +166,8 @@
     function add_item(item){
         if($("#party_id").val()==null){
             alert("Customer can't empty");
+        }else if($("#shipping_address").val()==null){
+            alert("Shipping Address can't empty");
         }else{
             $.get(`${base_url()}/api/customprice/get/${$("#party_id").val()}/${item.id}`,function(data){
                 var el='';

@@ -50,7 +50,7 @@ class SalesOrderController extends Controller {
         $so->note=$request->note;
         $so->party_id=$request->party_id;
         $so->status=SalesOrder::STATUS_UNPAID;
-        $so->sales_status=SalesOrder::STATUS_IN_PROCESS;
+        $so->sales_status=SalesOrder::STATUS_ON_DELIVERY;
         $so->currency=$request->currency;
         $so->shipping_cost=NumberHelper::toValue($request->shipping_cost);
         $so->shipping_address_id=$request->shipping_address;
@@ -147,6 +147,7 @@ class SalesOrderController extends Controller {
         $salesorder=SalesOrder::find($salesorder->id);
         $salesorder->sales_status=SalesOrder::STATUS_IN_PROCESS;
         $salesorder->update();
+
         $issued=new GoodsIssue();
         $issued->code=CodeGenerator::generate("GI");
         $issued->date=$salesorder->date;
@@ -154,6 +155,7 @@ class SalesOrderController extends Controller {
         $issued->reference_type="SALES ORDER";
         $issued->reference_no=$salesorder->code;
         $issued->save();
+
         foreach($salesorder->items as $soi){
             $issuedItem=new GoodsIssueItem();
             $issuedItem->quantity=$soi->qty;
@@ -162,6 +164,7 @@ class SalesOrderController extends Controller {
             $issuedItem->goods_issue_id=$issued->id;
             $issuedItem->save();
         }
+
         $stockService=new StockService();
         foreach ($issued->goodsIssueItems as $issueItem) {
             $stock=new Stock();
@@ -178,8 +181,15 @@ class SalesOrderController extends Controller {
             $ledger->reference_type=TableType::GOODS_ISSUE;
             $stockService->stockOut($stock,$ledger);
         }
-        return redirect(url("/salesorder/".$salesorder->id));
+        return redirect(url("/salesorder/".$salesorder->id))->with(["message"=>"Success: Sales Order has been processed"]);
     }
+    public function make_delivery(Request $request,SalesOrder $salesorder){
+        $salesorder=SalesOrder::find($salesorder->id);
+        $salesorder->sales_status=SalesOrder::STATUS_ON_DELIVERY;
+        $salesorder->update();
+        return redirect(url("/salesorder/".$salesorder->id))->with(["message"=>"Success: Sales Order now on delivery"]);;
+    }
+
     public function options(Request $request) {
         $qry = DB::table(SalesOrder::tablename()." as s");
         $qry->join(Party::tablename()." as c","s.party_id","c.id");

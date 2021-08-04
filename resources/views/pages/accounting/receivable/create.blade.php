@@ -20,7 +20,7 @@
                             <div class="form-group">
                                 <label>Sales Order</label>
                                 <div class="input-group">
-                                    <select name="sales_order_id" id="salesorder">
+                                    <select name="sales_order_id" id="salesorder" required>
                                         @if($ref!=null)
                                             <option value="{{$ref->id}}">{{$ref->code}}</option>
                                         @endif
@@ -65,7 +65,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Receivable Amount</label>
-                                <input type="text" class="form-control number" name="amount" value="0"/>
+                                <input type="text" class="form-control number" name="amount" value="0" id="amount"/>
                             </div>
                             <div class="form-group">
                                 <label>Note</label>
@@ -87,9 +87,22 @@
             var id=$(this).val();
             set_so(id);
         });
-        @if($ref!=null)
-            set_so("{{$ref->id}}");
-        @endif
+        if($("#salesorder").val()!=null)
+            set_so($("#salesorder").val());
+        
+        $("#formAdd").on("submit",function(){
+            var so=$("#salesorder").val();
+            var amount=$("#amount").val();
+            console.log(amount);
+            if(so==null){
+                alert("Sales Order can't empty");
+                return false;
+            }else if(parseInt(amount)<=0){
+                alert("Receivable amount cant be zero");
+                return false;
+            }else
+                return true;
+        });
     });
     function set_so(id){
         $.get(base_url()+"/api/salesorder/get/"+id,function(data){
@@ -97,7 +110,7 @@
             $("#address").val(data.party.address.address);
             $("#phone").val(data.party.address.phone);
             $("#unpaid").val(number_format(data.unpaid_amount));
-            $("#sell_price").val(number_format(data.amount));
+            $("#sell_price").val(number_format(parseInt(data.amount)+parseInt(data.tax)));
         });
     }
 </script>

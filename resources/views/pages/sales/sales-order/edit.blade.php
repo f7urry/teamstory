@@ -7,8 +7,11 @@
         @if($so->sales_status=="WAITING")
             <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/salesorder/'.$so->id)}}"><i class="fa fa-check"></i> Update</a></li>
         @endif
-        @if($so->sales_status=="IN_PROCESS" && $so->status=="UNPAID")
-            <li class="breadcrumb-item"><a href="{{url('/receivable/create?ref='.$so->id)}}"><i class="fa fa-money-bill"></i> Make Payment</a></li>
+        @if($so->sales_status=="ON_DELIVERY" && $so->status=="UNPAID")
+            <li class="breadcrumb-item"><a href="{{url('/receivable/create?ref='.$so->id)}}"><i class="fa fa-money-bill"></i> Create Payment</a></li>
+        @endif
+        @if($so->sales_status=="IN_PROCESS")
+            <li class="breadcrumb-item"><a href="{{url('/salesorder/'.$so->id.'/delivery')}}"><i class="fa fa-truck"></i> Create Delivery</a></li>
         @endif
         @if($so->sales_status=="WAITING")
             <li class="breadcrumb-item"><a href="{{url('/salesorder/'.$so->id.'/process')}}"><i class="fa fa-arrow-alt-circle-right"></i> Process</a></li>

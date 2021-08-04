@@ -26,6 +26,7 @@ class ReceivableController extends Controller {
     }
 
     public function create(Request $request) {
+        $map["ref"]="";
         if($request->ref!=null){
             $so=SalesOrder::find($request->ref);
             $map["ref"]=$so;
@@ -52,7 +53,6 @@ class ReceivableController extends Controller {
         $p->save();
         if($p->id!=null){
             $so->unpaid_amount=$p->current_unpaid;
-            $so->sales_status=SalesOrder::STATUS_ON_DELIVERY;
             $so->status=$p->current_status;
             $so->update();
             DB::commit();
