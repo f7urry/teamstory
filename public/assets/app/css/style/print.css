@@ -66,7 +66,7 @@
 
 @media screen {
     body {
-        background: #cecece;
+        background: #fff;
     }
     .page {
         background: #fff;
@@ -98,7 +98,6 @@
 #page-wrapper>div {
     padding: 10px;
     background: #fff;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
 table tr td {

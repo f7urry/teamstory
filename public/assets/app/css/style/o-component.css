@@ -1,8 +1,7 @@
 .datepicker-dropdown {
     box-shadow: 0px 0px 5px rgb(0 0 0 / 30%);
 }
-.dropdown,
-a.nav-link.dropdown-toggle{
+.dropdown, a.nav-link.dropdown-toggle{
     height:100%;
     margin-top: auto;
     margin-bottom: auto;
@@ -12,28 +11,29 @@ a.nav-link.dropdown-toggle{
 }
 
 .sb-topnav .navbar-brand{
-    width:auto;
+    height: 56px;
+    background: var(--nav-color);
+    padding-top: 0.7rem;
 }
 
-.sb-sidenav-dark .sb-sidenav-menu-heading,
-.sb-sidenav-dark .sb-nav-link-icon,
-.sb-sidenav-dark .sb-sidenav-collapse-arrow,
-.sb-sidenav-dark .nav-link,
 .navbar-dark .btn-link,
 .navbar-dark .nav-link{
     color: #fff !important;
 }
-
-.sb-sidenav-light i,
-.sb-sidenav-light svg {
-    color: black;
+.sb-sidenav-menu-heading,
+.sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-nav-link-icon,
+.sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-sidenav-collapse-arrow{
+    color: #000;
+}
+.sb-sidenav-menu .nav-link.active,
+.sb-sidenav-menu .nav-link.active .sb-nav-link-icon,
+.sb-sidenav-menu .nav-link.active .sb-sidenav-collapse-arrow,
+.sb-sidenav-menu .nav-link:hover,
+.sb-sidenav-menu .nav-link:hover .sb-nav-link-icon,
+.sb-sidenav-menu .nav-link:hover .sb-sidenav-collapse-arrow {
+    color: var(--link-color-hover) !important;
 }
 
-.sb-sidenav-dark .nav-link.active,
-.sb-sidenav-dark .nav-link.active .sb-nav-link-icon,
-.sb-sidenav-dark .nav-link.active .sb-sidenav-collapse-arrow,
-.sb-sidenav-dark .nav-link:hover,
-.sb-sidenav-dark .nav-link:hover .sb-nav-link-icon,
-.sb-sidenav-dark .nav-link:hover .sb-sidenav-collapse-arrow {
-    color: rgb(8, 164, 255) !important;
+.fc-license-message{
+    display: none !important;
 }

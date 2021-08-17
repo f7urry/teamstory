@@ -5,16 +5,16 @@
     margin-bottom: 1rem !important;
     margin-top: 1rem !important;
     list-style: none !important;
-    /* background-color: #fff !important; */
-    background: rgb(128, 128, 128);
+    background-color: #eaecf4 !important;
+    /*background: rgb(128, 128, 128);
     background: linear-gradient(
         0deg,
         #dcdcdc 0%,
         #e4e4e4 50%,
         #ececec 100%
-    );
+    );*/
     border-radius: 0.25rem !important;
-    border: 1px solid;
+    border: 1px solid #dfdfdf;
     color: #ffff;
 }
 
@@ -28,7 +28,7 @@
 
 .breadcrumb-item a:hover {
     /* color: #2200b9 !important; */
-    color: rgb(8, 164, 255);
+    color: var(--link-color-hover);
 }
 
 .breadcrumb-item + .breadcrumb-item {

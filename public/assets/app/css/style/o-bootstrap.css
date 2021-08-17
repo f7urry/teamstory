@@ -25,6 +25,10 @@
     color: #333;
 }
 
+.btn-nolabel{
+    padding-top: 9px !important;
+}
+
 .datepicker {
     padding-left: 0.75rem;
 }

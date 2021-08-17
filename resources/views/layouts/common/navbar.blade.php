@@ -1,10 +1,10 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark border-bottom bg-primary">
-    <button class="ml-3 btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fa fa-bars"></i></button>
+<nav class="sb-topnav navbar navbar-expand navbar-dark shadow bg-primary">
     <a class="navbar-brand" href="#">
-        <img src="{{url('/assets/app/img/logo.png')}}" height="38px" class="bg-white rounded">
+        <img src="{{url('/assets/app/img/logo.png')}}" class="bg-white rounded" style="width:100px;padding: 2px 10px 2px 10px;">
     </a>
-    <a class="nav-link border-left" href="{{url('/')}}">
-        <div class="sb-nav-link-icon"><i class="fa fa-home"></i></div>
+    <button class="ml-3 btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fa fa-bars"></i></button>
+    <a class="nav-link" href="{{url('/')}}">
+        <div class="sb-nav-link-icon"><i class="fa fa-home"></i> Home</div>
     </a>
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
        <!--  <div class="input-group">
