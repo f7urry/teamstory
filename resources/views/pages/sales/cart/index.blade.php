@@ -61,7 +61,7 @@
                         <div class="col-6">
                             <span class="font-weight-bold">Shipping To</span>
                         </div>
-                        <div class="col-6">1
+                        <div class="col-6">
                             <select name="shipping_address" id="shipping_address" class="form-control" data-height="true"></select>
                             <span id="address" style="font-size:12px"></span>
                         </div>

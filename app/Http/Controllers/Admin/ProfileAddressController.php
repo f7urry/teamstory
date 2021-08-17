@@ -26,8 +26,10 @@ class ProfileAddressController extends Controller {
 
     public function store(Request $request) {
         $p=new PartyAddress($request->except(['_token']));
+        $party=Party::find($p->party_id);
+        if($request->pic==null || $request->pic=="")
+            $p->pic_name=$party->party_name;
         $p->save();
-        $p->party=Party::find($p->party_id);
         return redirect("/profileaddress")->with("message","Success: Address has been saved");
     }
 
@@ -53,9 +55,8 @@ class ProfileAddressController extends Controller {
         return redirect("/profileaddress")->with("message","Success: Default Address has been updated");
     }
 
-    public function destroy(PartyAddress $address) {
-        $p=PartyAddress::find($address->id);
-        $party=Party::find($p->party_id);
+    public function destroy(PartyAddress $profileaddress) {
+        $p=PartyAddress::find($profileaddress->id);
         $p->delete();
         return redirect("/profileaddress")->with("message","Success: Address has been deleted");
     }

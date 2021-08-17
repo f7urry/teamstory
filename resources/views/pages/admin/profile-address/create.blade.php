@@ -3,7 +3,7 @@
 @section("content")
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('/profileaddress')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
-        <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/address')}}"><i class="fa fa-check"></i> Save</a></li>
+        <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/profileaddress')}}"><i class="fa fa-check"></i> Save</a></li>
     </ol>
     <div class="row">
         <div class="col-lg-4">
