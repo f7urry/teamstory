@@ -45,7 +45,7 @@
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-12">
-                            <button class="btn btn-block btn-secondary" id="btn-checkout" type="submit" disabled>Make Order</button>
+                            <button class="btn btn-block btn-secondary btn-lg" id="btn-checkout" type="submit" disabled>Make Order</button>
                         </div>
                     </div>
                     <div class="row">
@@ -61,7 +61,7 @@
                         <div class="col-6">
                             <span class="font-weight-bold">Shipping To</span>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6">1
                             <select name="shipping_address" id="shipping_address" class="form-control" data-height="true"></select>
                             <span id="address" style="font-size:12px"></span>
                         </div>

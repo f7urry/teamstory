@@ -47,7 +47,11 @@ class PartyService {
 
             $address=new PartyAddress();
             $address->party_id=$p->id;
-            $address->pic_name=$request->pic_name;
+            if($request->pic_name!=null || $request->pic_name!="")
+                $address->pic_name=$request->pic_name;
+            else
+                $address->pic_name=$request->party_name;
+                
             $address->phone=$request->phone;
             $address->email=$request->email;
             $address->city_id=$request->city_id;

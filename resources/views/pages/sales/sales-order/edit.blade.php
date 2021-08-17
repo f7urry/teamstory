@@ -95,19 +95,19 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>Subtotal</label>
-                            <input type="text" name="subtotal" class="form-control" id="date" value="{{number_format($so->amount-$so->tax)}}" disabled/>
+                            <input type="text" name="subtotal" class="form-control" id="subtotal" value="{{number_format($so->amount-$so->tax)}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Tax(10%)</label>
-                            <input type="text" name="tax" class="form-control" id="date" value="{{number_format($so->tax)}}" disabled/>
+                            <input type="text" name="tax" class="form-control" id="tax" value="{{number_format($so->tax)}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Total Discount</label>
-                            <input type="text" name="subtotal" class="form-control" id="date" value="{{number_format($so->amount_discount)}}" disabled/>
+                            <input type="text" name="subtotal" class="form-control" id="amount_discount" value="{{number_format($so->amount_discount)}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Grand Total</label>
-                            <input type="text" name="gtotal" class="form-control" id="date" value="{{number_format($so->amount+$so->tax)}}" disabled/>
+                            <input type="text" name="gtotal" class="form-control" id="gtotal" value="{{number_format($so->amount+$so->tax)}}" disabled/>
                         </div>
                     </div>
                 </div>
@@ -117,19 +117,19 @@
                     <div class="card-body">
                         <div class="form-group col-md-12">
                             <label>Sales Status</label>
-                            <input type="text" name="status" class="form-control" id="date" value="{{str_replace('_',' ',$so->sales_status)}}" disabled/>
+                            <input type="text" name="status" class="form-control" id="sales_status" value="{{str_replace('_',' ',$so->sales_status)}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Status</label>
-                            <input type="text" name="status" class="form-control" id="date" value="{{$so->status}}" disabled/>
+                            <input type="text" name="status" class="form-control" id="status" value="{{$so->status}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Unpaid</label>
-                            <input type="text" name="unpaid_amount" class="form-control" id="date" value="{{number_format($so->unpaid_amount)}}" disabled/>
+                            <input type="text" name="unpaid_amount" class="form-control" id="unpaid_amount" value="{{number_format($so->unpaid_amount)}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Paid</label>
-                            <input type="text" name="paid_amount" class="form-control" id="date" value="{{number_format($so->paid_amount)}}" disabled/>
+                            <input type="text" name="paid_amount" class="form-control" id="paid_amount" value="{{number_format($so->paid_amount)}}" disabled/>
                         </div>
                     </div>
                 </div>
@@ -160,29 +160,37 @@
                                                 @endif
                                                 {{$detail->item->code}} - {{$detail->item->item_name}}
                                             </td>
-                                            <td>{{$detail->qty}}</td>
+                                            <td>
+                                                 @if($so->sales_status=="WAITING")
+                                                    <input type="text" name="qty[]" value="{{$detail->qty}}" class="form-control number calc quantity"/>
+                                                @else
+                                                    {{$detail->qty}}
+                                                @endif
+                                            </td>
                                             <td>
                                                 @if($so->sales_status=="WAITING")
-                                                    <input type="text" name="free_qty[]" value="{{$detail->free_qty}}" class="form-control"/>
+                                                    <input type="text" name="free_qty[]" value="{{$detail->free_qty}}" class="form-control number"/>
                                                 @else
                                                     {{$detail->free_qty}}
                                                 @endif
                                             </td>
                                             <td>
                                                  @if($so->sales_status=="WAITING")
-                                                    <input type="text" name="price[]" value="{{number_format($detail->price)}}" class="form-control"/>
+                                                    <input type="text" name="price[]" value="{{number_format($detail->price)}}" class="form-control number calc price"/>
                                                 @else
                                                    {{number_format($detail->price)}}
                                                 @endif
                                             </td>
                                             <td>
                                                  @if($so->sales_status=="WAITING")
-                                                    <input type="text" name="discount[]" value="{{number_format($detail->discount)}}" class="form-control"/>
+                                                    <input type="text" name="discount[]" value="{{number_format($detail->discount)}}" class="form-control number calc discount"/>
                                                 @else
                                                    {{number_format($detail->discount)}}
                                                 @endif
                                             </td>
-                                            <td>{{number_format($detail->total)}}</td>
+                                            <td>
+                                                <input type="text" name="total[]" class="total form-control col-md-12 number" value="{{number_format($detail->total)}}" readonly/>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -197,5 +205,35 @@
 
 @push("scripts")
 <script type="text/javascript">
+$(function(){
+    $(".calc").on("keyup",function(){calc()});
+});
+function calc(){
+    var qty=$(".quantity");
+    var price=$(".price");
+    var discount=$(".discount");
+    var total=$(".total");
+    
+    var gtotal=0;
+    for(var i=0;i<qty.length;i++){
+        var q=number_value(qty.eq(i).val());
+        var p=number_value(price.eq(i).val());
+        var d=number_value(discount.eq(i).val());
+        var t=q*p;
+        t=t-(t*d/100);
+        console.log(q+":"+p+":"+d+":"+t);
+        total.eq(i).val(number_format(t));
+        
+        gtotal+=t;
+    }
+    var shipping=$("#shipping_cost").val(); 
+    gtotal+=parseInt(number_value(shipping));
+    $("#subtotal").val(number_format(gtotal));
+    $("#tax").val(number_format(gtotal*0.1));
+    
+    var unpaid=number_format(gtotal+(gtotal*0.1));
+    $("#gtotal").val(unpaid);
+    $("#unpaid_amount").val(unpaid);
+}
 </script>
 @endpush
