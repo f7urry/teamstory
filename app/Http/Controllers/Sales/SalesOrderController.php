@@ -50,7 +50,7 @@ class SalesOrderController extends Controller {
         $so->note=$request->note;
         $so->party_id=$request->party_id;
         $so->status=SalesOrder::STATUS_UNPAID;
-        $so->sales_status=SalesOrder::STATUS_ON_DELIVERY;
+        $so->sales_status=SalesOrder::STATUS_IN_PROCESS;
         $so->currency=$request->currency;
         $so->shipping_cost=NumberHelper::toValue($request->shipping_cost);
         $so->shipping_address_id=$request->shipping_address;

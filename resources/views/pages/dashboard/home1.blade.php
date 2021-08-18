@@ -120,7 +120,7 @@ $(document).ready(function(){
             var e=`
                 <tr>
                     <td>${resp.data[i].party_name}</td>
-                    <td>${resp.data[i].amount}</td>
+                    <td>${number_format(resp.data[i].amount)}</td>
                 </tr>
             `;
             $("#best_customer").append(e);
