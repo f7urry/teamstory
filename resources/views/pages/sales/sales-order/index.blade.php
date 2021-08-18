@@ -64,8 +64,8 @@
                 name: 'amount',
                 orderable: true,
                 searchable: true,
-                render: function(data){
-                    return number_format(data);
+                render: function(data, type, row, meta){
+                    return number_format(data+row['tax']);
                 }
             },
             {
