@@ -49,7 +49,7 @@ class ReceivableController extends Controller {
         if($p->current_unpaid<=0){
             $p->current_unpaid=0;
             $p->current_status=SalesOrder::STATUS_PAID;
-            $p->sales_status=SalesOrder::STATUS_COMPLETE;
+            $so->sales_status=SalesOrder::STATUS_COMPLETE;
         }
         $p->save();
         if($p->id!=null){

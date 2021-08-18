@@ -14,7 +14,7 @@ class SalesOrder extends Model{
     
     public const STATUS_WAITING="WAITING";
     public const STATUS_IN_PROCESS="IN_PROCESS";
-    public const STATUS_ON_DELIVERY="ON_DELIVERY";
+    public const STATUS_ON_DELIVERY="DELIVERED";
     public const STATUS_COMPLETE="COMPLETE";
     public const STATUS_CANCEL="CANCEL";
 
