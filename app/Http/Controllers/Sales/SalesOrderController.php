@@ -44,8 +44,8 @@ class SalesOrderController extends Controller {
         $so->date=$request->date;
         $so->due_date=$request->due_date;
         $so->tax=NumberHelper::toValue($request->tax);
-        $so->amount=NumberHelper::toValue($request->gtotal);
-        $so->unpaid_amount=NumberHelper::toValue($request->gtotal)+NumberHelper::toValue($request->tax);
+        $so->amount=NumberHelper::toValue($request->subtotal);
+        $so->unpaid_amount=NumberHelper::toValue($request->subtotal)+NumberHelper::toValue($request->tax);
         $so->reference=$request->reference;
         $so->note=$request->note;
         $so->party_id=$request->party_id;
@@ -81,7 +81,7 @@ class SalesOrderController extends Controller {
             $issued->save();
             foreach($so->items as $soi){
                 $issuedItem=new GoodsIssueItem();
-                $issuedItem->quantity=$soi->qty;
+                $issuedItem->quantity=$soi->qty+$soi->free_qty;
                 $issuedItem->item_id=$soi->item_id;
                 $issuedItem->uom_id=$soi->item->uom_id;
                 $issuedItem->goods_issue_id=$issued->id;
