@@ -87,7 +87,7 @@
                                     <td>{{$detail->item->item_name}}</td>
                                     <td>{{$detail->qty}}</td>
                                     <td>{{$detail->free_qty}}</td>
-                                    <td align="right">{{$detail->discount}}</td>
+                                    <td align="right">{{number_format($detail->discount)}}%</td>
                                     <td align="right">{{number_format($detail->price)}}</td>
                                     <td align="right">{{number_format($detail->total)}}</td>
                                 </tr>
@@ -95,15 +95,15 @@
                         </tbody>
                         <tfooter>
                             <tr>
-                                <td colspan="6" rowspan="3">Said<br/>
-                                    {{ucwords(NumberHelperID::terbilang($so->amount))}}
+                                <td colspan="6" rowspan="3" class="font-italic">Said:<br/>
+                                    {{ucwords(NumberHelperID::terbilang($so->amount+$so->tax))}}
                                 </td>
                                 <td>Total Discount</td>
                                 <td align="right">{{number_format($so->amount_discount)}}</td>
                             </tr>
                             <tr>
                                 <td>Sub Total</td>
-                                <td align="right">{{number_format($so->amount-$so->tax)}}</td>
+                                <td align="right">{{number_format($so->amount)}}</td>
                             </tr>
                             <tr>
                                 <td>VAT</td>
@@ -112,7 +112,7 @@
                             <tr>
                                 <td colspan="6">MEMO</td>
                                 <td>NETTO</td>
-                                <td align="right">{{number_format($so->amount)}}</td>
+                                <td align="right">{{number_format($so->amount+$so->tax)}}</td>
                             </tr>
                         </tfooter>
                     </table>

@@ -4,9 +4,6 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('/usertransaction')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
         <li class="breadcrumb-item"><a href="{{url('/usertransaction/'.$so->id.'/print')}}"><i class="fa fa-print"></i> Print</a></li>
-        @if($so->status=="PAID")
-            <li class="breadcrumb-item"><a href="{{url('/usertransaction/'.$so->id.'/done')}}"><i class="fa fa-check"></i> Done</a></li>
-        @endif
     </ol>
     <form method="post" name="formAdd" id="formAdd">
         <div class="row">
@@ -85,7 +82,7 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>Subtotal</label>
-                            <input type="text" name="subtotal" class="form-control" id="date" value="{{number_format($so->amount-$so->tax)}}" disabled/>
+                            <input type="text" name="subtotal" class="form-control" id="date" value="{{number_format($so->amount)}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Tax(10%)</label>
@@ -97,7 +94,7 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>Grand Total</label>
-                            <input type="text" name="gtotal" class="form-control" id="date" value="{{number_format($so->amount)}}" disabled/>
+                            <input type="text" name="gtotal" class="form-control" id="date" value="{{number_format($so->amount+$so->tax)}}" disabled/>
                         </div>
                     </div>
                 </div>

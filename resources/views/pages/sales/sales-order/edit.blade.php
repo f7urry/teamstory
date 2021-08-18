@@ -11,7 +11,7 @@
             <li class="breadcrumb-item"><a href="{{url('/receivable/create?ref='.$so->id)}}"><i class="fa fa-money-bill"></i> Create Payment</a></li>
         @endif
         @if($so->sales_status=="IN_PROCESS")
-            <li class="breadcrumb-item"><a href="{{url('/salesorder/'.$so->id.'/delivery')}}"><i class="fa fa-truck"></i> Create Delivery</a></li>
+            <li class="breadcrumb-item"><a href="{{url('/salesorder/'.$so->id.'/delivery')}}"><i class="fa fa-truck"></i> Delivered</a></li>
         @endif
         @if($so->sales_status=="WAITING")
             <li class="breadcrumb-item"><a href="{{url('/salesorder/'.$so->id.'/process')}}"><i class="fa fa-arrow-alt-circle-right"></i> Process</a></li>
@@ -95,7 +95,7 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label>Subtotal</label>
-                            <input type="text" name="subtotal" class="form-control" id="subtotal" value="{{number_format($so->amount-$so->tax)}}" disabled/>
+                            <input type="text" name="subtotal" class="form-control" id="subtotal" value="{{number_format($so->amount)}}" disabled/>
                         </div>
                         <div class="form-group col-md-12">
                             <label>Tax(10%)</label>

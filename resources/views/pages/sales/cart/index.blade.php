@@ -7,6 +7,8 @@
         <div class="col-md-6 h-100">
             <div class="card">
                 <div class="card-body">
+                <input type="checkbox" id="checkall"/>&nbsp;Select All
+                <hr/>
                 @php($sum=0)
                 @foreach($data as $d)
                     <div class="row">
@@ -53,7 +55,7 @@
                             <span class="font-weight-bold">Total</span>
                         </div>
                         <div class="col-6">
-                            <span id="total">IDR {{number_format($sum)}}</span>
+                            <h3 id="total">IDR {{number_format($sum)}}</h3>
                             <input type="hidden" name="gtotal" id="gtotal" value="{{$sum}}"/>
                         </div>
                     </div>
@@ -76,6 +78,11 @@
 @push("scripts")
 <script type="text/javascript">
     $(function(){
+        $("#checkall").on("click",function(){
+            $.each($(".cart_id"),function(i,e){
+                $(e).click();
+            });
+        });
         $_select("#shipping_address",base_url()+"/api/address/options?mine=1",function(){
             $.get(base_url()+"/api/address/get/"+$(this).val(),function(data){
                 var address=data.pic_name;
