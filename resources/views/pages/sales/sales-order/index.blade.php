@@ -65,7 +65,7 @@
                 orderable: true,
                 searchable: true,
                 render: function(data, type, row, meta){
-                    return number_format(data+row['tax']);
+                    return number_format(parseInt(row['amount'])+parseInt(row['tax']));
                 }
             },
             {
