@@ -32,3 +32,4 @@ Route::resource("/cart",App\Http\Controllers\Sales\CartController::class);
 Route::resource("/customprice",App\Http\Controllers\Admin\CustomPriceController::class);
 Route::resource("/salesorder",App\Http\Controllers\Sales\SalesOrderController::class);
 Route::resource("/receivable",App\Http\Controllers\Accounting\ReceivableController::class);
+Route::resource("/salessummary",App\Http\Controllers\Sales\Report\SalesSummaryController::class);

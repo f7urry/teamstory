@@ -16,6 +16,9 @@
 <script src="{{url('/assets/fontawesome-free/js/all.min.js')}}"></script>
 <script src="{{url('/assets/select2/js/select2.full.min.js')}}"></script>
 <script src="{{url('/assets/sb-admin/js/scripts.js')}}"></script>
+<script src="{{url('/assets/filesaver/FileSaver.min.js')}}"></script>
+<script src="{{url('/assets/sheetjs/xlsx.core.min.js')}}"></script>
+<script src="{{url('/assets/table-export/tableExport.min.js')}}"></script>
 <script src="{{url('/assets/app/js/number.js')}}"></script>
 <script src="{{url('/assets/app/js/dialog.js')}}"></script>
 <script src="{{url('/assets/app/js/datepicker.js')}}"></script>

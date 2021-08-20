@@ -50,11 +50,14 @@
                                             <option value="{{$permit->module_id}}">{{$permit->module->name}}</option>
                                         </select>
                                     </div>
+                                    <div class="col-md-1">
+                                        <input type="checkbox" class="chk_all" data-index="{{$i}}"/> All
+                                    </div>
                                     <div class="col-md-6">
-                                        <input type="hidden" name="is_read[]" value="{{$permit->is_read}}"/><input type="checkbox" {{$permit->is_read==1?"checked":""}} onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Read
-                                        <input type="hidden" name="is_create[]" value="{{$permit->is_create}}"/><input type="checkbox" {{$permit->is_create==1?"checked":""}} onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Create
-                                        <input type="hidden" name="is_update[]" value="{{$permit->is_update}}"/><input type="checkbox" {{$permit->is_update==1?"checked":""}} onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Update
-                                        <input type="hidden" name="is_delete[]" value="{{$permit->is_delete}}"/><input type="checkbox" {{$permit->is_delete==1?"checked":""}} onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Delete
+                                        <input type="hidden" name="is_read[]" value="{{$permit->is_read}}"/><input id="chk_read_{{$i}}" type="checkbox" {{$permit->is_read==1?"checked":""}} onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Read
+                                        <input type="hidden" name="is_create[]" value="{{$permit->is_create}}"/><input id="chk_create_{{$i}}" type="checkbox" {{$permit->is_create==1?"checked":""}} onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Create
+                                        <input type="hidden" name="is_update[]" value="{{$permit->is_update}}"/><input id="chk_update_{{$i}}" type="checkbox" {{$permit->is_update==1?"checked":""}} onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Update
+                                        <input type="hidden" name="is_delete[]" value="{{$permit->is_delete}}"/><input id="chk_delete_{{$i}}" type="checkbox" {{$permit->is_delete==1?"checked":""}} onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Delete
                                     </div>
                                 </div>
                             </td>
@@ -76,7 +79,7 @@
     <script type="text/javascript">
         $(function(){
             var url=base_url()+"/api/modules/options";
-            var roleIdx="{{$idx}}";
+            var roleIdx="{{$idx+1}}";
             $(".btn_add_role").on("click",function(){
                 var e=`
                 <tr id='role_${roleIdx}'>
@@ -87,11 +90,14 @@
                                 <input type="hidden" name="permission_id[]" value="0"/>
                                 <select name='module_id[]' class='role_picker col-md-3'></select>
                             </div>
+                            <div class="col-md-1">
+                                <input type="checkbox" class="chk_all" data-index="${roleIdx}"/> All
+                            </div>
                             <div class="col-md-6">
-                                <input type="hidden" name="is_read[]" value="0"/><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Read
-                                <input type="hidden" name="is_create[]" value="0"/><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Create
-                                <input type="hidden" name="is_update[]" value="0"/><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Update
-                                <input type="hidden" name="is_delete[]" value="0"/><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Delete
+                                <input type="hidden" name="is_read[]" value="0"/><input id="chk_read_${roleIdx}" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Read
+                                <input type="hidden" name="is_create[]" value="0"/><input id="chk_create_${roleIdx}" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Create
+                                <input type="hidden" name="is_update[]" value="0"/><input id="chk_update_${roleIdx}" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Update
+                                <input type="hidden" name="is_delete[]" value="0"/><input id="chk_delete_${roleIdx}" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Delete
                             </div>
                         </div>
                     </td>
@@ -100,10 +106,22 @@
                 
                 roleIdx++;
                 $_select(".role_picker",url);
+                $_bind_checkall();
                 $_ui();
             });
             $_select(".role_picker",url);
+            $_bind_checkall();
             $_ui();
         });
+        function $_bind_checkall(){
+            $(".chk_all").on("click",function(e){
+                let index=$(this).attr("data-index");
+                console.log(index);
+                $("#chk_read_"+index).click();
+                $("#chk_create_"+index).click();
+                $("#chk_update_"+index).click();
+                $("#chk_delete_"+index).click();
+            });
+        }
     </script>
 @endpush

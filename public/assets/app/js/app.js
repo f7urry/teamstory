@@ -125,3 +125,30 @@ function $_select(id, url, cb) {
     if (cb != null)
         $(id).on("select2:select", cb);
 }
+function exportCSV(id){
+    var time=new Date().getTime();
+    $('#'+id).tableExport({
+        fileName: 'export_'+time,
+        type:'csv',
+        preventInjection: false,
+    });
+    //return ExcellentExport.convert({ anchor: anc, filename: id+'_'+time, format: 'xlsx'},[{name: 'Data '+time, from: {table: id}}]);
+}
+function dynamicColorSet(colors,index){
+    if(colors[index]==null)
+        colors[index]=__generateColor();
+    return colors;
+}
+function defaultColorSet(length){
+    var colors=new Array();
+    colors=["f94144","f3722c","f8961e","f9844a","f9c74f","90be6d","43aa8b","4d908e","577590","277da1"];
+    if(length>10){
+        for(let i=10;i<length;i++){
+            colors[i]=__generateColor();
+        }
+    }
+    return colors;
+}
+function __generateColor(){
+    return "#"+Math.floor(Math.random()*16777215).toString(16);
+}

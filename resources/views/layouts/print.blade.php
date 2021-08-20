@@ -10,6 +10,7 @@
                     <button onclick="javascript:window.print();" type="button" class="btn btn-success">
                         <span class='fa fa-print'></span>&nbsp;Print
                     </button>
+                    @stack("extra_format")
                 </div>
             </div>
         </div>
