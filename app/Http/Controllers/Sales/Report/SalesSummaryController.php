@@ -20,7 +20,7 @@ class SalesSummaryController extends Controller {
 
     public function index() {
         $map["warehouses"]=Warehouse::all();
-        return view("pages.sales.report.sales-summary.index",$map);
+        return view("report.sales.sales-summary.index",$map);
     }
     
     public function store(Request $request) {
@@ -29,9 +29,13 @@ class SalesSummaryController extends Controller {
             $qry->where("party_id","=", $request->customer);
         if($request->status!=null)
             $qry->where("status", $request->status);
-        $qry->whereMonth("date", "=", $request->month);
-        $qry->whereYear("date", "=", $request->year);
+       /*  $qry->whereMonth("date", "=", $request->month);
+        $qry->whereYear("date", "=", $request->year); */
+        if($request->from!=null)
+            $qry->where("date", ">=", $request->from);
+        if($request->to!=null)
+            $qry->where("date", "<=", $request->to);
         $map["sales"]=$qry->get();
-        return view("pages.sales.report.sales-summary.print", $map);
+        return view("report.sales.sales-summary.print", $map);
     }
 }

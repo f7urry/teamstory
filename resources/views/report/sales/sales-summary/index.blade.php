@@ -14,7 +14,7 @@
                             <label>Customer</label>
                             <select id="customer" name="customer" class="form-control"></select>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Period</label>
                             <div class="form-inline">
                                 <select name="month" class="form-control col-md-6">
@@ -28,6 +28,14 @@
                                         <option>{{$i}}</option>
                                     @endfor
                                 </select>
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                            <label>From</label>
+                            <div class="form-inline">
+                                <input type="text" name="from" class="form-control datepicker" id="from" />
+                                To
+                                <input type="text" name="to" class="form-control datepicker" id="to" />
                             </div>
                         </div>
                         <div class="form-group">

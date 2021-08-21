@@ -13,6 +13,9 @@
                 <tr>
                     <td colspan="2" align="right"><h1>Sales Summary</h1></td>
                 </tr>
+                <tr>
+                    <td>From: {{request()->from}} To: {{request()->to}}</td>
+                </tr>
             </table>
         </div>
     </div>
@@ -24,6 +27,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Area</th>
+                            <th>Date</th>
                             <th>No.Sales</th>
                             <th>Customer</th>
                             <th>Status</th>
@@ -35,6 +39,7 @@
                             <tr>
                                 <td>{{$i+1}}</td>
                                 <td>{{ $data->party->address->city->location}}</td>
+                                <td>{{ $data->date}}</td>
                                 <td>{{ $data->code}}</td>
                                 <td>{{ $data->party->party_name}}</td>
                                 <td>{{ $data->status}}</td>
