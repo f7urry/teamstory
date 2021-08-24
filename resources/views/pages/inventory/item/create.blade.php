@@ -52,6 +52,10 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label>Weight (Kg)</label>
+                        <input type="number" class="form-control" name="weight"/>
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
@@ -60,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label>Price</label>
-                        <input type="text" class="form-control" name="sell_price"/>
+                        <input type="text" class="form-control number" name="sell_price"/>
                     </div>
                     <div class="form-group">
                         <label>Minimum Stock</label>
