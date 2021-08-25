@@ -94,9 +94,12 @@
                                             <th width="25%">Item</th>
                                             <th>Quantity</th>
                                             <th>Free Qty</th>
+                                            <th>Uom</th>
+                                            <th>Weight(Kg)</th>
                                             <th>Price</th>
-                                            <th>Discount</th>
+                                            <th>Discount(%)</th>
                                             <th>Total</th>
+                                            <th>Tonase(Kg)</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -130,20 +133,25 @@
 
     function calc(){
         var qty=$(".quantity");
+        var free=$(".free_qty");
         var price=$(".price");
         var discount=$(".discount");
         var total=$(".total");
+        var weight=$(".weight");
+        var tonase=$(".tonase");
         
         var gtotal=0;
         for(var i=0;i<qty.length;i++){
             var q=number_value(qty.eq(i).val());
+            var f=number_value(free.eq(i).val());
             var p=number_value(price.eq(i).val());
             var d=number_value(discount.eq(i).val());
+            var w=number_value(weight.eq(i).val());
+
             var t=q*p;
             t=t-(t*d/100);
-            console.log(q+":"+p+":"+d+":"+t);
             total.eq(i).val(number_format(t));
-            
+            tonase.eq(i).val(number_format(w*(parseInt(q)+parseInt(f))));
             gtotal+=t;
         }
         var shipping=$("#shipping_cost").val(); 
@@ -183,7 +191,11 @@
                             <input type="text" name="quantity[]" class="calc quantity form-control col-md-12 number" value="0"/>
                         </td>
                         <td>
-                            <input type="text" name="free_qty[]" class="calc form-control col-md-12 number" value="0"/>
+                            <input type="text" name="free_qty[]" class="calc free_qty form-control col-md-12 number" value="0"/>
+                        </td>
+                        <td>${item.uom.code}</td>
+                        <td>
+                            <input type="text" class="weight form-control col-md-12 number" value="${item.weight}" readonly/>
                         </td>
                         <td>
                             <input type="text" name="price[]" class="calc price form-control col-md-12 number" value="${data.price}" readonly/>
@@ -193,6 +205,9 @@
                         </td>
                         <td>
                             <input type="text" name="total[]" class="total form-control col-md-12 number" value="0" readonly/>
+                        </td>
+                        <td>
+                            <input type="text" class="tonase form-control col-md-12 number" value="0" readonly/>
                         </td>
                         <td>
                             <button type="button" class='btn btn-danger btn-remove-row'><i class='fa fa-times'></i></button>
@@ -210,7 +225,11 @@
                             <input type="text" name="quantity[]" class="calc quantity form-control col-md-12 number" value="0"/>
                         </td>
                         <td>
-                            <input type="text" name="free_qty[]" class="calc form-control col-md-12 number" value="0"/>
+                            <input type="text" name="free_qty[]" class="calc free_qty form-control col-md-12 number" value="0"/>
+                        </td>
+                        <td>${item.uom.code}</td>
+                        <td>
+                            <input type="text" class="weight form-control col-md-12 number" value="${item.weight}" readonly/>
                         </td>
                         <td>
                             <input type="text" name="price[]" class="calc price form-control col-md-12 number" value="${item.sell_price}"/>
@@ -220,6 +239,9 @@
                         </td>
                         <td>
                             <input type="text" name="total[]" class="total form-control col-md-12 number" value="0" readonly/>
+                        </td>
+                        <td>
+                            <input type="text" class="tonase form-control col-md-12 number" value="0" readonly/>
                         </td>
                         <td>
                             <button type="button" class='btn btn-danger btn-remove-row'><i class='fa fa-times'></i></button>
