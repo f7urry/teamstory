@@ -125,11 +125,11 @@ function $_select(id, url, cb) {
     if (cb != null)
         $(id).on("select2:select", cb);
 }
-function exportCSV(id){
+function exportFile(id,type){
     var time=new Date().getTime();
     $('#'+id).tableExport({
         fileName: 'export_'+time,
-        type:'csv',
+        type:type,
         preventInjection: false,
     });
     //return ExcellentExport.convert({ anchor: anc, filename: id+'_'+time, format: 'xlsx'},[{name: 'Data '+time, from: {table: id}}]);

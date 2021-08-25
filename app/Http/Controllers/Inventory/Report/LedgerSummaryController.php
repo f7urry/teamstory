@@ -19,7 +19,7 @@ class LedgerSummaryController extends Controller {
 
     public function index() {
         $map["warehouses"]=Warehouse::all();
-        return view("pages.inventory.report.ledger-summary.index",$map);
+        return view("report.inventory.ledger-summary.index",$map);
     }
     
     public function store(Request $request) {
@@ -29,6 +29,6 @@ class LedgerSummaryController extends Controller {
         if($request->date_from!=null)
             $qry=$qry->where("warehouse_id",$request->date_from);
         $map["stock"]=$qry->get();
-        return view("pages.inventory.report.ledger-summary.print", $map);
+        return view("report.inventory.ledger-summary.print", $map);
     }
 }

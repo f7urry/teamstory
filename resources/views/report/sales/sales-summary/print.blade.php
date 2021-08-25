@@ -1,8 +1,8 @@
 @extends("layouts.print")
 @section("title","Print Ledger Summary")
 @push("extra_format")
-    <button onclick="javascript:exportCSV('dtable')" type="button" class="btn btn-warning">
-        <span class='fa fa-file-csv'></span>&nbsp;CSV
+    <button onclick="javascript:exportFile('dtable','xls')" type="button" class="btn btn-warning">
+        <span class='fa fa-file-excel'></span>&nbsp;Excel
     </button>
 @endpush
 @section("content")

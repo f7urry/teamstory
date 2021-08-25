@@ -1,6 +1,6 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark shadow bg-primary">
-    <a class="navbar-brand" href="#">
-        <img src="{{url('/assets/app/img/logo.png')}}" class="bg-white rounded" style="width:100px;padding: 2px 10px 2px 10px;">
+    <a class="navbar-brand justify-content-center" href="#">
+        <img src="{{url('/assets/app/img/logo.png')}}" class="bg-white rounded mr-auto ml-auto d-flex" style="width:100px;padding: 2px 10px 2px 10px;">
     </a>
     <button class="ml-3 btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fa fa-bars"></i></button>
     <a class="nav-link" href="{{url('/')}}">
@@ -14,6 +14,7 @@
             </div>
         </div> -->
     </form>
+
     <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

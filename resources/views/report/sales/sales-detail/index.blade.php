@@ -1,8 +1,8 @@
 @extends("layouts.app")
-@section("title","Sales Summary")
+@section("title","Sales Detail")
 @section("content")
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/salessummary')}}" data-confirm="false"><i class="fa fa-search"></i> Show</a></li>
+        <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/salesdetail')}}" data-confirm="false"><i class="fa fa-search"></i> Show</a></li>
     </ol>
     <form method="post" name="formAdd" id="formAdd">
         <div class="row">
