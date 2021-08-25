@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title', 'Role')
+@section('title', 'Module')
 @section('content')
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{url('/roles/create')}}"><i class="fa fa-plus"></i> New</a></li>
+    <li class="breadcrumb-item"><a href="{{url('/modules/create')}}"><i class="fa fa-plus"></i> New Group</a></li>
 </ol>
 <div class="row">
     <div class="col-md-12">
@@ -12,17 +12,19 @@
                     <table class="table table-hover table-bordered" id="dTable" width="100%" cellspacing="0">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Role Name</th>
+                                <th>Parent</th>
+                                <th>Group Name</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($data as $d)
                             <tr>
+                                <td>{{($d->parent!=null)?$d->parent->name:""}}</td>
                                 <td>{{$d->name}}</td>
                                 <td>
-                                    <a href="{{url('/roles/'.$d->id)}}" class='btn btn-primary mr-2'><i class='fa fa-pen'></i></a>
-                                    <a href="{{url('/roles/'.$d->id.'/delete')}}" class='btn btn-danger'><i class='fa fa-trash'></i></a>
+                                    <a href="{{url('/modules/'.$d->id)}}" class='btn btn-primary mr-2'><i class='fa fa-pen'></i></a>
+                                    <a href="{{url('/modules/'.$d->id)}}" class='btn btn-danger btn-delete' data-message='Delete this data?'><i class='fa fa-trash'></i></a>
                                 </td>
                             </tr>
                             @endforeach

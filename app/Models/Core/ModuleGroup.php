@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ModuleGroup extends Model{
     protected $table="sys_module_group";
-    protected $guard=['id'];
+    protected $guarded=['id'];
 
     public function parent(){
         return $this->belongsTo(ModuleGroup::class,"parent_id");

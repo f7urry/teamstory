@@ -1,77 +1,45 @@
 @extends('layouts.app')
-@section('title', 'New Role')
+@section('title', 'New Module Group')
 @section('content')
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{url('/roles')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
+    <li class="breadcrumb-item"><a href="{{url('/modules')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
     <li class="breadcrumb-item"><a href="javascript:document.frmUser.submit();"><i class="fa fa-save"></i> Save</a></li>
 </ol>
 <div class="row">
     <div class="col-md-12">
-        <form name='frmUser' method="POST" action="{{url('/roles')}}" enctype="multipart/form-data">
+        <form name='frmUser' method="POST" action="{{url('/modules')}}" enctype="multipart/form-data">
             <div class="card">
-                 <div class="card-header bg-dark text-white">Role Information</div>
+                <div class="card-header bg-dark text-white">Group Information</div>
                 <div class="card-body">
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>{{ __('Name') }}</label>
-                                <input id="name" type="text" class="form-control" name="name" autocomplete="name" placeholder="Name"/>
+                                <input id="name" type="text" class="form-control" name="name"/>
+                            </div>
+                            <div class="form-group">
+                                <label>{{ __('Parent') }}</label>
+                                <select name="parent_id" class="form-control">
+                                    <option value="">--ROOT--</option>
+                                    @foreach($parents as $parent)
+                                        <option value="{{$parent->id}}">{{$parent->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>{{ __('Icon') }}</label>
+                                <input id="icon" type="text" class="form-control" name="fa_icon" value="fa-circle"/>
+                            </div>
+                            <div class="form-group">
+                                <label>{{ __('Menu Index') }}</label>
+                                <input id="menu_index" type="text" class="form-control" name="menu_index" value="0"/>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="card mt-2">
-                <div class="card-header bg-dark text-white">Module List</div>
-                <div class="card-body">
-                    <button class="btn btn-primary" type="button" id="btn_add_role"><i class="fa fa-plus"></i>&nbsp;Add Module</button>
-                    <table class="table table-border border mt-2" id="table_role">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>Module Name</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </form>
     </div>
 </div>
 @endsection
-
-
-@push("scripts")
-    <script type="text/javascript">
-        $(function(){
-            var roleIdx=0;
-            $("#btn_add_role").on("click",function(){
-                var e=`
-                <tr id='role_${roleIdx}'>
-                    <td>
-                        <div class="row">
-                            <div class="col-md-1"><a class='btn btn-remove-row btn-danger rounded-circle' href='#' target="#role_${roleIdx}"><i class='fa fa-minus'></i></a></div>
-                            <div class="col-md-3">
-                                <select name='modules[]' class='role_picker col-md-3'></select>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="hidden" name="is_read[]" value="0"/><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Read
-                                <input type="hidden" name="is_create[]" value="0"/><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Create
-                                <input type="hidden" name="is_update[]" value="0"/><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Update
-                                <input type="hidden" name="is_delete[]" value="0"/><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Delete
-                            </div>
-                        </div>
-                    </td>
-                </tr>`;
-                $("#table_role tbody").append(e);
-                
-                var url=base_url()+"/api/modules/options";
-                roleIdx++;
-                $_select(".role_picker",url);
-                $_ui();
-            });
-        });
-    </script>
-@endpush

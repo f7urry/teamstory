@@ -12,6 +12,7 @@ Route::resource("/profileaddress",App\Http\Controllers\Admin\ProfileAddressContr
 //CORE Module
 Route::resource("/users",App\Http\Controllers\Core\UserController::class);
 Route::resource("/roles",App\Http\Controllers\Core\RolesController::class);
+Route::resource("/modules",App\Http\Controllers\Core\ModuleController::class);
 
 //INVENTORY Module
 Route::resource("/item",App\Http\Controllers\Inventory\ItemController::class);
