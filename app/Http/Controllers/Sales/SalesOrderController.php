@@ -124,6 +124,7 @@ class SalesOrderController extends Controller {
         $gtotal=0;
         foreach($request->soi as $i=>$soi){
             $soi=SalesOrderItem::find($soi);
+            $soi->price=NumberHelper::toValue($request->price[$i]);
             $soi->qty=NumberHelper::toValue($request->qty[$i]);
             $soi->free_qty=NumberHelper::toValue($request->free_qty[$i]);
             $soi->discount=NumberHelper::toValue($request->discount[$i]);
