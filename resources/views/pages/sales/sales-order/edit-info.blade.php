@@ -149,14 +149,14 @@
                                             {{$detail->item->code}} - {{$detail->item->item_name}}
                                         </td>
                                         <td>
-                                                @if($so->sales_status=="WAITING")
+                                                @if($so->sales_status=="WAITING" && Gate::check('is_update'))
                                                 <input type="text" name="qty[]" value="{{$detail->qty}}" class="form-control number calc quantity"/>
                                             @else
                                                 {{$detail->qty}}
                                             @endif
                                         </td>
                                         <td>
-                                            @if($so->sales_status=="WAITING")
+                                            @if($so->sales_status=="WAITING" && Gate::check('is_update'))
                                                 <input type="text" name="free_qty[]" value="{{$detail->free_qty}}" class="form-control number"/>
                                             @else
                                                 {{$detail->free_qty}}
@@ -165,14 +165,14 @@
                                         <td>{{$detail->item->uom->code}}</td>
                                         <td>{{$detail->item->weight}}</td>
                                         <td>
-                                                @if($so->sales_status=="WAITING")
+                                                @if($so->sales_status=="WAITING" && Gate::check('is_update'))
                                                 <input type="text" name="price[]" value="{{number_format($detail->price)}}" class="form-control number calc price"/>
                                             @else
                                                 {{number_format($detail->price)}}
                                             @endif
                                         </td>
                                         <td>
-                                                @if($so->sales_status=="WAITING")
+                                                @if($so->sales_status=="WAITING" && Gate::check('is_update'))
                                                 <input type="text" name="discount[]" value="{{number_format($detail->discount)}}" class="form-control number calc discount"/>
                                             @else
                                                 {{number_format($detail->discount)}} %
