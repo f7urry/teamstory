@@ -99,7 +99,7 @@ class NumberHelper{
             case 2:
                 return " million";
             case 1:
-                return " ribu";
+                return " thousand";
             case 0:
                 return "";
         }

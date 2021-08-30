@@ -5,7 +5,7 @@ namespace App\Helper;
 class NumberHelperID {
     public static function penyebut($nilai) {
         
-        $nilai = round(abs($nilai));
+        $nilai = abs($nilai);
         $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
         $temp = "";
         if ($nilai < 12) {
