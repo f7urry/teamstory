@@ -39,7 +39,7 @@ class ItemController extends Controller {
     }
     public function store(Request $request) {
         $p=new Item($request->except(['_token']));
-
+        $p->sell_price=NumberHelper::toValue($p->sell_price);
         if (isset($request->fileimage)) {
             $filename = StorageUtil::uploadFile("item", $request->fileimage);
             $p->item_image = $filename;
@@ -70,6 +70,7 @@ class ItemController extends Controller {
     public function update(Request $request, Item $item) {
         $param=$request->except(['_token']);
         $p = Item::find($item->id);
+        $p->sell_price=NumberHelper::toValue($param->sell_price);
         if (isset($request->fileimage)) {
             $filename = StorageUtil::uploadFile("item", $request->fileimage);
             $param['item_image'] = $filename;
