@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-6" style="font-size: 10px;">
+                <div class="col-md-6" style="font-size: 12px;">
                     <img src="{{url('/assets/app/img/logo.png')}}" height="48px" class="bg-white rounded"><br/>
                     PT.INESIA NUSANTARA SEMESTA<br/>
                     ASKRIDA TOWER LT.4 R.401 A<br/>
@@ -39,7 +39,7 @@
                     </table>
                 </div>
             </div>
-            <div class="row ml-1 mr-1">
+            <div class="row ml-1 mr-1 mt-5">
                 <div class="col-4 border">
                     SOLD TO:<br/>
                     {{$so->party->party_name}}
