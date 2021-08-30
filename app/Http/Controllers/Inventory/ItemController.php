@@ -54,7 +54,7 @@ class ItemController extends Controller {
                 $variant->save();
             }
         }
-        return redirect(url("/item/".$p->id));
+        return redirect(url("/item/".$p->id))->with(["message"=>"Success: Data telah di simpan"]);
     }
     public function show(Item $item) {
         $item=Item::find($item->id);
@@ -70,7 +70,7 @@ class ItemController extends Controller {
     public function update(Request $request, Item $item) {
         $param=$request->except(['_token']);
         $p = Item::find($item->id);
-        $p->sell_price=NumberHelper::toValue($param->sell_price);
+        $param['sell_price']=NumberHelper::toValue($param['sell_price']);
         if (isset($request->fileimage)) {
             $filename = StorageUtil::uploadFile("item", $request->fileimage);
             $param['item_image'] = $filename;
@@ -106,8 +106,11 @@ class ItemController extends Controller {
     public function options(Request $request) {
         $qry = Item::query();
         $qry->where("item_type","GOODS");
-        $qry->where("code", "like", "%$request->term%");
-        $qry->limit(10);
+        $qry->orWhere(function($query) use ($request){
+                $query->orWhere('code', 'like', "%$request->term%")
+                ->orWhere('item_name', 'like', "%$request->term%");
+        });
+        $qry->limit(15);
         return SelectHelper::generate($qry, "id", 'concat(code," - ",item_name)',true);
     }
 
