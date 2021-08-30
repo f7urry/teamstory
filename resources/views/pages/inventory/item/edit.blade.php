@@ -67,7 +67,7 @@
                     </div>
                     <div class="form-group">
                         <label>Price</label>
-                        <input type="text" class="form-control" name="sell_price number" value="{{$item->sell_price}}"/>
+                        <input type="text" class="form-control number" name="sell_price" value="{{$item->sell_price}}"/>
                     </div>
                     <div class="form-group">
                         <label>Minimum Stock</label>
