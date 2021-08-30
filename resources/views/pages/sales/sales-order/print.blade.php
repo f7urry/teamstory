@@ -15,16 +15,16 @@
                 </div>
                 <div class="col-md-6">
                     <table width="100%" class="table table-bordered">
-                        <thead>
+                        <thead class="thead-dark">
                             <tr>
-                                <th colspan="5" class="text-center">SALES INVOICE</th>
+                                <td colspan="5" class="text-center">SALES INVOICE</td>
                             </tr>
                             <tr>
-                                <th class="bg-dark text-white text-center">Invoice No.</th>
-                                <th class="bg-dark text-white text-center">Invoice Date</th>
-                                <th class="bg-dark text-white text-center">Due Date</th>
-                                <th class="bg-dark text-white text-center">Curr.</th>
-                                <th class="bg-dark text-white text-center">Salesman</th>
+                                <th class="text-center">Invoice No.</th>
+                                <th class="text-center">Invoice Date</th>
+                                <th class="text-center">Due Date</th>
+                                <th class="text-center">Curr.</th>
+                                <th class="text-center">Salesman</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -93,7 +93,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                        <tfooter>
+                        <tfoot>
                             <tr>
                                 <td colspan="6" rowspan="3" class="font-italic">Said:<br/>
                                     {{ucwords(NumberHelperID::terbilang($so->amount+$so->tax))}}
@@ -114,7 +114,7 @@
                                 <td>NETTO</td>
                                 <td align="right">{{number_format($so->amount+$so->tax)}}</td>
                             </tr>
-                        </tfooter>
+                        </tfoot>
                     </table>
                 </div>
             </div>
