@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Inventory;
 
 use App\Helper\CodeGenerator;
 use App\Helper\DatatableHelper;
+use App\Helper\DateHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Service\Inventory\StockService;
 use App\Models\Core\TableType;
@@ -43,6 +44,7 @@ class GoodsIssueController extends Controller
     {
         DB::beginTransaction();
         $goodsissue = GoodsIssue::create($request->all());
+        $goodsissue->date=DateHelper::toValue($request->date);
         $goodsissue->code=CodeGenerator::generate("GI");
         if(isset($request->quantity) && count($request->quantity) > 0){
             $goodsissue->goodsIssueItems()->createMany(

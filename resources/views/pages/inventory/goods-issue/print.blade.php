@@ -27,7 +27,7 @@
             <div class="form-group col-md-12 table-responsive">
                 <table width="100%">
                     <tr>
-                        <td><b>Date:</b> {{$goodsIssue->date}}</td>
+                        <td><b>Date:</b> {{DateHelper::date_format($goodsIssue->date)}}</td>
                         <td><b>Warehouse:</b> {{$goodsIssue->warehouse->name}}</td>
                         <td><b>Grid:</b> {{$goodsIssue->grid_code}}</td>
                     </tr>

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Sales\Report;
 
 use App\Helper\DatatableHelper;
+use App\Helper\DateHelper;
 use App\Helper\SelectHelper;
 use App\Helper\StorageUtil;
 use App\Helper\NumberHelper;
@@ -32,9 +33,9 @@ class SalesDetailController extends Controller {
        /*  $qry->whereMonth("date", "=", $request->month);
         $qry->whereYear("date", "=", $request->year); */
         if($request->from!=null)
-            $qry->where("date", ">=", $request->from);
+            $qry->where("date", ">=", DateHelper::toValue($request->from));
         if($request->to!=null)
-            $qry->where("date", "<=", $request->to);
+            $qry->where("date", "<=", DateHelper::toValue($request->to));
         $map["sales"]=$qry->get();
         return view("report.sales.sales-detail.print", $map);
     }

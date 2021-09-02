@@ -8,6 +8,7 @@ use App\Models\Inventory\Item;
 use App\Models\Inventory\Uom;
 use App\Models\Inventory\Warehouse;
 use App\Helper\DatatableHelper;
+use App\Helper\DateHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Service\Inventory\StockService;
 use App\Models\Core\TableType;
@@ -40,6 +41,7 @@ class GoodsReceiptController extends Controller {
         DB::beginTransaction();
         $goodsReceipt = GoodsReceipt::create($request->all());
         $goodsReceipt->code=CodeGenerator::generate("GR");
+        $goodsReceipt->date=DateHelper::toValue($request->date);
         if (isset($request->quantity) && count($request->quantity) > 0) {
             $goodsReceipt->goodsReceiptItems()->createMany(
                 collect($request->quantity)->map(function ($quantity, $key) {

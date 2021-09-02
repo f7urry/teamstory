@@ -17,13 +17,10 @@ function $__plugin() {
 }
 
 function $__app() {
-    $(".datepicker").off();
     $_datepicker(".datepicker");
-
-    $(".datetimepicker").off();
     $_datetimepicker(".datetimepicker");
 
-    $(".btn-submit").off();
+    $(".btn-submit").off("click");
     $(".btn-submit").on("click", function(e) {
         e.preventDefault();
         var form = $(this).data("form");
@@ -43,7 +40,7 @@ function $__app() {
         }
     });
 
-    $(".btn-save").off();
+    $(".btn-save").off("click");
     $(".btn-save").on("click", function(e) {
         e.preventDefault();
         var form = $(this).data("form");
@@ -78,8 +75,7 @@ function $__app() {
         }
     });
 
-    $(".btn-remove-row").off();
-    $(".btn-remove-row").on("click", function(e) {
+    $(".btn-remove-row").off("click").on("click", function(e) {
         e.preventDefault();
         var target = $(this).attr("data-target");
         if (target != null)
@@ -90,7 +86,7 @@ function $__app() {
         }
     });
 
-    $(".btn-delete").off();
+    $(".btn-delete").off("click");
     $(".btn-delete").on("click", function(e) {
         e.preventDefault();
         var link = $(this).data("href");
@@ -100,7 +96,7 @@ function $__app() {
         deleteDialog(link, msg);
     });
 
-    $(".alert").off();
+    $(".alert").off("click");
     $(".alert").on("click", function() {
         $(this).hide();
     });

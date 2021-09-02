@@ -7,6 +7,8 @@
                     <tr>
                     	<th>PIC</th>
                     	<th>Address</th>
+                    	<th>City</th>
+                    	<th>Province</th>
                     	<th>Phone</th>
                     	<th>Email</th>
                         <th>Action</th>
@@ -38,6 +40,18 @@
             {
                 data: 'address',
                 name: 'address',
+                orderable: true,
+                searchable: true,
+            },
+            {
+                data: 'city.location',
+                name: 'city.location',
+                orderable: true,
+                searchable: true,
+            },
+            {
+                data: 'province.location',
+                name: 'province.location',
                 orderable: true,
                 searchable: true,
             },

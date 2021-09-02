@@ -30,8 +30,8 @@
                         <tbody>
                         <tr>
                             <td>{{$so->invoice_code}}</td>
-                            <td>{{$so->date}}</td>
-                            <td>{{$so->due_date}}</td>
+                            <td>{{DateHelper::date_format($so->date)}}</td>
+                            <td>{{DateHelper::date_format($so->due_date)}}</td>
                             <td>{{$so->currency}}</td>
                             <td></td>
                         </tr>

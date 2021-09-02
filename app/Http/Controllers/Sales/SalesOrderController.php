@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Sales;
 use App\DTO\StockDTO;
 use App\Helper\CodeGenerator;
 use App\Helper\DatatableHelper;
+use App\Helper\DateHelper;
 use App\Helper\SelectHelper;
 use App\Helper\StorageUtil;
 use App\Helper\NumberHelper;
@@ -41,8 +42,8 @@ class SalesOrderController extends Controller {
         $so=new SalesOrder();
         $so->code=CodeGenerator::generate("SSO");
         $so->invoice_code=CodeGenerator::generate("INV");
-        $so->date=$request->date;
-        $so->due_date=$request->due_date;
+        $so->date=DateHelper::toValue($request->date);
+        $so->due_date=DateHelper::toValue($request->due_date);
         $so->tax=NumberHelper::toValue($request->tax);
         $so->amount=NumberHelper::toValue($request->subtotal);
         $so->unpaid_amount=NumberHelper::toValue($request->subtotal)+NumberHelper::toValue($request->tax);

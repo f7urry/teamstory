@@ -46,11 +46,11 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label>Invoice Date</label>
-                        <input type="text" name="date" class="form-control" id="date" value="{{$so->date}}" disabled/>
+                        <input type="text" name="date" class="form-control" id="date" value="{{DateHelper::format($so->date)}}" disabled/>
                     </div>
                     <div class="form-group col-md-12">
                         <label>Invoice Due Date</label>
-                        <input type="text" name="due_date" class="form-control" id="date" value="{{$so->due_date}}" disabled/>
+                        <input type="text" name="due_date" class="form-control" id="date" value="{{DateHelper::format($so->due_date)}}" disabled/>
                     </div>
                     <div class="form-group col-md-12">
                         <label>Reference</label>

@@ -32,7 +32,7 @@
              searching: true,
              processing: true,
              serverSide: true,
-             order:[[1,"DESC"]],
+             order:[[0,"ASC"]],
              ajax: `${base_url()}/api/receivable/list`,
              columns: [
                 {
@@ -45,7 +45,10 @@
                     data: 'date',
                     name: 'date',
                     orderable: true,
-                    searchable: true
+                    searchable: true,
+                    render: function(data){
+                        return date_format(data);
+                    }
                 },
                 {
                     data: 'salesorder.code',

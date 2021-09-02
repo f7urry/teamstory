@@ -1,7 +1,10 @@
 function $_datepicker(clsname) {
     clsname = (clsname == null) ? ".datepicker" : clsname;
-    $(clsname).off();
     $.each($(clsname), function(i, e) {
+        if($(e).hasClass("hasDatepicker"))
+            $(e).datetimepicker("destroy");
+        else
+            $(e).addClass("hasDatepicker");
         $(e).datetimepicker({
             icons: {
                 time: 'fa fa-clock',
@@ -14,16 +17,18 @@ function $_datepicker(clsname) {
                 clear: 'fa fa-trash',
                 close: 'fa fa-times'
             },
-            format: 'YYYY-MM-DD'
+            format: 'DD-MM-YYYY'
         });
     });
 }
 
 function $_datetimepicker(clsname) {
     clsname = (clsname == null) ? ".datetimepicker" : clsname;
-    $(clsname).off();
     $.each($(clsname), function(i, e) {
-        $(e).off();
+        if($(e).hasClass("hasDatepicker"))
+            $(e).datetimepicker("destroy");
+        else
+            $(e).addClass("hasDatepicker");
         $(e).datetimepicker({
             icons: {
                 time: 'fa fa-clock',
@@ -36,11 +41,12 @@ function $_datetimepicker(clsname) {
                 clear: 'fa fa-trash',
                 close: 'fa fa-times'
             },
+            format: 'DD-MM-YYYY HH:mm:ss' //use moment.js format
         });
     });
 }
 
-function formatDate(dateInput) {
+function date_format(dateInput) {
     var d = new Date(dateInput);
     var dd = d.getDate() < 10 ? "0" + d.getDate() : d.getDate();
     var mm = d.getMonth() + 1;
@@ -50,7 +56,7 @@ function formatDate(dateInput) {
     return dd + "-" + mm + "-" + yy;
 }
 
-function formatDatetime(dateInput) {
+function datetime_format(dateInput) {
     var d = new Date(dateInput);
     var dd = d.getDate() < 10 ? "0" + d.getDate() : d.getDate();
     var mm = d.getMonth() + 1;

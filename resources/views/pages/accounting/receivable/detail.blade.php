@@ -14,6 +14,10 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
+                             <div class="form-group row">
+                                <label class="col-md-4">Date</label>
+                                <span class="col-md-6">: {{DateHelper::date_format($rec->date)}}</span>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-md-4">Sales Order</label>
                                 <span class="col-md-6">: {{$rec->salesorder->code}}

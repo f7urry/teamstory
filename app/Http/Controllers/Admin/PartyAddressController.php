@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class PartyAddressController extends Controller {
     public function list($var = null,Request $request) {
         $qry = PartyAddress::query();
+        $qry->with("city", "province");
         $qry->where("party_id",$request->id);
         return DatatableHelper::generate($var, $qry->get(), "address", array(
             "delete" => true,

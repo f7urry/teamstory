@@ -27,7 +27,7 @@ class LedgerSummaryController extends Controller {
         if($request->warehouse_id!=null)
             $qry=$qry->where("warehouse_id",$request->warehouse_id);
         if($request->date_from!=null)
-            $qry=$qry->where("warehouse_id",$request->date_from);
+            $qry=$qry->where("warehouse_id",DateHelper::toValue($request->date_from));
         $map["stock"]=$qry->get();
         return view("report.inventory.ledger-summary.print", $map);
     }

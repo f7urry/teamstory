@@ -46,6 +46,9 @@
                 name: 'date',
                 orderable: true,
                 searchable: true,
+                render: function(data, type, row, meta){
+                    return date_format(data);
+                }
             },
             {
                 data: 'code',

@@ -19,7 +19,7 @@
 
                         <div class="form-group col-md-12">
                             <label>Date</label>
-                            <input type="text" name="date" class="form-control" id="date" value="{{ $goodsReceipt->date }}" disabled/>
+                            <input type="text" name="date" class="form-control" id="date" value="{{DateHelper::date_format($goodsReceipt->date)}}" disabled/>
                         </div>
 
                         <div class="form-group col-md-12">

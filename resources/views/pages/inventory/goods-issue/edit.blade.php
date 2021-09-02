@@ -15,7 +15,7 @@
                         {{ method_field("PATCH")}}
                         <div class="form-group col-md-12">
                             <label>Date</label>
-                            <input type="text" name="date" class="form-control" id="date" value="{{ $goodsIssue->date }}" disabled/>
+                            <input type="text" name="date" class="form-control" id="date" value="{{DateHelper::date_format($goodsIssue->date)}}" disabled/>
                         </div>
 
                         <div class="form-group col-md-12">

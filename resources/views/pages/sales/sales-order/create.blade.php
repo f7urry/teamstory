@@ -32,11 +32,11 @@
                         
                         <div class="form-group col-md-12">
                             <label>Invoice Date</label>
-                            <input type="text" name="date" class="form-control datepicker" id="date" value="{{date('Y-m-d')}}" />
+                            <input type="text" name="date" class="form-control datepicker" id="date" value="{{date('d-m-Y')}}" />
                         </div>
                         <div class="form-group col-md-12">
                             <label>Invoice Due Date</label>
-                            <input type="text" name="due_date" class="form-control datepicker" id="due_date" value="{{date('Y-m-d')}}" />
+                            <input type="text" name="due_date" class="form-control datepicker" id="due_date" value="{{date('d-m-Y')}}" />
                         </div>
                         <div class="form-group col-md-12">
                             <label>Reference</label>
@@ -250,7 +250,7 @@
                 }
                 $("#dtable tbody").append(el);
                 index++;
-                $(".calc").off();
+                $(".calc").off("keyup");
                 $(".calc").on("keyup",function(){calc()});
                 $_ui();
             });

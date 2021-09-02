@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Accounting;
 
 use App\Helper\DatatableHelper;
 use App\Helper\CodeGenerator;
+use App\Helper\DateHelper;
 use App\Helper\NumberHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Accounting\Receivable;
@@ -40,6 +41,7 @@ class ReceivableController extends Controller {
             '_token'
         ]));
         $so=SalesOrder::find($p->sales_order_id);
+        $p->date=DateHelper::toValue($p->date);
         $p->code=CodeGenerator::generate("RV");
         $p->type=Receivable::TYPE_MANUAL;
         $p->amount=NumberHelper::toValue($p->amount);
