@@ -40,6 +40,9 @@
                 name: 'date',
                 orderable: true,
                 searchable: true,
+                render: function(data){
+                    return date_format(data);
+                }
             },
             {
                 data: 'code',
