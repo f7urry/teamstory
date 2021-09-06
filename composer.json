@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "milon/barcode": "^8.0",
+        "orangehill/iseed": "^3.0",
         "yajra/laravel-datatables": "^1.5"
     },
     "require-dev": {
