@@ -15,9 +15,9 @@
     <link type="text/css" rel="stylesheet" href="{{url('/assets/jqvmap/jqvmap.min.css')}}">
     <link type="text/css" rel="stylesheet" href="{{url('/assets/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <link type="text/css" rel="stylesheet" href="{{url('/assets/summernote/summernote-bs4.css')}}">
-    <link type="text/css" rel="stylesheet" href="{{url('/assets/sb-admin/css/styles.css')}}" />
     <link type="text/css" rel="stylesheet" href="{{url('/assets/select2/css/select2.min.css')}}">   
     <link type="text/css" rel="stylesheet" href="{{url('/assets/ekko-lightbox/ekko-lightbox.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{url('/assets/material/css/material-dashboard.css')}}" />
     <link type="text/css" rel="stylesheet" href="{{url('/assets/app/css/app.css')}}"/>
     @stack("styles")
 </head>

@@ -23,7 +23,7 @@ class MenuBuilder{
         foreach ($this->menus as $module) {
             if(array_key_exists($module->id,$this->menus) && $module->group_id==null){
                 $menu.="<a class='nav-link' href='".url('/'.$module->path)."'>";
-                $menu.="<div class='sb-nav-link-icon'><i class='fa $module->fa_icon'></i></div><span>$module->name</span>";
+                $menu.="<i class='fa $module->fa_icon'></i>&nbsp;<span class='nav-link-text'>$module->name</span>";
                 $menu.="</a>";
             }
         }
@@ -32,17 +32,17 @@ class MenuBuilder{
     public function addMenu($root,$group){
         if (array_key_exists($group->id, $this->menusGroup)) {
             $found=false;
-            $menu="";
+            $menu="<li class='nav-item'>";
             $menu.="<a class='nav-link collapsed' href='#' data-toggle='collapse' data-target='#col_group_".$group->id."' id='group_".$group->id."'>";
-            $menu.="<div class='sb-nav-link-icon'><i class='fa ".$group->fa_icon."'></i></div>";
-            $menu.="<span>".$group->name."</span>";
+            $menu.="<i class='fa ".$group->fa_icon."'></i>&nbsp;";
+            $menu.="<span class='nav-link-text'>".$group->name."</span>";
             if ($group->childs->count()>0) {
                 $found=true;
             }
             if ($group->modules->count()>0) {
                 $found=true;
             }
-            $menu.="<div class='sb-sidenav-collapse-arrow'><i class='fas fa-angle-down'></i></div>";
+            $menu.="&nbsp;<i class='fas fa-angle-down'></i>";;
             $menu.="</a>";
             if ($found) {
                 $root.=$menu;
@@ -54,6 +54,7 @@ class MenuBuilder{
                 }
                 $root.="</nav></div>";
             }
+            $root.="</li>";
         }
         return $root;
     }
@@ -62,7 +63,7 @@ class MenuBuilder{
         foreach ($group->modules as $module) {
             if(array_key_exists($module->id,$this->menus)){
                 $menu.="<a class='nav-link' href='".url('/'.$module->path)."'>";
-                $menu.="<div class='sb-nav-link-icon'><i class='fa $module->fa_icon'></i></div><span>$module->name</span>";
+                $menu.="<i class='fa $module->fa_icon'></i>&nbsp;<span class='nav-link-text'>$module->name</span>";
                 $menu.="</a>";
             }
         }

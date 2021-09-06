@@ -10,30 +10,15 @@
     content:unset;
 }
 
-.sb-topnav .navbar-brand{
-    height: 56px;
-    background: var(--nav-color);
-    padding-top: 0.7rem;
-}
 
 .navbar-dark .btn-link,
 .navbar-dark .nav-link{
     color: #fff !important;
 }
-.sb-sidenav-menu-heading,
-.sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-nav-link-icon,
-.sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-sidenav-collapse-arrow{
-    color: #000;
-}
-.sb-sidenav-menu .nav-link.active,
-.sb-sidenav-menu .nav-link.active .sb-nav-link-icon,
-.sb-sidenav-menu .nav-link.active .sb-sidenav-collapse-arrow,
-.sb-sidenav-menu .nav-link:hover,
-.sb-sidenav-menu .nav-link:hover .sb-nav-link-icon,
-.sb-sidenav-menu .nav-link:hover .sb-sidenav-collapse-arrow {
-    color: var(--link-color-hover) !important;
-}
 
 .fc-license-message{
     display: none !important;
+}
+.btn-primary{
+    background: orange !important;
 }

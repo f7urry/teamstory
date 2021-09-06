@@ -28,7 +28,7 @@ class SysUsersTableSeeder extends Seeder
                 'email_verified_at' => NULL,
                 'password' => '$2y$10$vP2NyDt4bahyKGsX.QsOae.0FlyzShtQB4WmVXb2niAeJqcTv7u8W',
                 'remember_token' => NULL,
-                'avatar' => 'avatar/ebe7a36d1793594fc2572dc4896b2b14.png',
+                'avatar' => '/assets/app/img/user.png',
                 'status' => 0,
                 'created_at' => NULL,
                 'updated_at' => '2021-08-17 17:52:06',

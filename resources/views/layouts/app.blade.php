@@ -10,18 +10,16 @@
                 <div></div>
             </div>
         </div>
-        @include("layouts.common.navbar")
-        <div id="layoutSidenav">
-            @include("layouts.common.sidebar")
-            <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid pt-3">
-                        <h1>@yield("title")</h1>
-                        @include("layouts.common.alert")
-                        @yield("content")
-                    </div>
-                </main>
+        @include("layouts.common.sidebar")
+        <div class="main-panel">
+            @include("layouts.common.navbar")
+            <div class="content">
+                <div class="container-fluid">
+                    @include("layouts.common.alert")
+                    @yield("content")
+                </div>
             </div>
+            @include("layouts.common.footer")
         </div>
         @include("layouts.common.scripts")
     </body>
