@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-6" style="font-size: 12px;">
                     <img src="{{url('/assets/app/img/logo.png')}}" height="48px" class="bg-white rounded"><br/>
-                    PT.INESIA NUSANTARA SEMESTA<br/>
+                    PT.INESIA FOOD INDONESIA<br/>
                     ASKRIDA TOWER LT.4 R.401 A<br/>
                     JL.PRAMUKA RAYA KAV.151 RT.009 RW.005<br/>
                     UTAN KAYU UTARA, MATRAMAN JAKARTA TIMUR DKI JAKARTA<br/>
@@ -110,7 +110,11 @@
                                 <td align="right">{{number_format($so->tax)}}</td>
                             </tr>
                             <tr>
-                                <td colspan="6">MEMO</td>
+                                <td colspan="6">MEMO:<br/>
+                                    No. Rek : 006-00888-111-08<br/>
+                                    PT. Inesia Food Indonesia<br/>
+                                    Bank Mandiri<br/>
+                                </td>
                                 <td>NETTO</td>
                                 <td align="right">{{number_format($so->amount+$so->tax)}}</td>
                             </tr>
