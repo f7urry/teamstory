@@ -21,16 +21,17 @@ class MenuBuilder{
     public function addRootMenu($root){
         $menu="";
         foreach ($this->menus as $module) {
-            if(array_key_exists($module->id,$this->menus) && $module->group_id==null){
+            if(array_key_exists($module->id,$this->menus) && $module->group_id==1){
+                $menu.="<li>";
                 $menu.="<a class='nav-link' href='".url('/'.$module->path)."'>";
                 $menu.="<i class='fa $module->fa_icon'></i>&nbsp;<span class='nav-link-text'>$module->name</span>";
-                $menu.="</a>";
+                $menu.="</a></li>";
             }
         }
         return $menu;
     }
     public function addMenu($root,$group){
-        if (array_key_exists($group->id, $this->menusGroup)) {
+        if (array_key_exists($group->id, $this->menusGroup) && $group->id!=1) {
             $found=false;
             $menu="<li class='nav-item'>";
             $menu.="<a class='nav-link collapsed' href='#' data-toggle='collapse' data-target='#col_group_".$group->id."' id='group_".$group->id."'>";

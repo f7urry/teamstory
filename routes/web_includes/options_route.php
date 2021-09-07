@@ -13,4 +13,7 @@ Route::group(["prefix"=>"api"], function(){
     Route::get("/company/options",[App\Http\Controllers\Core\CompanyController::class,"options"]);
     Route::get("/modules/options",[App\Http\Controllers\Core\ModuleController::class,"options"]);
     Route::get("/roles/options",[App\Http\Controllers\Core\RolesController::class,"options"]);
+
+    //PROJECT
+    Route::get("/project/options",[App\Http\Controllers\Project\ProjectController::class,"options"]);
 });

@@ -22,6 +22,18 @@ class SysModuleGroupTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 1,
+                'name' => 'ROOT',
+                'parent_id' => NULL,
+                'fa_icon' => '',
+                'group_name' => NULL,
+                'menu_index' => 1,
+                'created_at' => '2021-04-05 08:37:23',
+                'updated_at' => '2021-04-05 08:37:23',
+                'created_by' => NULL,
+            ),
+            1 => 
+            array (
+                'id' => 2,
                 'name' => 'Settings',
                 'parent_id' => NULL,
                 'fa_icon' => 'fa-cog',

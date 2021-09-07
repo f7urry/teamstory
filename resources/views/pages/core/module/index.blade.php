@@ -24,7 +24,9 @@
                                 <td>{{$d->name}}</td>
                                 <td>
                                     <a href="{{url('/modules/'.$d->id)}}" class='btn btn-primary mr-2'><i class='fa fa-pen'></i></a>
-                                    <a href="{{url('/modules/'.$d->id)}}" class='btn btn-danger btn-delete' data-message='Delete this data?'><i class='fa fa-trash'></i></a>
+                                    @if($d->name!="ROOT")
+                                        <a href="{{url('/modules/'.$d->id)}}" class='btn btn-danger btn-delete' data-message='Delete this data?'><i class='fa fa-trash'></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

@@ -8,36 +8,38 @@
 <form name='frmUser' method="POST" action="{{url('/modules/'.$group->id)}}" enctype="multipart/form-data">
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-header bg-dark text-white">Module Group Information</div>
-            <div class="card-body">
-                {{csrf_field()}}
-                {{method_field("patch")}}
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>{{ __('Name') }}</label>
-                        <input id="name" type="text" class="form-control" name="name" value="{{$group->name}}"/>
-                    </div>
-                    <div class="form-group">
-                        <label>{{ __('Parent') }}</label>
-                        <select name="parent_id" class="form-control">
-                            <option value="">--ROOT--</option>
-                            @foreach($parents as $parent)
-                                <option value="{{$parent->id}}" {{$group->parent_id==$parent->id?'selected':''}}>{{$parent->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>{{ __('Icon') }}</label>
-                        <input id="icon" type="text" class="form-control" name="fa_icon" value="{{$group->fa_icon}}"/>
-                    </div>
-                    <div class="form-group">
-                        <label>{{ __('Menu Index') }}</label>
-                        <input id="menu_index" type="text" class="form-control" name="menu_index" value="{{$group->menu_index}}"/>
+        {{csrf_field()}}
+        {{method_field("patch")}}
+        @if($group->name!="ROOT")
+            <div class="card">
+                <div class="card-header bg-dark text-white">Module Group Information</div>
+                <div class="card-body">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>{{ __('Name') }}</label>
+                            <input id="name" type="text" class="form-control" name="name" value="{{$group->name}}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ __('Parent') }}</label>
+                            <select name="parent_id" class="form-control">
+                                <option value="">--ROOT--</option>
+                                @foreach($parents as $parent)
+                                    <option value="{{$parent->id}}" {{$group->parent_id==$parent->id?'selected':''}}>{{$parent->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ __('Icon') }}</label>
+                            <input id="icon" type="text" class="form-control" name="fa_icon" value="{{$group->fa_icon}}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ __('Menu Index') }}</label>
+                            <input id="menu_index" type="text" class="form-control" name="menu_index" value="{{$group->menu_index}}"/>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
         <div class="card mt-2">
             <div class="card-header bg-dark text-white">Module List</div>
             <div class="card-body">
@@ -106,6 +108,7 @@
                 </tr>`;
                 $("#table_module tbody").append(e);
                 $_ui();
+                m_idx++;
             });
         });
     </script>

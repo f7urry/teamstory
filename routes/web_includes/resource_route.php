@@ -12,3 +12,8 @@ Route::resource("/company",App\Http\Controllers\Core\CompanyController::class);
 Route::resource("/users",App\Http\Controllers\Core\UserController::class);
 Route::resource("/roles",App\Http\Controllers\Core\RolesController::class);
 Route::resource("/modules",App\Http\Controllers\Core\ModuleController::class);
+
+//Project Module
+Route::resource("/project",App\Http\Controllers\Project\ProjectController::class);
+Route::resource("/issue",App\Http\Controllers\Project\IssueController::class);
+
