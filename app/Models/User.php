@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Core\CompanyUser;
 use App\Models\Core\RoleAccessPermission;
 use App\Models\Core\UserRole;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -46,7 +47,7 @@ class User extends Authenticatable {
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    
     public function roles(){
         return $this->hasMany(UserRole::class);
     }
@@ -58,7 +59,12 @@ class User extends Authenticatable {
         }
         return $index;
     }
-
+    public function companies(){
+        return $this->hasMany(CompanyUser::class);
+    }
+    public function company_ids(){
+        return $this->hasMany(CompanyUser::class);
+    }
     public function checkPermission(){
         $row=new RoleAccessPermission();
         $row->id=0;

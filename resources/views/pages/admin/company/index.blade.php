@@ -1,8 +1,8 @@
 @extends("layouts.app")
-@section("title","City")
+@section("title","Company")
 @section("content")
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{url('/city/create')}}"><i class="fa fa-plus"></i> New</a></li>
+    <li class="breadcrumb-item"><a href="{{url('/company/create')}}"><i class="fa fa-plus"></i> New</a></li>
 </ol>
 <div class="row">
     <div class="col-md-12">
@@ -10,8 +10,8 @@
             <table class="table table-bordered table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                 <thead class='thead-dark'>
                     <tr>
-                    	<th>Location</th>
-                    	<th>Province</th>
+                    	<th>Name</th>
+                    	<th>Address</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -19,11 +19,11 @@
                     @if(count($list_data)>0)
                         @foreach($list_data as $p)
                         <tr>
-                        	<td>{{$p->location}}</td>
-                        	<td>{{$p->parent->location}}</td>
+                        	<td>{{$p->company_name}}</td>
+                        	<td>{{$p->company_address}}</td>
                             <td>
-                                <a class='btn btn-info' href="{{url('/city/'.$p->id)}}"><i class="fa fa-eye"></i></a>
-                                <a class='btn btn-danger btn-delete' href="#" data-href="{{url('/city/'.$p->id)}}" data-message="Dou you want delete {{$p->location}}?"><i class="fa fa-trash"></i></a>
+                                <a class='btn btn-info' href="{{url('/company/'.$p->id)}}"><i class="fa fa-eye"></i></a>
+                                <a class='btn btn-danger btn-delete' href="#" data-href="{{url('/company/'.$p->id)}}" data-message="Dou you want delete {{$p->company_name}}?"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         @endforeach

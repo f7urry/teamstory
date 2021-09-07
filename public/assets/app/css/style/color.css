@@ -1,4 +1,4 @@
 :root{
-    --link-color-hover: #0016de;
-    --nav-color: rgb(0, 62, 196); 
+    --link-color-hover: var(--warning);
+    --nav-color: var(--orange); 
 }

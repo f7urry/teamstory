@@ -17,7 +17,7 @@ Route::group(['middleware'=>['auth',RoleListener::class]],function(){
     include 'web_includes/pages_route.php';
     include 'web_includes/endpoint_route.php';
     include 'web_includes/datatable_route.php';
-    include 'web_includes/option_route.php';
+    include 'web_includes/options_route.php';
     include 'web_includes/popup_route.php';
     include 'web_includes/resource_route.php';
 });

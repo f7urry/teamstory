@@ -75,6 +75,20 @@ class SysRoleAccessPermissionTableSeeder extends Seeder
                 'updated_at' => '2021-09-06 15:39:43',
                 'created_by' => NULL,
             ),
+            4 => 
+            array (
+                'id' => 5,
+                'role_access_id' => 1,
+                'module_id' => 5,
+                'is_read' => 1,
+                'is_create' => 1,
+                'is_delete' => 1,
+                'is_update' => 1,
+                'status' => 0,
+                'created_at' => '2021-09-06 15:39:43',
+                'updated_at' => '2021-09-06 15:39:43',
+                'created_by' => NULL,
+            ),
         ));
         
         

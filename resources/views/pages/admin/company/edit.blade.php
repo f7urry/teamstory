@@ -1,9 +1,9 @@
 @extends("layouts.app")
-@section("title","City")
+@section("title","Company")
 @section("content")
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{url('/city')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
-    <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/city/'.$city->id)}}"><i class="fa fa-check"></i> Update</a></li>
+    <li class="breadcrumb-item"><a href="{{url('/company')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
+    <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/company/'.$company->id)}}"><i class="fa fa-check"></i> Update</a></li>
 </ol>
 <div class="row">
     <div class="col-lg-4">
@@ -13,14 +13,12 @@
                     {{ csrf_field() }}
                     {{ method_field("PATCH")}}
                     <div class="form-group col-md-12">
-                        <label>Province</label>
-                        <select name="parent_id" id="province">
-                            <option value="{{$city->parent_id}}">{{$city->parent->location}}</option>
-                        </select>
+                        <label>Company</label>
+                        <input type="text" name="company_name" class="form-control" id="company_name" value="{{$company->company_name}}" />
                     </div>
                     <div class="form-group col-md-12">
-                        <label onclick="javascript:alert('alert');">Province</label>
-                        <input type="text" name="location" class="form-control" id="location" value="{{$city->location}}" />
+                        <label>Address</label>
+                        <input type="text" name="company_address" class="form-control" id="company_address" value="{{$company->company_address}}" />
                     </div>
                 </form>
             </div>

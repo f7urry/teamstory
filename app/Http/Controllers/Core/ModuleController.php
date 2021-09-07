@@ -44,7 +44,10 @@ class ModuleController extends Controller {
         $group=ModuleGroup::find($module);
         $group->update($param);
 
-        $list_module=$request->module_id;
+        if($request->module_id!=null)
+            $list_module=$request->module_id;
+        else
+            $list_module=[];
         foreach($list_module as $i=>$id){
             if($id!=0){
                 $mdl=Module::find($id);

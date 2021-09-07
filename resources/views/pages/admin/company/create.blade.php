@@ -1,9 +1,9 @@
 @extends("layouts.app")
-@section("title","City")
+@section("title","Company")
 @section("content")
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{url('/city')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
-        <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/city')}}"><i class="fa fa-check"></i> Save</a></li>
+        <li class="breadcrumb-item"><a href="{{url('/company')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
+        <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/company')}}"><i class="fa fa-check"></i> Save</a></li>
     </ol>
     <div class="row">
         <div class="col-lg-4">
@@ -12,13 +12,12 @@
                     <form method="post" class="row" name="formAdd" id="formAdd">
                         {{ csrf_field() }}
                         <div class="form-group col-md-12">
-                            <label>Province</label>
-                            <select name="parent_id" id="province"></select>
+                            <label>Company</label>
+                            <input type="text" name="company_name" class="form-control" id="company_name" />
                         </div>
                         <div class="form-group col-md-12">
-                            <label>City</label>
-                            <input type="text" name="location" class="form-control" id="location" />
-                            <input type="hidden" name="level" value="2"/>
+                            <label>Address</label>
+                            <input type="text" name="company_address" class="form-control" id="company_address" />
                         </div>
                     </form>
                 </div>

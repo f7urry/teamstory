@@ -75,6 +75,20 @@ class SysModuleTableSeeder extends Seeder
                 'updated_at' => '2021-08-25 16:11:41',
                 'created_by' => NULL,
             ),
+            4 => 
+            array (
+                'id' => 5,
+                'name' => 'Company',
+                'path' => 'company',
+                'fa_icon' => 'fa-building',
+                'status' => NULL,
+                'is_menu' => 1,
+                'menu_index' => 4,
+                'group_id' => 1,
+                'created_at' => '2021-08-25 16:11:41',
+                'updated_at' => '2021-08-25 16:11:41',
+                'created_by' => NULL,
+            )
         ));
         
         

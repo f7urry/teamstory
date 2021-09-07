@@ -7,6 +7,7 @@ use DataTables;
 use App\Models\User;
 use App\Models\Core\UserRole;
 use App\Http\Controllers\Controller;
+use App\Models\Core\CompanyUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -39,6 +40,12 @@ class UserController extends Controller {
             $role->role_access_id=$id;
             $role->save();
         }
+        foreach($request->companies as $i=>$id){
+            $com=new CompanyUser();
+            $com->user_id=$user->id;
+            $com->company_id=$id;
+            $com->save();
+        }
         return redirect("/users");
     }
 
@@ -57,7 +64,9 @@ class UserController extends Controller {
         $param=$request->except(['_token']);
         $user->update($param);
 
-        $list_role=$request->role_ids;
+
+        //COLLECT ROLE
+        $list_role=$request->role_ids!=null?$request->role_ids:[];
         foreach($list_role as $i=>$id){
             if($id!=0){
                 $userrole=UserRole::find($id);
@@ -77,6 +86,29 @@ class UserController extends Controller {
             $found=false;
             if(!in_array($userrole->id,$list_role))
                 $userrole->delete();
+        }
+
+        //COLLECT COMPANY
+        $list_com=$request->company_ids!=null?$request->company_ids:[];
+        foreach($list_com as $i=>$id){
+            if($id!=0){
+                $usercom=CompanyUser::find($id);
+                $usercom->company_id=$request->company[$i];
+                $usercom->update();
+            }else{
+                $usercom=new CompanyUser();
+                $usercom->company_id=$request->company[$i];
+                $usercom->user_id=$user->id;
+                $usercom->status=1;
+                $usercom->save();
+
+                $list_com[$i]=$usercom->id;
+            }
+        }
+        foreach($user->companies as $usercom){
+            $found=false;
+            if(!in_array($usercom->id,$list_com))
+                $usercom->delete();
         }
         return redirect()->back();
     }
