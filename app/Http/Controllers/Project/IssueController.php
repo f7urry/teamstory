@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class IssueController extends Controller {
     public function index() {
         $qry=Issue::query();
+        $qry->select("t_issue.*");
         $qry->join("t_project as p", "p.id", "=", "t_issue.project_id");
         $qry->whereIn("p.company_id", Auth::user()->company_ids());
         $map['list_data']=$qry->get();
