@@ -11412,7 +11412,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sNext": "Next",
+				"sNext": "<i class='fa fa-long-arrow-alt-right'></i>",
 	
 	
 				/**
@@ -11435,7 +11435,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sPrevious": "Previous"
+				"sPrevious": "<i class='fa fa-long-arrow-alt-left'></i>"
 			},
 	
 			/**

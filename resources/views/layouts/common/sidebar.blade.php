@@ -1,10 +1,18 @@
-<div class="sidebar" data-color="orange" data-background-color="white">
-    <div class="logo d-flex justify-content-center">
-        <img src="{{url('assets/app/img/logo.png')}}" width="50%">
+<nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+    <div class="scrollbar-inner">
+        <!-- Brand -->
+        <div class="sidenav-header  align-items-center">
+            <a class="navbar-brand" href="javascript:void(0)">
+                <img src="{{url('assets/app/img/logo.png')}}" class="navbar-brand-img" alt="...">
+            </a>
+        </div>
+        <div class="navbar-inner">
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                <ul class="navbar-nav">
+                    {!!MenuBuilder::generate()!!}
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="sidebar-wrapper">
-        <ul class="nav">
-            {!!MenuBuilder::generate()!!}
-        </ul>
-    </div>
-</div>
+</nav>

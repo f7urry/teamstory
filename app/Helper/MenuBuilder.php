@@ -43,7 +43,7 @@ class MenuBuilder{
             if ($group->modules->count()>0) {
                 $found=true;
             }
-            $menu.="&nbsp;<i class='fas fa-angle-down'></i>";;
+            $menu.="&nbsp;";
             $menu.="</a>";
             if ($found) {
                 $root.=$menu;

@@ -9,14 +9,14 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form method="post" class="row card-body" name="formAdd" id="formAdd">
+                <form method="post" class="card-body" name="formAdd" id="formAdd">
                     {{ csrf_field() }}
                     {{ method_field("PATCH")}}
-                    <div class="form-group col-md-12">
+                    <div class="form-group">
                         <label>Due Date</label>
                         <input type="text" name="due_date" class="datepicker form-control" id="due_date" value="{{$issue->due_date}}" />
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="form-group">
                         <label>Status</label>
                         <select name="status" class="form-control">
                             <option {{$issue->status=="WAITING"?"selected":""}}>WAITING</option>
@@ -26,17 +26,17 @@
                             <option {{$issue->status=="REJECTED"?"selected":""}}>REJECTED</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-12">
-                        <label>Project</label>
+                    <div class="form-group">
+                        <label class="form-label">Project</label>
                         <select name="project_id" id="project">
                             <option value="{{$issue->project_id}}">{{$issue->project->project_name}}</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="form-group">
                         <label>Subject</label>
                         <input type="text" name="subject" class="form-control" id="subject" value="{{$issue->subject}}" />
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="form-group">
                         <label>Description</label>
                         <textarea class="form-control" name="description">{{$issue->description}}</textarea>
                     </div>

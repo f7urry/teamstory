@@ -11,15 +11,13 @@
             </div>
         </div>
         @include("layouts.common.sidebar")
-        <div class="main-panel">
+        <div class="main-content" id="panel">
             @include("layouts.common.navbar")
-            <div class="content">
-                <div class="container-fluid">
-                    @include("layouts.common.alert")
-                    @yield("content")
-                </div>
+            <div class="container-fluid">
+                @include("layouts.common.alert")
+                @yield("content")
+                @include("layouts.common.footer")
             </div>
-            @include("layouts.common.footer")
         </div>
         @include("layouts.common.scripts")
     </body>

@@ -20,6 +20,7 @@ function $__app() {
     $_datepicker(".datepicker");
     $_datetimepicker(".datetimepicker");
 
+    CKEDITOR.replaceAll( 'rich-text' );
     $(".btn-submit").off("click");
     $(".btn-submit").on("click", function(e) {
         e.preventDefault();
