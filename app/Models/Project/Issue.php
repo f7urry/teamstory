@@ -9,11 +9,11 @@ class Issue extends Model{
     protected $guarded=['id'];
     protected $table = 't_issue';
     
-    public static const STATUS_WAITING="WAITING";
-    public static const STATUS_IN_PROGRESS="IN PROGRESS";
-    public static const STATUS_DONE="DONE";
-    public static const STATUS_ON_TESTING="ON TESTING";
-    public static const STATUS_REJECTED="REJECTED";
+    public const STATUS_WAITING="WAITING";
+    public const STATUS_IN_PROGRESS="IN PROGRESS";
+    public const STATUS_DONE="DONE";
+    public const STATUS_ON_TESTING="ON TESTING";
+    public const STATUS_REJECTED="REJECTED";
 
     public function project(){
         return $this->belongsTo(Project::class, "project_id");
