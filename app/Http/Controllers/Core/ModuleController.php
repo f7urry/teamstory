@@ -40,7 +40,7 @@ class ModuleController extends Controller {
     }
 
     public function update(Request $request,$module) {
-        $param=$request->only("fa_icon", "name", "parent_id", "menu_index");
+        $param=$request->only("fa_icon", "name", "parent_id", "menu_index","is_menu");
         $group=ModuleGroup::find($module);
         $group->update($param);
 
