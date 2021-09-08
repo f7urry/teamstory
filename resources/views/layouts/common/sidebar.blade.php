@@ -1,7 +1,7 @@
 <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
         <!-- Brand -->
-        <div class="sidenav-header  align-items-center">
+        <div class="sidenav-header  align-items-center border-bottom">
             <a class="navbar-brand" href="javascript:void(0)">
                 <img src="{{url('assets/app/img/logo.png')}}" class="navbar-brand-img" alt="...">
             </a>

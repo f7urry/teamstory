@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('title', 'Edit Module Group')
-@section('content')
-<ol class="breadcrumb">
+@section("breadcrumb")
     <li class="breadcrumb-item"><a href="{{url('/modules')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
     <li class="breadcrumb-item"><a href="javascript:document.frmUser.submit();"><i class="fa fa-check"></i> Update</a></li>
-</ol>
+@endsection
+@section('content')
 <form name='frmUser' method="POST" action="{{url('/modules/'.$group->id)}}" enctype="multipart/form-data">
 <div class="row">
     <div class="col-md-12">

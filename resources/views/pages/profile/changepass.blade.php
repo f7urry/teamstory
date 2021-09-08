@@ -1,10 +1,10 @@
 @extends("layouts.app")
 @section("title","Change Password")
-@section('content')
-<ol class="breadcrumb">
+@section("breadcrumb")
     <li class="breadcrumb-item"><a href="{{url('/profile')}}"><i class="fa fa-arrow-left"></i> Kembali</a></li>
     <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formUpdate"><i class="fa fa-check"></i> Update</a></li>
-</ol>
+@endsection
+@section('content')
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="card shadow">

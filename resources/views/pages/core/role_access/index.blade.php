@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('title', 'Role')
-@section('content')
-<ol class="breadcrumb">
+@section("breadcrumb")
     <li class="breadcrumb-item"><a href="{{url('/roles/create')}}"><i class="fa fa-plus"></i> New</a></li>
-</ol>
+@endsection
+@section('content')
 <div class="row">
     <div class="col-md-12">
         <div class="card">

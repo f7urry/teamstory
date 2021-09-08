@@ -1,9 +1,11 @@
 @extends("layouts.app")
 @section("title","Issue")
-@section("content")
-<ol class="breadcrumb">
+@section("breadcrumb")
     <li class="breadcrumb-item"><a href="{{url('/issue/create')}}"><i class="fa fa-plus"></i> New</a></li>
-</ol>
+@endsection
+@section("content")
+<div class="card">
+<div class="card-body">
 <div class="row">
     <div class="col-md-12">
         <div class="table-responsive">
@@ -11,7 +13,9 @@
                 <thead class='thead-dark'>
                     <tr>
                     	<th>Project</th>
+                    	<th>Due Date</th>
                     	<th>Subject</th>
+                    	<th>Status</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -20,7 +24,9 @@
                         @foreach($list_data as $p)
                         <tr>
                         	<td>{{$p->project->project_name}}</td>
+                        	<td>{{$p->due_date}}</td>
                         	<td>{{$p->subject}}</td>
+                        	<td>{{$p->status}}</td>
                             <td>
                                 <a class='btn btn-warning' href="{{url('/issue/'.$p->id)}}"><i class="fa fa-pen"></i></a>
                                 <a class='btn btn-danger btn-delete' href="#" data-href="{{url('/issue/'.$p->id)}}" data-message="Dou you want delete {{$p->subject}}?"><i class="fa fa-trash"></i></a>
@@ -32,6 +38,8 @@
             </table>
         </div>
     </div>
+</div>
+</div>
 </div>
 @endsection
 

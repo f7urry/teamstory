@@ -1,15 +1,15 @@
 @extends("layouts.app")
 @section("title","Issue")
+@section("breadcrumb")
+    <li class="breadcrumb-item"><a href="{{url('/issue')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
+    <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/issue')}}"><i class="fa fa-check"></i> Save</a></li>
+@endsection
 @section("content")
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{url('/issue')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
-        <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/issue')}}"><i class="fa fa-check"></i> Save</a></li>
-    </ol>
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header card-header-warning">
-                    <h4 class="card-title">New Issue</h4>
+                    <h3 class="">New Issue</h3>
                 </div>
                 <div class="card-body">
                     <form method="post" name="formAdd" id="formAdd">

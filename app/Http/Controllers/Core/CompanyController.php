@@ -10,11 +10,11 @@ class CompanyController extends Controller {
     public function index() {
         $qry=Company::orderBy("id", "desc");
         $map['list_data']=$qry->get();
-        return view("pages.admin.company.index", $map);
+        return view("pages.core.company.index", $map);
     }
 
     public function create() {
-        return view("pages.admin.company.create");
+        return view("pages.core.company.create");
     }
 
     public function store(Request $request) {
@@ -25,7 +25,7 @@ class CompanyController extends Controller {
 
     public function show(Company $company) {
         $map['company']=Company::find($company->id);
-        return view("pages.admin.company.edit", $map);
+        return view("pages.core.company.edit", $map);
     }
 
     public function edit(Company $category) {

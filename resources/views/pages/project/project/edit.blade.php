@@ -1,10 +1,10 @@
 @extends("layouts.app")
 @section("title","Project")
-@section("content")
-<ol class="breadcrumb">
+@section("breadcrumb")
     <li class="breadcrumb-item"><a href="{{url('/project')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
     <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/project/'.$project->id)}}"><i class="fa fa-check"></i> Update</a></li>
-</ol>
+@endsection
+@section("content")
 <div class="row">
     <div class="col-lg-4">
         <div class="card">

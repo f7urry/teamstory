@@ -1,9 +1,9 @@
 @extends("layouts.app")
 @section("title","Update Profile")
-@section('content')
-<ol class="breadcrumb">
+@section("breadcrumb")
     <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formUpdate"><i class="fa fa-check"></i> Update</a></li>
-</ol>
+@endsection
+@section('content')
 <div class="row">
     <div class="col-md-12">
         <div class="card shadow">

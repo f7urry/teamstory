@@ -1,9 +1,11 @@
 @extends("layouts.app")
 @section("title","Company")
-@section("content")
-<ol class="breadcrumb">
+@section("breadcrumb")
     <li class="breadcrumb-item"><a href="{{url('/company/create')}}"><i class="fa fa-plus"></i> New</a></li>
-</ol>
+@endsection
+@section("content")
+<div class="card">
+<div class="card-body">
 <div class="row">
     <div class="col-md-12">
         <div class="table-responsive">
@@ -32,6 +34,8 @@
             </table>
         </div>
     </div>
+</div>
+</div>
 </div>
 @endsection
 

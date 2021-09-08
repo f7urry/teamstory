@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('title', 'User Add')
-@section('content')
-<ol class="breadcrumb">
+@section("breadcrumb")
     <li class="breadcrumb-item"><a href="{{url('/users')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
     <li class="breadcrumb-item"><a href="javascript:document.frmUser.submit();"><i class="fa fa-save"></i> Save</a></li>
-</ol>
+@endsection
+@section('content')
 <form name='frmUser' method="POST" action="{{url('/users')}}" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-6">
