@@ -17,7 +17,7 @@ function $_datepicker(clsname) {
                 clear: 'fa fa-trash',
                 close: 'fa fa-times'
             },
-            format: 'DD-MM-YYYY',
+            format: 'YYYY-MM-DD',
         });
     });
 }
@@ -41,7 +41,7 @@ function $_datetimepicker(clsname) {
                 clear: 'fa fa-trash',
                 close: 'fa fa-times'
             },
-            format: 'DD-MM-YYYY HH:mm:ss', //use moment.js format
+            format: 'YYYY-MM-DD HH:mm:ss', //use moment.js format
         });
     });
 }

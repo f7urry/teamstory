@@ -29,7 +29,9 @@
                         	<td>{{$p->status}}</td>
                             <td>
                                 <a class='btn btn-warning' href="{{url('/issue/'.$p->id)}}"><i class="fa fa-pen"></i></a>
-                                <a class='btn btn-danger btn-delete' href="#" data-href="{{url('/issue/'.$p->id)}}" data-message="Dou you want delete {{$p->subject}}?"><i class="fa fa-trash"></i></a>
+                                @if(Gate::check("is_delete"))
+                                    <a class='btn btn-danger btn-delete' href="#" data-href="{{url('/issue/'.$p->id)}}" data-message="Dou you want delete {{$p->subject}}?"><i class="fa fa-trash"></i></a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

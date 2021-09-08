@@ -94,7 +94,7 @@
                                 <input type="checkbox" class="chk_all" data-index="${roleIdx}"/> All
                             </div>
                             <div class="col-md-6">
-                                <input type="hidden" name="is_read[]" value="0"/><input id="chk_read_${roleIdx}" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Read
+                                <input type="hidden" name="is_read[]" value="0"/><input   id="chk_read_${roleIdx}"  type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Read
                                 <input type="hidden" name="is_create[]" value="0"/><input id="chk_create_${roleIdx}" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Create
                                 <input type="hidden" name="is_update[]" value="0"/><input id="chk_update_${roleIdx}" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Update
                                 <input type="hidden" name="is_delete[]" value="0"/><input id="chk_delete_${roleIdx}" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Delete
@@ -116,7 +116,6 @@
         function $_bind_checkall(){
             $(".chk_all").on("click",function(e){
                 let index=$(this).attr("data-index");
-                console.log(index);
                 $("#chk_read_"+index).click();
                 $("#chk_create_"+index).click();
                 $("#chk_update_"+index).click();

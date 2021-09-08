@@ -11,12 +11,13 @@
 <script src="{{url('/assets/js-cookie/js.cookie.js')}}"></script>
 <script src="{{url('/assets/jquery.scrollbar/jquery.scrollbar.min.js')}}"></script>
 <script src="{{url('/assets/jquery-scroll-lock/dist/jquery-scrollLock.min.js')}}"></script>
+<script src="{{url('/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')}}"></script>
 <!--
+<script src="{{url('/assets/daterangepicker/daterangepicker.js')}}"></script>
 <script src="{{url('/assets/chart.js/Chart.min.js')}}"></script>
 <script src="{{url('/assets/sparklines/sparkline.js')}}"></script>
 <script src="{{url('/assets/jquery-knob/jquery.knob.min.js')}}"></script>
 <script src="{{url('/assets/ekko-lightbox/ekko-lightbox.js')}}"></script>
-<script src="{{url('/assets/daterangepicker/daterangepicker.js')}}"></script>
 <script src="{{url('/assets/summernote/summernote-bs4.min.js')}}"></script>
 <script src="{{url('/assets/filesaver/FileSaver.min.js')}}"></script>
 <script src="{{url('/assets/sheetjs/xlsx.core.min.js')}}"></script>

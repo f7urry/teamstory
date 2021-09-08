@@ -31,7 +31,7 @@ class MenuBuilder{
         return $menu;
     }
     public function addMenu($root,$group){
-        if (array_key_exists($group->id, $this->menusGroup) && $group->id!=1) {
+        if (array_key_exists($group->id, $this->menusGroup) && $group->id!=1 && $group->is_menu==1) {
             $found=false;
             $menu="<li class='nav-item'>";
             $menu.="<a class='nav-link collapsed' href='#' data-toggle='collapse' data-target='#col_group_".$group->id."' id='group_".$group->id."'>";

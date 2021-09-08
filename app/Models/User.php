@@ -63,7 +63,7 @@ class User extends Authenticatable {
         return $this->hasMany(CompanyUser::class);
     }
     public function company_ids(){
-        return $this->companies()->pluck('id');
+        return $this->companies()->pluck('company_id')->toArray();
     }
     public function checkPermission(){
         $row=new RoleAccessPermission();

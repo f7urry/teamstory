@@ -22,6 +22,7 @@ class CreateSysModuleGroupTable extends Migration {
 			$table->string('group_name')->nullable();
 			$table->integer('menu_index')->nullable()->default(0);
 			$table->timestamps();
+			$table->integer('is_menu')->default(1);
 			$table->integer('created_by')->nullable();
 		});
 	}

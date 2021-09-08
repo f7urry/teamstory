@@ -11,7 +11,7 @@
                         <div class="row">
                             <div class="col">
                                 <h5 class="card-title text-uppercase text-muted mb-0">Today Task</h5>
-                                <span class="h2 font-weight-bold mb-0">2</span>
+                                <span class="h2 font-weight-bold mb-0">0</span>
                             </div>
                             <div class="col-auto">
                                 <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col">
                                 <h5 class="card-title text-uppercase text-muted mb-0">Due Task</h5>
-                                <span class="h2 font-weight-bold mb-0">2</span>
+                                <span class="h2 font-weight-bold mb-0">0</span>
                             </div>
                             <div class="col-auto">
                                 <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -44,10 +44,25 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-dark">Issue Waiting</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-area">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
                 <div class="card mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Issue Waiting</h6>
+                        <h6 class="m-0 font-weight-bold text-dark">Issue Due</h6>
                     </div>
                     <div class="card-body">
                         <div class="chart-area">
@@ -55,10 +70,5 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    
 </div>
 @endsection

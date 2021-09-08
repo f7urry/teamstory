@@ -1,7 +1,9 @@
 @extends("layouts.app")
 @section("title","Project")
 @section("breadcrumb")
-    <li class="breadcrumb-item"><a href="{{url('/project/create')}}"><i class="fa fa-plus"></i> New</a></li>
+    @if(Gate::check("is_create"))
+        <li class="breadcrumb-item"><a href="{{url('/project/create')}}"><i class="fa fa-plus"></i> New</a></li>
+    @endif
 @endsection
 @section("content")
 <div class="card">
@@ -24,8 +26,12 @@
                                     <td>{{$p->project_name}}</td>
                                     <td>{{$p->company->company_name}}</td>
                                     <td>
-                                        <a class='btn btn-warning' href="{{url('/project/'.$p->id)}}"><i class="fa fa-pen"></i></a>
-                                        <a class='btn btn-danger btn-delete' href="#" data-href="{{url('/project/'.$p->id)}}" data-message="Dou you want delete {{$p->project_name}}?"><i class="fa fa-trash"></i></a>
+                                        @if(Gate::check("is_update"))
+                                            <a class='btn btn-warning' href="{{url('/project/'.$p->id)}}"><i class="fa fa-pen"></i></a>
+                                        @endif
+                                        @if(Gate::check("is_delete"))
+                                            <a class='btn btn-danger btn-delete' href="#" data-href="{{url('/project/'.$p->id)}}" data-message="Dou you want delete {{$p->project_name}}?"><i class="fa fa-trash"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

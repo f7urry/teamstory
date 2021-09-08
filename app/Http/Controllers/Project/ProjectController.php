@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Core\Geographic;
 use App\Models\Project\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller {
     public function index() {
         $qry=Project::query();
+        $qry->whereIn("company_id", Auth::user()->company_ids());
         $map['list_data']=$qry->get();
         return view("pages.project.project.index", $map);
     }
@@ -45,6 +47,7 @@ class ProjectController extends Controller {
     }
     public function options(Request $request) {
         $qry=Project::query();
+        $qry->whereIn("company_id", Auth::user()->company_ids());
         $qry->limit(10);
         return SelectHelper::generate($qry, "id", "project_name");
     }
