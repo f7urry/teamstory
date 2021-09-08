@@ -35,6 +35,13 @@
                                 <label>{{ __('Menu Index') }}</label>
                                 <input id="menu_index" type="text" class="form-control" name="menu_index" value="0"/>
                             </div>
+                            <div class="form-group">
+                                <label>{{ __('Show Menu') }}</label>
+                                <select name="is_menu" class="form-control">
+                                    <option value="0">Hide</option>
+                                    <option value="1" selected>Show</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
