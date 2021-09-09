@@ -28,6 +28,8 @@ class IssueController extends Controller {
         $qry->with("project");
         $qry->select("t_issue.*");
         $qry->join("t_project as p", "p.id", "=", "t_issue.project_id");
+        if($request->status!="")
+            $qry->where("t_issue.status", $request->status);
         if(Auth::user()->rolesIndex()>=20){
            $qry->whereIn("company_id", Auth::user()->company_ids());
         }

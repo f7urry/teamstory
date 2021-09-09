@@ -19,10 +19,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <p class="mt-3 mb-0 text-sm">
-                            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                            <span class="text-nowrap">Since last month</span>
-                        </p> -->
                     </div>
                 </div>
             </div>
@@ -51,24 +47,94 @@
     <div class="col-md-6">
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-dark">Issue Waiting</h6>
+                <h4 class="m-0 font-weight-bold text-dark">Issue Waiting</h4>
             </div>
             <div class="card-body">
-                <div class="chart-area">
+                <div class="table-responsive">
+                    <table class="table table-borderless table-sm" id="table_waiting" width="100%" cellspacing="0">
+                        <thead class='thead-dark'>
+                            <tr>
+                                <th>Due Date</th>
+                                <th>Project</th>
+                                <th>Subject</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-6">
-                <div class="card mb-4">
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-dark">Issue Due</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart-area">
-                        </div>
-                    </div>
+        <div class="card mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h4 class="m-0 font-weight-bold text-dark">Issue On Progress</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-borderless table-sm" id="table_progress" width="100%" cellspacing="0">
+                        <thead class='thead-dark'>
+                            <tr>
+                                <th>Due Date</th>
+                                <th>Project</th>
+                                <th>Subject</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
+        </div>
+    </div>
 </div>
 @endsection
+
+@push("scripts")
+<script type="text/javascript">
+    $(document).ready(function(){
+         bind_table("table_waiting", "WAITING");
+         bind_table("table_progress", "IN PROGRESS");
+    });
+    function bind_table(id,status){
+        var dTable=$("#"+id).DataTable({
+             searching: true,
+             processing: true,
+             serverSide: true,
+             order:[[1,"DESC"]],
+             ajax: `${base_url()}/api/issue/list?status=${status}`,
+             columns: [
+                {
+                    data: 'due_date',
+                    name: 'due_date',
+                    orderable: true,
+                    searchable: true
+                },
+                {
+                    data: 'project.project_name',
+                    name: 'project.project_name',
+                    orderable: true,
+                    searchable: true,
+                },
+            	{
+                    data: 'subject',
+                    name: 'subject',
+                    orderable: true,
+                    searchable: true,
+                    render: function(data, type, row, meta){
+                        return `<a class="text-info" href='${base_url()+'/issue/'+row['id']}'>${data}</a>`;
+                    }
+                },
+            	{
+                    data: 'status',
+                    name: 'status',
+                    orderable: true,
+                    searchable: true,
+                },
+             ],
+             drawCallback:function(){
+                 $_ui();
+             }
+    	 });
+    }
+</script>
+@endpush
