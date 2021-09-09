@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Project;
 
 use App\Helper\CodeGenerator;
+use App\Helper\DatatableHelper;
 use App\Helper\DateHelper;
 use App\Helper\SelectHelper;
 use App\Helper\StorageUtil;
@@ -22,6 +23,21 @@ class IssueController extends Controller {
         return view("pages.project.issue.index", $map);
     }
 
+    public function list(Request $request,$var = null) {
+        $qry = Issue::query();
+        $qry->with("project");
+        $qry->select("t_issue.*");
+        $qry->join("t_project as p", "p.id", "=", "t_issue.project_id");
+        if(Auth::user()->rolesIndex()>=20){
+           $qry->whereIn("company_id", Auth::user()->company_ids());
+        }
+        $qry->orderBy("t_issue.id","DESC");
+        return DatatableHelper::generate($var, $qry->get(), "issue", array(
+            "all" => false,
+        ))->make(true);
+    }
+
+
     public function create() {
         return view("pages.project.issue.create");
     }
@@ -29,7 +45,7 @@ class IssueController extends Controller {
     public function store(Request $request) {
         $p=Issue::create($request->except(["_token"]));
         $p->code=CodeGenerator::generate("I");
-        if(isset($request->attachment_1)) {
+        if(isset($request->request->attachment_1)) {
             $filename = StorageUtil::uploadFile("issue_attachment", $request->attachment_1);
             $p->attachment_1 = $filename;
         }
@@ -73,7 +89,7 @@ class IssueController extends Controller {
             $p->update($param);
             return redirect("/issue/".$p->id)->with("message","Success: Issue Updated");
         }catch(\Exception $e){
-            return response()->back()->with("message", "Error: Failed update issue .".$e->getMessage());
+            return r8esponse()->back()->with("message", "Error: Failed update issue .".$e->getMessage());
         }
     }
 

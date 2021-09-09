@@ -7,6 +7,7 @@ use App\Models\Core\Geographic;
 use App\Models\Project\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller {
     public function index() {
@@ -47,9 +48,17 @@ class ProjectController extends Controller {
     }
     public function options(Request $request) {
         $qry=Project::query();
+        $qry->select("t_project.*");
+        $qry->join("sys_company as s", "s.id", "=", "t_project.company_id");
         $qry->whereIn("company_id", Auth::user()->company_ids());
+        if ($request->term != ''){
+            $qry->where(function($q) use($request){
+                $q->where("s.company_name", "like", "%$request->term%");
+                $q->orWhere("project_name","like", "%$request->term%");
+            });
+        }
         $qry->limit(10);
-        return SelectHelper::generate($qry, "id", "project_name");
+        return SelectHelper::generate($qry,"t_project.id", 'concat(s.company_name," - ",project_name)',true);
     }
     public function get(Project $project){
         $p=Project::find($project->id);

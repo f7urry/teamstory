@@ -26,7 +26,7 @@ class DatatableHelper {
                         'delete' => false
                     ];
                 } else {
-                    if(isset($grants['dml']) && $grants['dml']){
+                    if(isset($grants['all']) && $grants['all']){
                         $map=[
                             "show"=>true,
                             "edit"=>true,
