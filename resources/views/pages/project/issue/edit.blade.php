@@ -13,6 +13,10 @@
                     {{ csrf_field() }}
                     {{ method_field("PATCH")}}
                     <div class="form-group">
+                        <label>Issue Number</label>
+                        <input type="text" class="form-control-plaintext" disabled value="{{$issue->code}}"/>
+                    </div>
+                    <div class="form-group">
                         <label>Due Date</label>
                         <input type="text" name="due_date" class="datepicker form-control" id="due_date" value="{{$issue->due_date}}" {{!Gate::check("is_delete")?"disabled":""}}/>
                     </div>

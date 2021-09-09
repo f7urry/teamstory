@@ -12,6 +12,7 @@
             <table class="table table-bordered table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                 <thead class='thead-dark'>
                     <tr>
+                    	<th>Code</th>
                     	<th>Project</th>
                     	<th>Due Date</th>
                     	<th>Subject</th>
@@ -23,6 +24,7 @@
                     @if(count($list_data)>0)
                         @foreach($list_data as $p)
                         <tr>
+                        	<td>{{$p->code}}</td>
                         	<td>{{$p->project->project_name}}</td>
                         	<td>{{$p->due_date}}</td>
                         	<td>{{$p->subject}}</td>

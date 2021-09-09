@@ -12,7 +12,7 @@
                     <h3 class="">New Issue</h3>
                 </div>
                 <div class="card-body">
-                    <form method="post" name="formAdd" id="formAdd">
+                    <form method="post" name="formAdd" id="formAdd" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label>Project</label>

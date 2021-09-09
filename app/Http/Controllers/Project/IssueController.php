@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Project;
 
+use App\Helper\CodeGenerator;
 use App\Helper\DateHelper;
 use App\Helper\SelectHelper;
 use App\Helper\StorageUtil;
@@ -27,6 +28,7 @@ class IssueController extends Controller {
 
     public function store(Request $request) {
         $p=Issue::create($request->except(["_token"]));
+        $p->code=CodeGenerator::generate("I");
         if(isset($request->attachment_1)) {
             $filename = StorageUtil::uploadFile("issue_attachment", $request->attachment_1);
             $p->attachment_1 = $filename;
@@ -53,22 +55,26 @@ class IssueController extends Controller {
     }
 
     public function update(Request $request, Issue $issue) {
-        $param=$request->except(["_token"]);
-        $p=Issue::find($issue->id);
-         if(isset($request->attachment_1)) {
-            $filename = StorageUtil::uploadFile("issue_attachment", $request->attachment_1);
-            $param['attachment_1'] = $filename;
+        try{
+            $param=$request->except(["_token"]);
+            $p=Issue::find($issue->id);
+            if(isset($request->attachment_1)) {
+                $filename = StorageUtil::uploadFile("issue_attachment", $request->attachment_1);
+                $param['attachment_1'] = $filename;
+            }
+            if(isset($request->attachment_2)) {
+                $filename = StorageUtil::uploadFile("issue_attachment", $request->attachment_2);
+                $param['attachment_2'] = $filename;
+            }
+            if(isset($request->attachment_3)) {
+                $filename = StorageUtil::uploadFile("issue_attachment", $request->attachment_3);
+                $param['attachment_3'] = $filename;
+            }
+            $p->update($param);
+            return redirect("/issue/".$p->id)->with("message","Success: Issue Updated");
+        }catch(\Exception $e){
+            return response()->back()->with("message", "Error: Failed update issue .".$e->getMessage());
         }
-        if(isset($request->attachment_2)) {
-            $filename = StorageUtil::uploadFile("issue_attachment", $request->attachment_2);
-            $param['attachment_2'] = $filename;
-        }
-        if(isset($request->attachment_3)) {
-            $filename = StorageUtil::uploadFile("issue_attachment", $request->attachment_3);
-            $param['attachment_3'] = $filename;
-        }
-        $p->update($param);
-        return redirect("/issue/".$p->id)->with("message","Success: Issue Updated");
     }
 
     public function destroy(Issue $issue) {
