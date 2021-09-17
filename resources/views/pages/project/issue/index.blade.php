@@ -16,6 +16,7 @@
                     	<th>Project</th>
                     	<th>Due Date</th>
                     	<th>Subject</th>
+                    	<th>Request By</th>
                     	<th>Status</th>
                         <th></th>
                     </tr>
@@ -28,6 +29,7 @@
                         	<td>{{$p->project->project_name}}</td>
                         	<td>{{$p->due_date}}</td>
                         	<td>{{$p->subject}}</td>
+                        	<td>{{$p->requester}}</td>
                         	<td>{{$p->status}}</td>
                             <td>
                                 <a class='btn btn-warning' href="{{url('/issue/'.$p->id)}}"><i class="fa fa-pen"></i></a>

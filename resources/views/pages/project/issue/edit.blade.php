@@ -41,6 +41,10 @@
                         <input type="text" name="subject" class="form-control" id="subject" value="{{$issue->subject}}"  {{!Gate::check("is_delete")?"disabled":""}}/>
                     </div>
                     <div class="form-group">
+                        <label>Request By</label>
+                        <input type="text" name="requester" class="form-control" id="requester" value="{{$issue->requester}}"  {{!Gate::check("is_delete")?"disabled":""}}/>
+                    </div>
+                    <div class="form-group">
                         <label>Description</label>
                         <textarea class="form-control rich-text" name="description">{{$issue->description}}</textarea>
                     </div>
