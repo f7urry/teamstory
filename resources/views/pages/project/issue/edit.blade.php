@@ -3,6 +3,7 @@
 @section("breadcrumb")
     <li class="breadcrumb-item"><a href="{{url('/issue')}}"><i class="fa fa-arrow-left"></i> Back</a></li>
     <li class="breadcrumb-item"><a href="#" class="btn-save" data-form="#formAdd" data-action="{{url('/issue/'.$issue->id)}}"><i class="fa fa-check"></i> Update</a></li>
+    <li class="breadcrumb-item"><a href="{{url('/issue/create')}}"><i class="fa fa-plus"></i> New Issue</a></li>
 @endsection
 @section("content")
 <div class="row">
@@ -46,7 +47,7 @@
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control rich-text" name="description">{{$issue->description}}</textarea>
+                        <textarea row="50" class="form-control rich-text" name="description">{{$issue->description}}</textarea>
                     </div>
                     <div class="form-group">
                         <label>Attachment 1
