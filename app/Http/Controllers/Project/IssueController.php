@@ -47,21 +47,21 @@ class IssueController extends Controller {
     public function store(Request $request) {
         $p=Issue::create($request->except(["_token"]));
         $p->code=CodeGenerator::generate("I");
-        if(isset($request->request->attachment_1)) {
-            $filename = StorageUtil::uploadFile("issue_attachment", $request->attachment_1);
-            $p->attachment_1 = $filename;
+        if(isset($request->attachment_1)) {
+            $filename1 = StorageUtil::uploadFile("issue_attachment", $request->attachment_1);
+            $p->attachment_1 = $filename1;
         }
         if(isset($request->attachment_2)) {
-            $filename = StorageUtil::uploadFile("issue_attachment", $request->attachment_2);
-            $p->attachment_2 = $filename;
+            $filename2 = StorageUtil::uploadFile("issue_attachment", $request->attachment_2);
+            $p->attachment_2 = $filename2;
         }
         if(isset($request->attachment_3)) {
-            $filename = StorageUtil::uploadFile("issue_attachment", $request->attachment_3);
-            $p->attachment_3 = $filename;
+            $filename3 = StorageUtil::uploadFile("issue_attachment", $request->attachment_3);
+            $p->attachment_3 = $filename3;
         }
         $p->status=Issue::STATUS_WAITING;
         $p->save();
-        //return redirect(url("/issue/".$p->id))->with("message","Success: Issue Created");
+        return redirect(url("/issue/".$p->id))->with("message","Success: Issue Created");
     }
 
     public function show(Issue $issue) {
