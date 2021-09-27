@@ -47,7 +47,11 @@
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea rows="50" class="form-control rich-text" name="description">{{$issue->description}}</textarea>
+                        @if(Gate::check("is_update"))
+                            <textarea class="form-control rich-text" name="description">{{$issue->description}}</textarea>
+                        @else
+                            {!! $issue->description !!}
+                        @endif
                     </div>
                     <div class="form-group">
                         <label>Attachment 1

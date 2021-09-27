@@ -51,7 +51,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-1">
-                                        <input type="checkbox" class="chk_all" data-index="{{$i}}"/> All
+                                        <button type="button" class="chk_all btn btn-default" data-index="{{$i}}"><i class="fa fa-check"></i></button>
                                     </div>
                                     <div class="col-md-6">
                                         <input type="hidden" name="is_read[]" value="{{$permit->is_read}}"/><input id="chk_read_{{$i}}" type="checkbox" {{$permit->is_read==1?"checked":""}} onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Read
@@ -91,7 +91,7 @@
                                 <select name='module_id[]' class='role_picker col-md-3'></select>
                             </div>
                             <div class="col-md-1">
-                                <input type="checkbox" class="chk_all" data-index="${roleIdx}"/> All
+                                <button type="button" class="chk_all btn btn-default" data-index="${roleIdx}"><i class="fa fa-check"></i></button>
                             </div>
                             <div class="col-md-6">
                                 <input type="hidden" name="is_read[]" value="0"/><input   id="chk_read_${roleIdx}"  type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Read
@@ -114,6 +114,7 @@
             $_ui();
         });
         function $_bind_checkall(){
+            $(".chk_all").off();
             $(".chk_all").on("click",function(e){
                 let index=$(this).attr("data-index");
                 $("#chk_read_"+index).click();

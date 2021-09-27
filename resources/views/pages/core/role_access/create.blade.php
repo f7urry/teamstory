@@ -61,9 +61,9 @@
                                 <select name='modules[]' class='role_picker col-md-3'></select>
                             </div>
                              <div class="col-md-1">
-                                <input type="checkbox" class="chk_all" data-index="${roleIdx}"/> All
+                                <button type="button" class="chk_all btn btn-default" data-index="${roleIdx}"><i class="fa fa-check"></i></button>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 pt-2">
                                 <input type="hidden" name="is_read[]" value="0"/><input   id="chk_read_${roleIdx}"   type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Read
                                 <input type="hidden" name="is_create[]" value="0"/><input id="chk_create_${roleIdx}" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Create
                                 <input type="hidden" name="is_update[]" value="0"/><input id="chk_update_${roleIdx}" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"/>&nbsp;Update
@@ -82,8 +82,10 @@
             });
         });
         function $_bind_checkall(){
+            $(".chk_all").off();
             $(".chk_all").on("click",function(e){
                 let index=$(this).attr("data-index");
+                console.log(index);
                 $("#chk_read_"+index).click();
                 $("#chk_create_"+index).click();
                 $("#chk_update_"+index).click();
