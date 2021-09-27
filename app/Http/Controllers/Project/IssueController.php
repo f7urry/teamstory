@@ -61,7 +61,7 @@ class IssueController extends Controller {
         }
         $p->status=Issue::STATUS_WAITING;
         $p->save();
-        return redirect(url("/issue/".$p->id))->with("message","Success: Issue Created");
+        //return redirect(url("/issue/".$p->id))->with("message","Success: Issue Created");
     }
 
     public function show(Issue $issue) {
