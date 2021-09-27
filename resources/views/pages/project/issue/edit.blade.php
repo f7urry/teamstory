@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea row="50" class="form-control rich-text" name="description">{{$issue->description}}</textarea>
+                        <textarea rows="50" class="form-control rich-text" name="description">{{$issue->description}}</textarea>
                     </div>
                     <div class="form-group">
                         <label>Attachment 1
